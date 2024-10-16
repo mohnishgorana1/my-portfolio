@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+ <!-- 
+ app bg : #121212,
+  card bg: #1e1e1e
+  navbar bg: #1f1f1f
+  text colors : 
+    heading     : #fff (h1, h2, h3)
+    subheading  : #e0e0e0
+    paragraphs  : #808080
+    muted text  : #757575 ( For less critical text such as timestamps, tags, or meta information.)
+  button : 
+    primarybtn 
+        bg      : #BB86FC
+        text    : #121212
+        hoverBg:  #9a67ea
+    secondarybtn 
+        bg      : #03DAC6
+        text    : #121212
+        hoverBg:  #018786
+    disbledbtn : 
+        bg      : #3A3A3A
+        text    : #757575
+        curson-not-allowed
+    
+  borders and dividors : #2C2C2C
+  icons and accent elements : #00B8D9
+  Links 
+    color: #1E90FF
+    hover: #87CEEB
+  -->
+  
+  
+<!-- 
 
-## Getting Started
 
-First, run the development server:
+:root {
+  /* Backgrounds */
+  --bg-app: #121212;
+  --bg-card: #1e1e1e;
+  --bg-nav: #1f1f1f;
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  /* Text */
+  --color-heading: #fff;
+  --color-subheading: #e0e0e0;
+  --color-paragraph: #b0b0b0;
+  --color-muted-text: #757575;
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  /* Buttons */
+  --primary-btn: #d54401;
+  --primary-btn-hover: #c63509;
+  --secondary-btn: #0379da;
+  --secondary-btn-hover: #0464b2;
+  --disabled-btn: #3a3a3a;
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+  /* Accents */
+  --accent-text-color: #00b8d9;
+  --link-color: #1e90ff;
+  --link-color-hover: #87ceeb;
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  /* Borders */
+  --color-border: #2c2c2c;
+}
 
-## Learn More
+body {
+  background-color: var(--bg-app);
+  color: var(--color-paragraph);
+}
 
-To learn more about Next.js, take a look at the following resources:
+h1 {
+  color: var(--color-heading);
+}
+h2 {
+  color: var(--color-subheading);
+}
+h3 {
+  color: var(--color-paragraph);
+}
+p {
+  color: var(--color-muted-text);
+}
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+.navbar {
+  background-color: var(--bg-nav);
+}
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+}
 
-## Deploy on Vercel
+.btn-primary {
+  background-color: var(--primary-btn);
+  color: var(--color-heading);
+}
+.btn-primary:hover {
+  background-color: var(--primary-btn-hover);
+}
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+.btn-secondary {
+  background-color: var(--secondary-btn);
+  color: var(--bg-app);
+}
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+.btn-secondary:hover {
+  background-color: var(--secondary-btn-hover);
+}
+
+.link {
+  color: var(--link-color);
+}
+a:hover {
+  color: var(--link-color-hover);
+} -->
