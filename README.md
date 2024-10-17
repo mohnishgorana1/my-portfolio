@@ -110,3 +110,15 @@ p {
 a:hover {
   color: var(--link-color-hover);
 } -->
+
+
+
+<!-- <BackgroundLines className="flex items-center justify-center w-full flex-col overflow-hidden">
+        <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-t from-neutral-600 to-neutral-200  text-4xl md:text-5xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
+          Services<br />I can offer to you.
+        </h2>
+        <p className="max-w-xl mx-auto text-sm md:text-lg text-neutral-700 dark:text-neutral-400 text-center">
+          Get the best advices from our experts, including expert artists,
+          painters, marathon enthusiasts and RDX, totally free.
+        </p>
+      </BackgroundLines> -->

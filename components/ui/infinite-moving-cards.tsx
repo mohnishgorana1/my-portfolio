@@ -86,8 +86,8 @@ export const InfiniteMovingCards = ({
         )}
       >
         {items.map((item, idx) => (
-          <li className="min-w-28 bg-violet-950 flex items-center justify-center px-4 py-2 rounded-xl" key={item.title}>
-            <div className="text-white ">{item.title}</div>
+          <li className="min-w-28 bg-violet-950 flex items-center justify-center px-6 py-3 rounded-xl cursor-pointer" key={item.title}>
+            <div className="text-white animate-pulse ">{item.title}</div>
           </li>
         ))}
       </ul>

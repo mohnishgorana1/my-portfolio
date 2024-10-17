@@ -1,6 +1,8 @@
 "use client";
 import HeroSection from "@/components/HeroSection";
 import SkillsMovingCarousel from "@/components/SkillsMovingCarousel";
+import WhatICanOffer from "@/components/WhatICanOffer";
+
 import Image from "next/image";
 
 export default function Home() {
@@ -11,6 +13,9 @@ export default function Home() {
       </section>
       <section className="flex flex-col my-auto mx-auto">
         <SkillsMovingCarousel />
+      </section>
+      <section className="flex flex-col my-auto mx-auto ">
+        <WhatICanOffer />
       </section>
     </main>
   );

@@ -45,7 +45,7 @@ function SkillsMovingCarousel() {
     <div>
       <HeroHighlight className="flex items-center h-full pt-12 flex-col gap-y-12">
         <div className="w-full flex flex-col items-center justify-center overflow-hidden rounded-md">
-          <h1 className="text-3xl md:text-4xl lg:text-7xl opacity-70 ">
+          <h1 className="text-5xl lg:text-7xl opacity-70 ">
             <p>Skills to Watch Out</p>
           </h1>
         </div>
