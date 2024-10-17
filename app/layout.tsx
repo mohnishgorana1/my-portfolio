@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,16 +29,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#000000] text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#000000] text-white relative`}
       >
-        <div className="flex flex-col items-center gap-y-7 border border-black mx-auto py-2 sm:py-3 lg:py-4">
+        <div className="flex flex-col gap-y-2 items-center border border-black mx-auto py-2 sm:py-3 lg:py-4">
           <nav className="w-[98vw] md:w-[95vw]">
             <Navbar />
           </nav>
 
           <main className="w-full">{children}</main>
 
-          <footer className="w-full"><Footer /></footer>
+          <footer className="w-full mt-8"><Footer /></footer>
+
         </div>
       </body>
     </html>

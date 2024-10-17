@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 
-
+.marquee {
+  display: flex;
+  animation: scroll 15s linear infinite;
+}
 body::-webkit-scrollbar {
   width: 3px;
 }

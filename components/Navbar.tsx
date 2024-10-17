@@ -31,7 +31,7 @@ function Navbar() {
       <div>
         <Link href={"/"}>
           <h3 className="text-[28px] sm:text-4xl font-extrabold tracking-wide brightness-125">
-            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-red-500 bg-clip-text text-transparent flex gap-x-1 h-12 ">
+            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-red-500 bg-clip-text text-transparent flex gap-x-2 h-12 ">
               <span>Mohnish</span>
               <span>Gorana</span>
             </span>
