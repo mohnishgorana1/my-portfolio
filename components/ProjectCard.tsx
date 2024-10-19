@@ -4,22 +4,42 @@ import Link from "next/link";
 import React from "react";
 
 function ProjectCard({ project }: any) {
-  const { link, thumbnail, title, description } = project;
+  const { link, thumbnail, title, description, techStacks } = project;
   return (
-    <Link className="rounded-2xl w-full h-[450px] group shadow-sm shadow-white hover:shadow-md hover:shadow-white group" href={link}>
+    <Link
+      className="rounded-2xl w-full h-[80vh] group shadow-sm shadow-white hover:shadow-md hover:shadow-white group"
+      href={link}
+    >
       <div className="flex flex-col h-full items-center rounded-2xl p-2">
-        <section className="h-[350px] group-hover:h-[300px] w-full duration-500">
+        <section className="h-[60%] group-hover:h-[55vh] w-full duration-500">
           <Image
             src={thumbnail}
             alt="thumbnail"
             width={1000}
             height={1000}
-            className="object-cover h-[90%] md:opacity-30 opacity-65 group-hover:opacity-100 duration-200 ease-linear rounded-3xl"
+            className="h-full object-cover md:opacity-30 opacity-65 group-hover:opacity-100 duration-200 ease-linear rounded-3xl"
           />
         </section>
-        <section className="w-full h-[100px] group-hover:h-[150px] duration-500 bg-[#090909] py-4 flex flex-col items-center gap-y-4">
-          <h1 className="text-2xl md:text-4xl text-center group-hover:font-bold duration-0">{title}</h1>
-          <h2 className="text-white hidden duration-500 group-hover:flex text-opacity-55 overflow-hidden text-sm">{description}</h2>
+        <section className="w-full h-[40%] group-hover:h-[45vh] duration-500 bg-[#090909] py-4 flex flex-col items-center justify-center gap-y-4">
+          <div className="max-w-full flex flex-wrap ">
+            {techStacks.map(
+              (icon) =>
+                icon && (
+                  <span
+                    key={icon}
+                    className="flex rounded-full border p-2 -ml-2 bg-[#00040ad3] hover:scale-125 duration-200"
+                  >
+                    <Image src={icon} alt={icon} width={20} height={18} />
+                  </span>
+                )
+            )}
+          </div>
+          <h1 className="text-2xl md:text-4xl text-center group-hover:font-bold duration-0">
+            {title}
+          </h1>
+          <h2 className="text-white hidden duration-500 group-hover:flex text-opacity-55 overflow-hidden text-sm">
+            {description}
+          </h2>
         </section>
       </div>
     </Link>
