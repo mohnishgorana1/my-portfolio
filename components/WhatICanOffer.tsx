@@ -17,7 +17,7 @@ function WhatICanOffer() {
           </h1>
         </LampContainer>
       </div>
-      <div className="bg-slate-950 pt-8 sm:py-12 sm:pb-24">
+      <div className="bg-slate-950 pt-6 sm:py-12 pb-24">
         <FocusCards cards={services} />
       </div>
     </section>
