@@ -163,3 +163,38 @@ export const projects = [
       "An immersive UI clone of the iPhone 15 website, featuring a stunning 3D model and innovative animations that bring the product to life. ",
   },
 ];
+
+export const academics = [
+  {
+    title: "Master of Computer Application (MCA)",
+    board: "RGPV, Bhopal",
+    institutions: "Gyanodaya Institute of Professional Studies",
+    institutionLocation: "Neemuch, MP",
+    year: "2022-2024",
+    result: "8.07 CGPA",
+  },
+  {
+    title: "Bachelor's of  Science (B.sc CS)",
+    board: "Vikram University, Ujjain",
+    institutions: "Balkavi Bairagee Mahavidhyalaya",
+    institutionLocation: "Neemuch, MP",
+    year: "2018-2021",
+    result: "79.8%",
+  },
+  {
+    title: "12th Grade",
+    board: "CBSE",
+    institutions: "SpringWood Sr. Sec. School",
+    institutionLocation: "Neemuch, MP",
+    year: "2017-2018",
+    result: "73.4%",
+  },
+  {
+    title: "10th Grade",
+    board: "CBSE",
+    institutions: "SpringWood Sr. Sec. School",
+    institutionLocation: "Neemuch, MP",
+    year: "2015-2016",
+    result: "74.1%",
+  },
+];

@@ -52,6 +52,7 @@ function HeroSection() {
                 View My Work
               </button>
             </Link>
+            
           </div>
           <div className="hidden md:flex md:col-span-2 px-4 ">
             <Image
