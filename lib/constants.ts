@@ -198,3 +198,9 @@ export const academics = [
     result: "74.1%",
   },
 ];
+
+export const contactBgImages = [
+  "/assets/contact/bg1.jpg",
+  "/assets/contact/bg2.jpg",
+  "/assets/contact/bg3.jpg"
+]
