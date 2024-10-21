@@ -32,7 +32,7 @@ function About() {
             </h4>
             <div className="mt-6">
               <Link
-                href="https://drive.google.com/file/d/1IZvYEoapTtr1mQNwh8FoiYSuhVuR0JU5/view?usp=sharing"
+                href="https://drive.google.com/file/d/11e6y_UznBcEYjmtbwlUyE9wHeSacAxpi/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 download
@@ -44,6 +44,7 @@ function About() {
           </div>
         </BackgroundBeamsWithCollision>
       </section>
+
       <section className="py-20 w-full flex flex-col gap-y-12 items-center bg-neutral-900">
         <h2 className="text-5xl font-bold mb-8 text-center ">
           Academic Qualifications
