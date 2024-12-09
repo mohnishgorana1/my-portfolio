@@ -6,7 +6,6 @@ import React from "react";
 
 function ProjectDescription({ params }: { params: { projectId: string } }) {
   const projectId = params.projectId;
-
   const currentProject = projects.find((project) => project.id === projectId);
   const {
     id,
