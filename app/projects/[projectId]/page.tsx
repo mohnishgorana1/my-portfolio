@@ -49,7 +49,7 @@ function ProjectDescription({ params }: { params: { projectId: string } }) {
             Source Code
           </Link>
           <Link
-            href={githubRepositoryUrl}
+            href={link}
             className="self-start border py-1 px-8 rounded-xl bg-blue-600 border-transparent"
           >
             View Project
