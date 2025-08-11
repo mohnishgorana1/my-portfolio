@@ -49,7 +49,7 @@ function SkillsMovingCarousel() {
             <p>Skills to Watch Out</p>
           </h1>
         </div>
-        {/* <InfiniteMovingCards items={skills} speed="normal" /> */}
+        <InfiniteMovingCards items={skills} speed="normal" />
       </HeroHighlight>
     </div>
   );

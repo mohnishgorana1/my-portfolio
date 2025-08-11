@@ -185,6 +185,24 @@ export const services = [
 
 export const projects = [
   {
+    id: "0",
+    title: "Examify",
+    link: "https://examify-online.vercel.app/",
+    thumbnail: "/assets/projects/examify.png",
+    description:
+      "A full-stack online examination platform with microservices and role-based features, enabling seamless exam creation, participation, and evaluation.",
+    shortDescription:
+      "Microservices-based exam platform for students and instructors.",
+    detailedDescription:
+      "Examify is a robust online examination platform built with a microservices architecture and role-based access control. The backend is powered by multiple distributed services (api-gateway, auth, user, exam) with event-driven workflows via Apache Kafka (local environment). The platform offers responsive, interactive dashboards with live timers, auto-save, instant scoring, and analytics. Students can enroll in exams, take timed assessments with real-time progress tracking, view upcoming schedules, and receive instant results. Instructors can design and manage exams, monitor real-time participation, and review performance insights. Examify ensures a smooth, reliable, and engaging exam experience for both roles.",
+    githubRepositoryUrl: "https://github.com/mohnishgorana1/examify",
+    techStacks: [
+      "/assets/techStacks/next.svg",
+      "/assets/techStacks/tail.svg",
+      "/assets/techStacks/ts.svg",
+    ],
+  },
+  {
     id: "1",
     title: "Ignite LMS",
     link: "https://ignite-lms.vercel.app/",
@@ -293,7 +311,8 @@ export const projects = [
       "A cloud-based file management solution with real-time collaboration.",
     detailedDescription:
       "DocStream is a comprehensive file management platform inspired by Google Drive. It allows users to upload, organize, and store documents in the cloud, while offering powerful real-time collaboration features. Team members can collaborate on documents simultaneously, track changes through version control, and share files securely with external users. The platform ensures that all files are stored safely in the cloud, making them accessible from any device. DocStream's intuitive interface and rich collaboration features make it ideal for businesses, teams, and individuals looking for a streamlined solution to manage and share files efficiently.",
-    githubRepositoryUrl: "https://github.com/mohnishgorana1/DocStream--realtime-docs",
+    githubRepositoryUrl:
+      "https://github.com/mohnishgorana1/DocStream--realtime-docs",
     techStacks: [
       "/assets/techStacks/next.svg",
       "/assets/techStacks/ts.svg",
