@@ -15,7 +15,7 @@ export default function Home() {
       <section className="flex flex-col mb-8">
         <SkillsMovingCarousel />
       </section>
-      <section className="flex flex-col my-auto mx-auto max-w-[90vw]">
+      <section className="flex flex-col my-auto mx-auto">
         <WhatICanOffer />
       </section>
       <section className="flex flex-col my-auto mx-auto h-auto py-8">
