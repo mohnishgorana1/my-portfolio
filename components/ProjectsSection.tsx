@@ -19,7 +19,7 @@ function ProjectsSection() {
       </div>
       {/* projects card */}
       <section className="mt-12 flex flex-col items-center justify-center w-full">
-        <div className="w-full grid md:grid-cols-3 gap-16">
+        <div className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-16">
           {projects.map((project, idx) => (
             <ProjectCard project={project} key={idx} />
           ))}
