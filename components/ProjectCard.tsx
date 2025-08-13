@@ -23,7 +23,7 @@ function ProjectCard({ project }: any) {
         <section className="rounded-b-2xl w-full h-[40%] group-hover:h-[45%] duration-500 bg-[#090909] py-4 flex flex-col items-center justify-center gap-y-4">
           <div className="max-w-full flex flex-wrap ">
             {techStacks.map(
-              (icon) =>
+              (icon:any) =>
                 icon && (
                   <span
                     key={icon}

@@ -185,7 +185,7 @@ export const services = [
 
 export const projects = [
   {
-    id: "0",
+    id: "1",
     title: "Examify",
     link: "https://examify-online.vercel.app/",
     thumbnail: "/assets/projects/examify.png",
@@ -203,7 +203,7 @@ export const projects = [
     ],
   },
   {
-    id: "1",
+    id: "2",
     title: "Ignite LMS",
     link: "https://ignite-lms.vercel.app/",
     thumbnail: "/assets/projects/ignite-lms.png",
@@ -222,7 +222,7 @@ export const projects = [
     ],
   },
   {
-    id: "2",
+    id: "3",
     title: "Career Hub",
     link: "https://career-hub-sooty.vercel.app/",
     thumbnail: "/assets/projects/career-hub.png",
@@ -241,7 +241,7 @@ export const projects = [
     ],
   },
   {
-    id: "3",
+    id: "4",
 
     title: "Carewell",
     link: "https://carewell-eight.vercel.app/",
@@ -261,7 +261,7 @@ export const projects = [
     ],
   },
   {
-    id: "4",
+    id: "5",
 
     title: "Chat App",
     link: "https://chat-app-two-flame.vercel.app/",
@@ -281,7 +281,7 @@ export const projects = [
     ],
   },
   {
-    id: "5",
+    id: "6",
 
     title: "Mega Drive",
     link: "https://mega-drive-nine.vercel.app/",
@@ -300,7 +300,7 @@ export const projects = [
     ],
   },
   {
-    id: "6",
+    id: "7",
 
     title: "DocStream",
     link: "https://docstream.vercel.app/",
@@ -321,7 +321,7 @@ export const projects = [
     ],
   },
   {
-    id: "7",
+    id: "8",
 
     title: "Phantom Feedback",
     link: "https://phantom-feedback.vercel.app/",
@@ -340,7 +340,7 @@ export const projects = [
     ],
   },
   {
-    id: "8",
+    id: "9",
 
     title: "Gymate UI",
     link: "https://gym-website-ui-clone.vercel.app/",
@@ -358,7 +358,7 @@ export const projects = [
     ],
   },
   {
-    id: "9",
+    id: "10",
 
     title: "Iphone15 UI Clone",
     link: "https://dev-mohnishgorana-iphone15-ui-clone.netlify.app/",
