@@ -7,12 +7,12 @@ import React from "react";
 function About() {
   return (
     <main className="w-full">
-      <section>
+      <section className="">
         <BackgroundBeamsWithCollision className="flex flex-col items-center pt-10 lg:pt-16 gap-y-7">
           <h1 className="text-5xl relative z-20 md:text-6xl lg:text-7xl font-bold text-center text-white font-sans tracking-tight pt-8 sm:pt-0">
             About Me
           </h1>
-          <div className="[filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))] flex flex-col gap-y-3 max-w-[90vw] lg:max-w-[60vw] text-justify">
+          <div className="[filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))] flex flex-col gap-y-3 max-w-[90vw] lg:max-w-[60vw] text-justify pb-8">
             <h2 className="text-2xl">I&apos;m Mohnish Gorana</h2>
             <h3 className="text-[16px] lg:text-lg opacity-70">
               A passionate full-stack developer with a strong foundation in
@@ -32,7 +32,7 @@ function About() {
             </h4>
             <div className="mt-6">
               <Link
-                href="https://drive.google.com/file/d/11e6y_UznBcEYjmtbwlUyE9wHeSacAxpi/view?usp=sharing"
+                href="https://drive.google.com/file/d/12oBFs2RA19N4HajZU4Qu0PlTkDCEN9DY/view?usp=drivesdk"
                 target="_blank"
                 rel="noopener noreferrer"
                 download
@@ -45,11 +45,11 @@ function About() {
         </BackgroundBeamsWithCollision>
       </section>
 
-      <section className="py-20 w-full flex flex-col gap-y-12 items-center bg-neutral-900">
-        <h2 className="text-5xl font-bold mb-8 text-center ">
+      <section className="py-14 md:py-20 w-full flex flex-col gap-y-8 md:gap-y-12 items-center bg-neutral-900">
+        <h2 className="text-3xl md:text-5xl font-bold md:mb-8 text-center ">
           Academic Qualifications
         </h2>
-        <div className="min-w-[90vw] lg:min-w-[75vw] flex flex-col gap-y-6 items-center justify-center">
+        <div className="min-w-[90vw] lg:min-w-[75vw] flex flex-col gap-y-6 items-center justify-center px-3">
           {academics.map((academic, idx) => (
             <AcademicCard key={idx} {...academic} />
           ))}

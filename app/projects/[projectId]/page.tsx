@@ -54,7 +54,7 @@ function ProjectDescription({ params }: { params: { projectId: string } }) {
             View Project
           </Link>
         </div>
-        <h3 className="text-justify text-xl tracking-tight">{detailedDescription}</h3>
+        <h3 className="text-justify text-xs sm:text-sm md:text-lg lg:text-xl tracking-tight">{detailedDescription}</h3>
         <div className="self-start flex flex-wrap gap-x-12 justify-center gap-y-4 items-center">
           <h2 className="text-xl font-semibold ">Technologies Used</h2>
           <div className="max-w-full flex flex-wrap ">

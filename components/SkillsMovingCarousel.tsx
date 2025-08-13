@@ -11,7 +11,7 @@ const skills = [
     logo: "/assets/icons/next.svg",
   },
   {
-    title: "React",
+    title: "React JS",
     logo: "/assets/icons/react-icon.svg",
   },
   {
@@ -43,13 +43,20 @@ const skills = [
 function SkillsMovingCarousel() {
   return (
     <div>
-      <HeroHighlight className="flex items-center h-full pt-12 flex-col gap-y-12">
-        <div className="w-full flex flex-col items-center justify-center overflow-hidden rounded-md">
-          <h1 className="text-5xl lg:text-7xl opacity-70 ">
+      <HeroHighlight className="w-full h-full flex flex-col items-center justify-center gap-y-8 ">
+        <div className="w-full flex flex-col items-center justify-center rounded-md">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl animate-pulse ">
             <p>Skills to Watch Out</p>
           </h1>
         </div>
-        <InfiniteMovingCards items={skills} speed="normal" />
+        <div className="grid grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-y-3 gap-x-10 items-center justify-center">
+          {skills &&
+            skills.map(({ title, logo }) => (
+              <div className="w-34 lg:w-38 text-center p-2 rounded-lg bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-400 cursor-pointer">
+                <p className="text-sm md:text-lg font-semibold tracking-wider">{title}</p>
+              </div>
+            ))}
+        </div>
       </HeroHighlight>
     </div>
   );

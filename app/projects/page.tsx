@@ -9,7 +9,7 @@ function Project() {
   return (
     <main>
       <section className="w-full mx-auto py-20 md:py-15 px-4 bg-gradient-to-b from-black from-10% via-violet-950 via-70% to-[#33006F] to-90%">
-        <h1 className="text-4xl md:text-7xl font-bold text-center text-white">
+        <h1 className="text-3xl md:text-7xl font-bold text-center text-white animate-pulse">
           The Ultimate <br /> Full Stack Projects
         </h1>
         <p className="max-w-3xl text-base md:text-xl mt-8 text-justify dark:text-neutral-200 mx-auto">
@@ -25,13 +25,13 @@ function Project() {
         </p>
       </section>
       {/* projects listing */}
-      <section className="py-10 md:py-20 mx-auto bg-neutral-900 space-y-20">
-        <div>
-          <h1 className="text-2xl lg:text-5xl text-center">Featured Project</h1>
+      <section className="py-10 md:py-10 mx-auto bg-neutral-900 space-y-20">
+        <div className="hidden md:flex items-center justify-center">
+          <h1 className="text-2xl lg:text-5xl text-center ">Featured Project</h1>
         </div>
         <div className="px-4 lg:px-24  flex flex-col items-center gap-y-8 ">
           <div className="flex flex-col items-center gap-y-8">
-            <span className="flex text-xl py-1 px-4 rounded-xl bg-gradient-to-r from-purple-500 from-10% via-violet-700 via-40% to to-pink-600 to-80% hover:from-pink-600 hover:via-violet-400 hover:to-purple-500 duration-700  ease-linear">
+            <span className="flex text-xl py-1 px-4 rounded-xl bg-gradient-to-r from-purple-500 from-10% via-violet-700 via-40% to to-pink-600 to-80% hover:from-pink-600 hover:via-violet-400 hover:to-purple-500 duration-500  ease-linear">
               <span>Explore My Projects &nbsp; </span>
               <span className="hidden md:flex">
                 Innovative Solutions Crafted with Passion and Expertise
@@ -82,7 +82,7 @@ function Project() {
                         <h1 className="text-2xl md:text-4xl text-center group-hover:font-bold duration-0">
                           {title}
                         </h1>
-                        <h2 className="text-white hidden duration-500 group-hover:flex text-opacity-55 overflow-hidden text-sm">
+                        <h2 className="text-white hidden duration-500 group-hover:flex text-opacity-55 overflow-hidden text-xs md:text-sm">
                           {description}
                         </h2>
                       </section>

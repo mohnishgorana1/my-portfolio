@@ -12,7 +12,7 @@ export default function Home() {
       <section className="px-4 md:px-8">
         <HeroSection />
       </section>
-      <section className="flex flex-col">
+      <section className="flex flex-col mb-8">
         <SkillsMovingCarousel />
       </section>
       <section className="flex flex-col my-auto mx-auto max-w-[90vw]">
