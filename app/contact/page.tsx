@@ -47,14 +47,14 @@ function ContactUs() {
                 rel="noopener noreferrer"
                 className="text-xl md:text-2xl text-purple-400 hover:text-purple-500 p-0 underline"
               >GitHub</Link>
-              {/* <Link
-                href="https://linkedin.com/in/yourusername"
+              <Link
+                href="https://www.linkedin.com/in/mohnish-gorana/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xl text-purple-400 hover:text-purple-500"
               >
                 LinkedIn
-              </Link> */}
+              </Link>
             </div>
           </div>
         </div>
