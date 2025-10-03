@@ -23,8 +23,8 @@ function Interests({ data, setData }: any) {
   return (
     <div>
       <form className="gap-2 grid grid-cols-3">
-        {interestsToRender.map((interest: string) => (
-          <div className="capitalize items-center flex">
+        {interestsToRender.map((interest: string, idx: number) => (
+          <div className="capitalize items-center flex" key={idx}>
             <input
               type="checkbox"
               className="w-5 h-5"

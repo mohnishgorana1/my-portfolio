@@ -59,7 +59,7 @@ function ProjectDescription({ params }: { params: { projectId: string } }) {
           <h2 className="text-xl font-semibold ">Technologies Used</h2>
           <div className="max-w-full flex flex-wrap ">
             {techStacks.map(
-              (icon) =>
+              (icon: any) =>
                 icon && (
                   <span
                     key={icon}

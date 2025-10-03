@@ -52,8 +52,13 @@ function SkillsMovingCarousel() {
         <div className="grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-4 gap-y-3 gap-x-10 items-center justify-center">
           {skills &&
             skills.map(({ title, logo }) => (
-              <div className="w-34 lg:w-38 text-center p-2 rounded-lg bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-400 cursor-pointer">
-                <p className="text-sm md:text-lg font-semibold tracking-wider">{title}</p>
+              <div
+                key={title}
+                className="w-34 lg:w-38 text-center p-2 rounded-lg bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-400 cursor-pointer"
+              >
+                <p className="text-sm md:text-lg font-semibold tracking-wider">
+                  {title}
+                </p>
               </div>
             ))}
         </div>

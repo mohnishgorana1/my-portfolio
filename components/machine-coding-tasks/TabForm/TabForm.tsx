@@ -42,17 +42,14 @@ function TabForm() {
   };
 
   return (
-    <main className="w-full min-h-full md:min-h-[50vh] bg-neutral-900 px-4 py-4 rounded-md grid md:items-center md:grid-cols-3">
-      <h1 className="hidden md:flex text-3xl md:col-span-1">Tab Form</h1>
-      <h1 className="md:hidden mb-5 text-3xl md:col-span-1 border-b md:border-b-0 border-b-neutral-400 pb-2 ">
-        Tab Form
-      </h1>
-      <div className="h-full md:col-span-1  md:border-l border-l-neutral-600 px-5 space-y-4 ">
+    <main className="min-h-72 grid md:grid-cols-2 gap-x-3 gap-y-3 mb-5">
+      <div className="space-y-3 bg-neutral-900 px-4 py-2 rounded-sm md:rounded-xl">
+        {/* tabs btn */}
         <section className="flex">
           {tabs.map((tab, idx) => (
             <Button
               key={idx}
-              className={`text-xl ${
+              className={`text-sm h-8 ${
                 activeTab === idx && "bg-slate-950 ease-linear"
               }`}
               onClick={() => setActiveTab(idx)}
@@ -62,9 +59,10 @@ function TabForm() {
           ))}
         </section>
 
-        <section className="bg-neutral-700 rounded-sm p-3">
+        <section className="rounded-sm p-3">
           <ActiveTabComponent data={formData} setData={setFormData} />
         </section>
+
 
         <div className="mx-auto flex flex-row gap-y-2 gap-x-2 items-center">
           {activeTab > 0 && (
@@ -87,7 +85,8 @@ function TabForm() {
           )}
         </div>
       </div>
-      <div className="my-3 md:my-0 md:col-span-1 border-t border-t-neutral-400 md:border-t-0 md:border-l border-l-neutral-400 px-5 py-2 space-y-4 ">
+      {/* output */}
+      <div className="bg-neutral-900/55 px-4 py-2 rounded-sm md:rounded-xl">
         <h1 className="font-bold text-lg text-center">Submission Details</h1>
         <div className="space-y-3">
           <article className="flex items-center gap-x-5">
@@ -108,7 +107,10 @@ function TabForm() {
               {formData.interests &&
                 formData.interests.length &&
                 formData.interests.map((i) => (
-                  <span className="py-1 px-3 text-xs rounded-full bg-slate-600">
+                  <span
+                    key={i}
+                    className="py-1 px-3 text-xs rounded-full bg-slate-600"
+                  >
                     {i}
                   </span>
                 ))}

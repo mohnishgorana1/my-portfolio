@@ -26,6 +26,11 @@ function Navbar() {
       label: "Projects",
       link: "/projects",
     },
+    {
+      id: 5,
+      label: "Machine Coding Tasks",
+      link: "/machine-coding-tasks",
+    },
   ];
   return (
     <header className="px-4 md:px-8 lg:px-12 h-14 lg:h-16 flex items-center justify-between  hover:shadow-md hover:shadow-[#8d8d8d] duration-500 hover:bg-[#0c0c0c] rounded-xl">
