@@ -7,9 +7,11 @@ function OTPINPUT() {
   const [otp, setOtp] = useState<string[]>(Array(OTP_DIGITS_COUNT).fill(""));
   const [submittedOpt, setSubmittedOpt] = useState<string | null>(null);
 
+  const [hasStarted, setHasStarted] = useState(false);
+
   const resetFields = () => {
     setOtp(Array(OTP_DIGITS_COUNT).fill(""));
-    inputRefs.current[0]?.focus();
+    setHasStarted(false); // reset ke baad dobara manual start required
   };
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
@@ -22,6 +24,8 @@ function OTPINPUT() {
 
   const handleChange = (value: string, idx: number) => {
     if (!/^[0-9]?$/.test(value)) return; // sirf number allow
+
+    if (!hasStarted) setHasStarted(true); // 👈 pehli baar input me entry hui
 
     const newOtp = [...otp];
     newOtp[idx] = value;
@@ -45,10 +49,12 @@ function OTPINPUT() {
   const activeIndex = otp.findIndex((digit) => digit === "");
   const currentActive = activeIndex === -1 ? OTP_DIGITS_COUNT - 1 : activeIndex;
 
-  // every otp change par active input ko focus karo bocaues disabled se focus hat jata hai
+  // sirf tab focus karo jab user start kar chuka hai
   useEffect(() => {
-    inputRefs.current[currentActive]?.focus();
-  }, [currentActive]);
+    if (hasStarted) {
+      inputRefs.current[currentActive]?.focus();
+    }
+  }, [currentActive, hasStarted]);
 
   return (
     <main className="min-h-72 grid md:grid-cols-2 gap-x-3 gap-y-3 mb-5">
@@ -65,7 +71,7 @@ function OTPINPUT() {
               key={idx}
               maxLength={1}
               value={otp[idx]}
-              disabled={idx !== currentActive}
+              readOnly={idx !== currentActive}
               onChange={(e) => handleChange(e.target.value, idx)}
               onKeyDown={(e) => handleKeyDown(e, idx)}
               ref={(element) => {
