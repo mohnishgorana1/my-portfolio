@@ -54,10 +54,12 @@ function Pagination() {
   };
 
   const pageNumbersArray = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+
   return (
     <main className="min-h-72 grid md:grid-cols-2 gap-x-3 gap-y-3 mb-5">
       {/* fetched data */}
-      <div className="overflow-auto space-y-3 bg-neutral-900 px-4 py-2 rounded-sm md:rounded-xl grid grid-cols-2">
+      <div className="overflow-auto  bg-neutral-900 px-4 py-2 rounded-sm md:rounded-xl grid md:grid-cols-2  gap-3">
         {loading && (
           <TextShimmer className="font-mono text-sm" duration={1}>
             Fetching...
@@ -68,7 +70,7 @@ function Pagination() {
           paginatedProducts.map((product: any) => (
             <div
               key={product.id}
-              className="bg-neutral-800 rounded-md flex items-center justify-between max-w-56 px-4 py-3"
+              className="bg-neutral-800 rounded-md flex items-center justify-between px-4 py-3"
             >
               <span className="flex gap-x-1">
                 <p>{product.id}.</p>

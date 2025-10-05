@@ -51,34 +51,41 @@ function Accordian() {
   return (
     <main className="min-h-72 gap-x-3 gap-y-3 mb-5">
       <div className="min-h-56 px-2 py-2 lg:pt-4 rounded-sm md:rounded-xl flex flex-col gap-y-1">
-        {data.map((item) => (
-          <div
-            key={item.id}
-            className="space-y-2 my-1 bg-neutral-800 px-4 py-3 rounded-md "
-          >
-            <section
-              className="flex items-center justify-between cursor-pointer"
-              onClick={() => handleAccordian(item.id)}
+        {data.map((item) => {
+          const isOpen = currentOpenAccoridan === item.id;
+          return (
+            <div
+              key={item.id}
+              className="space-y-2 my-1 bg-neutral-800 px-4  rounded-md "
             >
-              <h2 className="text-lg font-semibold">{item.name}</h2>
-              <button
-                className={`${
-                  currentOpenAccoridan === item.id && "rotate-180 "
-                } duration-500`}
+              <section
+                className="mt-1 flex items-center justify-between cursor-pointer"
                 onClick={() => handleAccordian(item.id)}
               >
-                <FaAngleDown />
-              </button>
-            </section>
-            {currentOpenAccoridan === item.id && (
-              <section className="">
-                <p className="text-xs pt-2 font-bold text-gray-500 border-t border-t-neutral-700/70">
-                  {item.content}
-                </p>
+                <h2 className="text-lg font-semibold">{item.name}</h2>
+                <button
+                  className={`${
+                    currentOpenAccoridan === item.id && "rotate-180 "
+                  } duration-500`}
+                  onClick={() => handleAccordian(item.id)}
+                >
+                  <FaAngleDown />
+                </button>
               </section>
-            )}
-          </div>
-        ))}
+              <section
+                className={`transition-all duration-300 ease-in-out overflow-hidden
+                  ${isOpen ? "max-h-96 opacity-100 pb-2" : "max-h-0 opacity-0"}
+                `}
+              >
+                <div className="pt-2">
+                  <p className="text-sm font-medium text-gray-400 border-t border-t-neutral-700/70 pt-2">
+                    {item.content}
+                  </p>
+                </div>
+              </section>
+            </div>
+          );
+        })}
       </div>
     </main>
   );
