@@ -1,4 +1,5 @@
 "use client";
+import Accordian from "@/components/machine-coding-tasks/accordian/Accordian";
 import ChipsInput from "@/components/machine-coding-tasks/chips-input/ChipsInput";
 import NESTEDCHECKBOX from "@/components/machine-coding-tasks/nested-checkbox/nested-checkbox";
 import OTPINPUT from "@/components/machine-coding-tasks/OTPINPUT/Otp-input";
@@ -29,6 +30,10 @@ function MachineCodingTasks() {
     {
       name: "CHIPS INPUT",
       component: <ChipsInput />,
+    },
+    {
+      name: "Accordian",
+      component: <Accordian />,
     },
   ];
 
