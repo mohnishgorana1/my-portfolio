@@ -157,7 +157,7 @@ function NESTEDCHECKBOX() {
   const [open, setOpen] = useState(false);
 
   // 🧩 Build nested tree with isSelected flag
-  const buildSelectedTree = (data: any[], checked: any) => {
+  const buildSelectedTree = (data: any, checked: any) => {
     return data.map((node: any) => {
       const isSelected = !!checked[node.id];
       return {
@@ -190,7 +190,7 @@ function NESTEDCHECKBOX() {
         </section>
         <button
           onClick={handleSubmit}
-          className="font-bold py-2 px-4 rounded-2xl flex items-center gap-x-2 bg-blue-700 hover:shadow hover:shadow-blue-700"
+          className="font-bold py-2 px-4 rounded-2xl text-center gap-x-2 bg-blue-700 hover:shadow hover:shadow-blue-700"
         >
           Submit
         </button>
