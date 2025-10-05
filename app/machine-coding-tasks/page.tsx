@@ -1,5 +1,5 @@
 "use client";
-import Accordian from "@/components/machine-coding-tasks/accordian/Accordian";
+import Accordian from "@/components/machine-coding-tasks/accordian/Accordion";
 import ChipsInput from "@/components/machine-coding-tasks/chips-input/ChipsInput";
 import NESTEDCHECKBOX from "@/components/machine-coding-tasks/nested-checkbox/nested-checkbox";
 import OTPINPUT from "@/components/machine-coding-tasks/OTPINPUT/Otp-input";
@@ -32,7 +32,7 @@ function MachineCodingTasks() {
       component: <ChipsInput />,
     },
     {
-      name: "Accordian",
+      name: "ACCORDION",
       component: <Accordian />,
     },
   ];
@@ -168,7 +168,8 @@ function MachineCodingTasks() {
                 <ul className="ml-2 list-disc list-inside">
                   <li>1. Type a value and press Enter to add it as a chip.</li>
                   <li className="space-x-2">
-                    2. Each chip can be removed by clicking the delete <MdCancel className="text-red-500 inline mb-1"/> icon.
+                    2. Each chip can be removed by clicking the delete{" "}
+                    <MdCancel className="text-red-500 inline mb-1" /> icon.
                   </li>
                   <li>
                     3. On clicking Submit, the entered chips are displayed as
@@ -190,6 +191,46 @@ function MachineCodingTasks() {
                   ⚡ Note: Built entirely using{" "}
                   <strong>React + Tailwind CSS</strong> without using any
                   external UI libraries.
+                </span>
+              </article>
+            )}
+            {c.name === "ACCORDION" && (
+              <article className="space-y-2 text-base text-gray-400">
+                <p className="text-gray-200">
+                  A reusable <strong>Accordion Component</strong> that displays
+                  structured information in collapsible sections. Clicking on a
+                  section title expands its content while keeping the UI clean
+                  and organized.
+                </p>
+                <ul className="ml-2 list-disc list-inside">
+                  <li>
+                    1. Displays multiple accordion items such as HTML, CSS,
+                    JavaScript, etc.
+                  </li>
+                  <li>
+                    2. Expanding one section smoothly reveals its detailed
+                    content.
+                  </li>
+                  <li>
+                    3. Ideal for FAQs, documentation, or topic-based content
+                    organization.
+                  </li>
+                </ul>
+                <p className="text-neutral-400">
+                  👉 You can check out the source code here:{" "}
+                  <a
+                    href="https://github.com/mohnishgorana1/my-portfolio/blob/master/components/machine-coding-tasks/accordion"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 underline"
+                  >
+                    GitHub Link
+                  </a>
+                </p>
+                <span className="text-neutral-500">
+                  ⚡ Note: Developed using <strong>React + Tailwind CSS</strong>{" "}
+                  with smooth expand/collapse animations and a minimalist
+                  design without using any kind of UI Library like Shadcn.
                 </span>
               </article>
             )}

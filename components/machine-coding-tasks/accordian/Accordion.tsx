@@ -50,7 +50,7 @@ function Accordian() {
 
   return (
     <main className="min-h-72 gap-x-3 gap-y-3 mb-5">
-      <div className="min-h-56 bg-neutral-900 px-2 py-2 lg:pt-4 rounded-sm md:rounded-xl flex flex-col gap-y-1">
+      <div className="min-h-56 px-2 py-2 lg:pt-4 rounded-sm md:rounded-xl flex flex-col gap-y-1">
         {data.map((item) => (
           <div
             key={item.id}
