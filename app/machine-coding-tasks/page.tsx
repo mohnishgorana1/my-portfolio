@@ -4,6 +4,7 @@ import ChipsInput from "@/components/machine-coding-tasks/chips-input/ChipsInput
 import NESTEDCHECKBOX from "@/components/machine-coding-tasks/nested-checkbox/nested-checkbox";
 import OTPINPUT from "@/components/machine-coding-tasks/OTPINPUT/Otp-input";
 import Pagination from "@/components/machine-coding-tasks/Pagination/Pagination";
+import ProgressBar from "@/components/machine-coding-tasks/progress-bar/ProgressBar";
 import TabForm from "@/components/machine-coding-tasks/TabForm/TabForm";
 import { TextScramble } from "@/components/ui/text-scramble";
 import React from "react";
@@ -34,6 +35,10 @@ function MachineCodingTasks() {
     {
       name: "ACCORDION",
       component: <Accordian />,
+    },
+    {
+      name: "PROGRESS BAR",
+      component: <ProgressBar />,
     },
   ];
 

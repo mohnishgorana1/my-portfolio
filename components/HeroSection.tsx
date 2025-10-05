@@ -36,23 +36,40 @@ function HeroSection() {
                 </span>
               </h4>
             </div>
-            <Link
-              href={"/projects"}
-              className="p-[1px] border rounded-lg 
-            bg-gradient-to-br from-purple-700 via-blue-600 to-pink-600 self-center md:self-start"
-            >
-              <button
-                className="inline-flex h-10 md:h-12 animate-shimmer items-center justify-center rounded-lg 
+            <span className="flex flex-col md:flex-row items-start gap-y-3 gap-x-3">
+              <Link
+                href={"/projects"}
+                className="p-[1px] border rounded-lg 
+            bg-gradient-to-br from-purple-700 via-blue-600 to-pink-600 self-start"
+              >
+                <button
+                  className="inline-flex h-10 md:h-12 animate-shimmer items-center justify-center rounded-lg 
                     border border-slate-600 font-semibold 
                     bg-[linear-gradient(110deg,#000103,45%,#1e2631,60%,#000103)] 
                     bg-[length:250%_100%] 
                     px-6 text-slate-300 sm:text-slate-300 hover:text-white transition-colors 
                     focus:outline-none focus:ring-0 focus:ring-slate-200 focus:ring-offset-1 focus:ring-offset-slate-50"
+                >
+                  View My Work
+                </button>
+              </Link>
+              <Link
+                href={"/machine-coding-tasks"}
+                className="p-[1px] border rounded-lg 
+            bg-gradient-to-br from-purple-700 via-blue-600 to-pink-600 self-start "
               >
-                View My Work
-              </button>
-            </Link>
-            
+                <button
+                  className="inline-flex h-10 md:h-12 animate-shimmer items-center justify-center rounded-lg 
+                    border border-slate-600 font-semibold 
+                    bg-[linear-gradient(110deg,#000103,45%,#1e2631,60%,#000103)] 
+                    bg-[length:250%_100%] 
+                    px-6 text-slate-300 sm:text-slate-300 hover:text-white transition-colors 
+                    focus:outline-none focus:ring-0 focus:ring-slate-200 focus:ring-offset-1 focus:ring-offset-slate-50"
+                >
+                  Machine Coding Tasks
+                </button>
+              </Link>
+            </span>
           </div>
           <div className="hidden md:flex md:col-span-2 px-4 ">
             <Image
