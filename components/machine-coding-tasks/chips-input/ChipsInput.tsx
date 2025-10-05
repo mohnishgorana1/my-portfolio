@@ -13,6 +13,7 @@ function ChipsInput() {
 
   const handleKeyDown = (e: any) => {
     if (e.key === "Enter") {
+      if (currentValue.trim() === "") return;
       setData((prev) => {
         return [...prev, currentValue];
       });
@@ -71,15 +72,13 @@ function ChipsInput() {
         <div className="w-full text-neutral-300 space-y-3 leading-relaxed text-xl">
           {isSubmitted && data.length > 0 ? (
             <p className="flex flex-col">
-                <span>&#91;</span>
-                <span className="ml-4 flex flex-col">
-                    {
-                        data.map((item) => (
-                            <span className="ml-1">"{item}"</span>
-                        ))
-                    }
-                </span>
-                <span>&#93;</span>
+              <span>&#91;</span>
+              <span className="ml-4 flex flex-col">
+                {data.map((item) => (
+                  <span className="ml-1">"{item}"</span>
+                ))}
+              </span>
+              <span>&#93;</span>
             </p>
           ) : (
             <p>No Value Added</p>
