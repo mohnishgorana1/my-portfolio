@@ -1,6 +1,7 @@
 "use client";
 import Accordian from "@/components/machine-coding-tasks/accordian/Accordion";
 import ChipsInput from "@/components/machine-coding-tasks/chips-input/ChipsInput";
+import CinemaTicketBooking from "@/components/machine-coding-tasks/cinema-ticket-booking/CinemaTicketBooking";
 import NESTEDCHECKBOX from "@/components/machine-coding-tasks/nested-checkbox/nested-checkbox";
 import OTPINPUT from "@/components/machine-coding-tasks/OTPINPUT/Otp-input";
 import Pagination from "@/components/machine-coding-tasks/Pagination/Pagination";
@@ -40,6 +41,11 @@ function MachineCodingTasks() {
       name: "PROGRESS BAR",
       component: <ProgressBar />,
     },
+    {
+      name: "CINEMA TICKET BOOKING",
+      component: <CinemaTicketBooking />,
+    },
+    
   ];
 
   return (
@@ -53,9 +59,9 @@ function MachineCodingTasks() {
           Machine Coding Tasks
         </TextScramble>
       </section>
-      <section className="space-y-8 px-2 md:px-6 lg:px-12 ">
+      <section className="space-y-8  md:px-6 lg:px-12 ">
         {machineCodingTaskConfigs.map((c) => (
-          <div className="space-y-4 mx-auto border px-4 py-4 md:py-2 rounded-lg shadow-sm shadow-neutral-600 border-neutral-800">
+          <div className="space-y-4 mx-auto border px-1 sm:px-4 py-4 md:py-2 rounded-lg shadow-sm shadow-neutral-600 border-neutral-800">
             <h1 className="text-2xl  font-bold">{c.name}</h1>
             {c.name === "TAB FORM" && (
               <article className="space-y-2">
@@ -234,8 +240,8 @@ function MachineCodingTasks() {
                 </p>
                 <span className="text-neutral-500">
                   ⚡ Note: Developed using <strong>React + Tailwind CSS</strong>{" "}
-                  with smooth expand/collapse animations and a minimalist
-                  design without using any kind of UI Library like Shadcn.
+                  with smooth expand/collapse animations and a minimalist design
+                  without using any kind of UI Library like Shadcn.
                 </span>
               </article>
             )}

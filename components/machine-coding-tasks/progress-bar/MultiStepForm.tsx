@@ -39,7 +39,7 @@ function MultiStepProgressForm() {
   return (
     <main className="flex flex-col gap-y-8 text-white">
       <h1 className="font-bold text-lg md:text-xl text-center text-indigo-500 ">
-        Multi-Step <br className="md:hidden" /> Progress Form
+        Multi-Step <br className="md:hidden" /> Progress Form with Stepper
         <span className="ml-1 text-xs text-neutral-700 md:hidden">
           *Desktop Friendly*
         </span>
