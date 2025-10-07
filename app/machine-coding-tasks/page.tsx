@@ -15,10 +15,10 @@ function MachineCodingTasks() {
           <Link
             key={task.path}
             href={`${pathname}/${task.path}`}
-            className="group border border-neutral-800 rounded-2xl p-6 hover:bg-neutral-900 transition duration-300 shadow-md shadow-neutral-800 hover:shadow-lg flex items-center justify-between"
+            className="group border border-neutral-800 rounded-2xl p-6 hover:bg-neutral-950 transition duration-300 shadow-md shadow-neutral-800 hover:shadow-indigo-900 flex items-center justify-between"
           >
             <div>
-              <h2 className="text-lg font-semibold text-neutral-100 group-hover:text-indigo-400">
+              <h2 className="text-lg font-semibold text-neutral-100 group-hover:text-indigo-500">
                 {task.name}
               </h2>
               <p className="text-sm text-neutral-500 mt-1">

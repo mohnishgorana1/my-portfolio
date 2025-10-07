@@ -420,12 +420,13 @@ export const contactBgImages = [
 ];
 
 export const machineCodingTaskConfigs = [
-  { name: "TAB FORM", path: "tab-form" },
+  { name: "CINEMA TICKET BOOKING", path: "cinema-ticket-booking" },
   { name: "PAGINATION", path: "pagination" },
+  { name: "INFINITE SCROLL", path: "infinite-scroll" },
   { name: "OTP INPUT", path: "otp-input" },
+  { name: "PROGRESS BAR", path: "progress-bar" },
   { name: "NESTED CHECKBOX", path: "nested-checkbox" },
   { name: "CHIPS INPUT", path: "chips-input" },
+  { name: "TAB FORM", path: "tab-form" },
   { name: "ACCORDION", path: "accordion" },
-  { name: "PROGRESS BAR", path: "progress-bar" },
-  { name: "CINEMA TICKET BOOKING", path: "cinema-ticket-booking" },
 ];
