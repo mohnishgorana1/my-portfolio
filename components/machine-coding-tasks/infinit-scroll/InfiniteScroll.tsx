@@ -5,7 +5,7 @@ import axios from "axios";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AiFillLike, AiFillDislike } from "react-icons/ai";
 
-const BATCH_SIZE = 10; // Number of posts per load
+const BATCH_SIZE = 50; // Number of posts per load
 
 function InfiniteScroll() {
   const [posts, setPosts] = useState<any[]>([]);
@@ -74,13 +74,13 @@ function InfiniteScroll() {
             return (
               <div
                 key={id}
-                className="max-w-full md:max-w-lg lg:max-w-xs mx-auto flex flex-col items-start px-4 rounded-lg my-2 border border-neutral-900 py-4 shadow shadow-neutral-500 bg-neutral-900 hover:shadow-neutral-300 hover:shadow-md duration-200 ease-in-out space-y-3"
+                className="max-w-full md:max-w-lg lg:max-w-md mx-auto flex flex-col items-start px-4 rounded-lg my-2 border border-neutral-900 py-4 shadow shadow-neutral-500 bg-neutral-900 hover:shadow-neutral-300 hover:shadow-md duration-200 ease-in-out space-y-3"
               >
-                <section className="flex justify-between items-baseline w-full">
+                <section className="flex justify-between items-baseline w-full gap-x-12">
                   <h2 className="text-lg font-semibold">
                     {idx + 1}. {title}
                   </h2>
-                  <h1 className="text-xs opacity-70">User Id: {userId}</h1>
+                  <h1 className="text-[10px] md:text-xs opacity-70">User Id: {userId}</h1>
                 </section>
                 <p className="text-sm my-4 opacity-75">{body}</p>
                 <span className="flex flex-wrap gap-2">
