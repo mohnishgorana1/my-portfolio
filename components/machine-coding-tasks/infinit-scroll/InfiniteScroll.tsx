@@ -20,7 +20,7 @@ function InfiniteScroll() {
 
     try {
       // simulate network delay
-      await new Promise((resolve) => setTimeout(resolve, 4000)); // 1 second delay
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // 1 second delay
 
       const response = await axios.get(`
             https://dummyjson.com/posts?limit=${BATCH_SIZE}&skip=${skip}`);

@@ -100,9 +100,58 @@ function InfiniteScrollPage() {
             </ul>
           </div>
 
-          {/* -------------------------------------- */}
+          {/* --- NEW ALGORITHM SECTION --- */}
           <h4 className="font-bold text-neutral-300 mb-2">
-            2. Managing `fetchPosts` and State 🎣
+            2. High-Level Algorithm: The Fetch Loop 🔄
+          </h4>
+          <p className="mb-3 text-neutral-400">
+            The `fetchPosts` logic runs this high-level sequence of steps to
+            manage the data fetching and flow control:
+          </p>
+          <ol className="ml-1  list-decimal list-inside text-neutral-400 space-y-2 bg-neutral-800 p-4 rounded-lg text-xs md:text-sm">
+            <li>
+              **Check Status:** Check if{" "}
+              <code className="text-yellow-400">loading</code> is `true` OR{" "}
+              <code className="text-yellow-400">hasMore</code> is `false`. If
+              either, **EXIT** (Prevent duplicate/unnecessary calls).
+            </li>
+            <li>
+              **Start Loading:** Set{" "}
+              <code className="text-yellow-400">loading = true</code>.
+            </li>
+            <li>
+              **API Call:** Fetch data using the current{" "}
+              <code className="text-yellow-400">skip</code> value and{" "}
+              <code className="text-yellow-400">BATCH_SIZE</code>.
+            </li>
+            <li>
+              **Update State:** Append{" "}
+              <code className="text-yellow-400">newPosts</code> to the main{" "}
+              <code className="text-yellow-400">posts</code> array.
+            </li>
+            <li>
+              **Update Offset:** Increment{" "}
+              <code className="text-yellow-400">skip</code> by{" "}
+              <code className="text-yellow-400">BATCH_SIZE</code>.
+            </li>
+            <li>
+              **End Check:** If the{" "}
+              <code className="text-yellow-400">newPosts.length</code> is less
+              than <code className="text-yellow-400">BATCH_SIZE</code>, set{" "}
+              <code className="text-yellow-400">hasMore = false</code>{" "}
+              (signaling the end of content).
+            </li>
+            <li>
+              **Finish:** Set{" "}
+              <code className="text-yellow-400">loading = false</code>,
+              completing the cycle.
+            </li>
+          </ol>
+          {/* --- END NEW ALGORITHM SECTION --- */}
+
+          {/* -------------------------------------- */}
+          <h4 className="font-bold text-neutral-300 mt-4 mb-2">
+            3. Managing State Variables 🎣
           </h4>
           <p className="mb-3 text-neutral-400">
             The `fetchPosts` function is wrapped in `useCallback` for
@@ -133,7 +182,7 @@ function InfiniteScrollPage() {
 
           {/* -------------------------------------- */}
           <h4 className="font-bold text-neutral-300 mt-4 mb-2">
-            3. Learning Resource 🔗
+            4. Learning Resource 🔗
           </h4>
           <span className="flex flex-col md:flex-row gap-x-2">
             <p className="mb-1 text-neutral-400">
