@@ -28,7 +28,7 @@ function InfiniteScroll() {
       const newPosts: any[] = response.data.posts;
       console.log(newPosts);
 
-      setPosts((prev): any => [...prev, ...newPosts]);
+      setPosts((prevPosts): any => [...prevPosts, ...newPosts]);
       setSkip((prev) => prev + BATCH_SIZE);
 
       if (newPosts.length < BATCH_SIZE) {
@@ -45,27 +45,35 @@ function InfiniteScroll() {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          fetchPosts();
+          fetchPosts(); // fetch trigger hota hai jab ref element viewport me dikhe
         }
       },
-      { rootMargin: "100px" }
+      { rootMargin: "100px" } // thoda pehle trigger karne ke liye margin
     );
 
     if (observerRef.current) observer.observe(observerRef.current);
 
+    // returning cleanup fn to unobserve our target when the component unmount
     return () => {
       if (observerRef.current) observer.unobserve(observerRef.current);
     };
   }, [fetchPosts]);
 
-  // inititla fetch
+  // initial fetch
   useEffect(() => {
     fetchPosts();
   }, []);
 
   return (
     <main className="w-full">
-      <h1 className="text-lg font-bold text-center mt-4">ALL POSTS</h1>
+      <section>
+        <h1 className="text-xl md:text-2xl font-extrabold text-center mt-6 text-indigo-400 tracking-wide">
+          🚀 Infinite Scroll Feed
+        </h1>
+        <p className="text-center text-gray-400 text-sm mt-1">
+          Keep scrolling — more posts will load automatically!
+        </p>
+      </section>
       <section className="space-y-6 my-4">
         {posts &&
           posts.length > 0 &&
@@ -80,7 +88,9 @@ function InfiniteScroll() {
                   <h2 className="text-lg font-semibold">
                     {idx + 1}. {title}
                   </h2>
-                  <h1 className="text-[10px] md:text-xs opacity-70">User Id: {userId}</h1>
+                  <h1 className="text-[10px] md:text-xs opacity-70">
+                    User Id: {userId}
+                  </h1>
                 </section>
                 <p className="text-sm my-4 opacity-75">{body}</p>
                 <span className="flex flex-wrap gap-2">
