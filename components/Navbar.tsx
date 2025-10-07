@@ -33,7 +33,7 @@ function Navbar() {
     },
   ];
   return (
-    <header className="px-4 md:px-8 lg:px-12 h-14 lg:h-16 flex items-center justify-between  hover:shadow-md hover:shadow-[#8d8d8d] duration-500 hover:bg-[#0c0c0c] rounded-xl">
+    <header className="px-4 h-14 lg:h-16 flex items-center justify-between  hover:shadow-md hover:shadow-[#8d8d8d] duration-500 hover:bg-[#0c0c0c] rounded-xl">
       {/* logo */}
       <div>
         <Link href={"/"}>

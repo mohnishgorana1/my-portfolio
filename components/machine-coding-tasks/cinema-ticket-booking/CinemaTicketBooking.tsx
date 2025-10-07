@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from "react";
 
 const TICKET_TYPE = [
@@ -134,7 +135,7 @@ function CinemaTicketBooking() {
   }, seatLayout);
 
   return (
-    <main className="min-h-screen w-full flex flex-col items-center bg-neutral-900/80 text-white md:px-4 py-6">
+    <main className="min-h-screen w-full flex flex-col items-center bg-neutral-900/80 text-white md:px-2 py-6">
       <div className="w-full max-w-4xl mx-auto space-y-6">
         <header className="text-center space-y-2">
           <h1 className="hidden sm:flex items-center justify-center text-xl font-bold tracking-wide">

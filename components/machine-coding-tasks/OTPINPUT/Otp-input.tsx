@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useRef, useState } from "react";
 
 const OTP_DIGITS_COUNT: number = 5;

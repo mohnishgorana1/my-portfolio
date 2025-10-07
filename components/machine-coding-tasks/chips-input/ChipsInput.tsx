@@ -1,5 +1,4 @@
-"use-client";
-import { span } from "framer-motion/client";
+"use client";
 import React, { useState } from "react";
 import { MdCancel } from "react-icons/md";
 function ChipsInput() {
@@ -14,7 +13,7 @@ function ChipsInput() {
   const handleKeyDown = (e: any) => {
     if (e.key === "Enter") {
       if (currentValue.trim() === "") return;
-      setData((prev) => {
+      setData((prev: any) => {
         return [...prev, currentValue];
       });
       setCurrentValue("");

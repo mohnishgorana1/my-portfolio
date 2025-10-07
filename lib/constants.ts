@@ -418,3 +418,14 @@ export const contactBgImages = [
   "/assets/contact/bg2.jpg",
   "/assets/contact/bg3.jpg",
 ];
+
+export const machineCodingTaskConfigs = [
+  { name: "TAB FORM", path: "tab-form" },
+  { name: "PAGINATION", path: "pagination" },
+  { name: "OTP INPUT", path: "otp-input" },
+  { name: "NESTED CHECKBOX", path: "nested-checkbox" },
+  { name: "CHIPS INPUT", path: "chips-input" },
+  { name: "ACCORDION", path: "accordion" },
+  { name: "PROGRESS BAR", path: "progress-bar" },
+  { name: "CINEMA TICKET BOOKING", path: "cinema-ticket-booking" },
+];
