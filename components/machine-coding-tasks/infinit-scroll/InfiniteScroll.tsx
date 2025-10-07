@@ -5,7 +5,7 @@ import axios from "axios";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AiFillLike, AiFillDislike } from "react-icons/ai";
 
-const BATCH_SIZE = 50; // Number of posts per load
+const BATCH_SIZE = 10; // Number of posts per load
 
 function InfiniteScroll() {
   const [posts, setPosts] = useState<any[]>([]);
