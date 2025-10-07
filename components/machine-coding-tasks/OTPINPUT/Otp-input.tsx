@@ -1,9 +1,7 @@
-'use client'
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 
-const OTP_DIGITS_COUNT: number = 5;
-
-function OTPINPUT() {
+function OTPINPUT({ OTP_DIGITS_COUNT }: { OTP_DIGITS_COUNT: number }) {
   const inputRefs = useRef<HTMLInputElement[]>([]);
   const [otp, setOtp] = useState<string[]>(Array(OTP_DIGITS_COUNT).fill(""));
   const [submittedOpt, setSubmittedOpt] = useState<string | null>(null);
@@ -22,7 +20,6 @@ function OTPINPUT() {
       inputRefs.current[index - 1]?.focus();
     }
   };
-
   const handleChange = (value: string, idx: number) => {
     if (!/^[0-9]?$/.test(value)) return; // sirf number allow
 
@@ -49,6 +46,14 @@ function OTPINPUT() {
   // find the first empty index → only that input should be enabled
   const activeIndex = otp.findIndex((digit) => digit === "");
   const currentActive = activeIndex === -1 ? OTP_DIGITS_COUNT - 1 : activeIndex;
+
+  // Reset OTP state whenever OTP_DIGITS_COUNT changes
+  useEffect(() => {
+    setOtp(Array(OTP_DIGITS_COUNT).fill(""));
+    setHasStarted(false);
+    setSubmittedOpt(null);
+    inputRefs.current = [];
+  }, [OTP_DIGITS_COUNT]);
 
   // sirf tab focus karo jab user start kar chuka hai
   useEffect(() => {

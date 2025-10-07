@@ -39,7 +39,7 @@ function Accordian() {
   const [data, setData] = useState(ACCORDIAN_DATA);
   const [currentOpenAccoridan, setCurrentOpenAccoridan] = useState<
     null | number
-  >(1);
+  >(null);
 
   const handleAccordian = (itemId: number) => {
     if (currentOpenAccoridan === itemId) {
@@ -57,10 +57,10 @@ function Accordian() {
           return (
             <div
               key={item.id}
-              className="space-y-2 my-1 bg-neutral-800 px-4  rounded-md "
+              className="space-y-1 my-1 bg-neutral-800 px-4  rounded-md "
             >
               <section
-                className="mt-1 flex items-center justify-between cursor-pointer"
+                className="mt-1.5 flex items-center justify-between cursor-pointer"
                 onClick={() => handleAccordian(item.id)}
               >
                 <h2 className="text-lg font-semibold">{item.name}</h2>
