@@ -187,19 +187,19 @@ export const projects = [
   {
     id: "1",
     title: "Examify",
-    link: "https://examify-online.vercel.app/",
+    link: "https://examify-three.vercel.app/",
     thumbnail: "/assets/projects/examify.png",
     description:
-      "A full-stack online examination platform with microservices and role-based features, enabling seamless exam creation, participation, and evaluation.",
-    shortDescription:
-      "Microservices-based exam platform for students and instructors.",
+      "A full-stack online examination platform with role-based features, enabling seamless exam creation, participation, and evaluation.",
+    shortDescription: "Online exam platform for students and instructors.",
     detailedDescription:
-      "Examify is a robust online examination platform built with a microservices architecture and role-based access control. The backend is powered by multiple distributed services (api-gateway, auth, user, exam) with event-driven workflows via Apache Kafka (local environment). The platform offers responsive, interactive dashboards with live timers, auto-save, instant scoring, and analytics. Students can enroll in exams, take timed assessments with real-time progress tracking, view upcoming schedules, and receive instant results. Instructors can design and manage exams, monitor real-time participation, and review performance insights. Examify ensures a smooth, reliable, and engaging exam experience for both roles.",
-    githubRepositoryUrl: "https://github.com/mohnishgorana1/examify",
+      "Examify is a full-stack online examination platform built with Next.js (App Router) and powered by a MongoDB database. It features secure, role-based access control integrated through Clerk authentication, ensuring seamless management for students, instructors, and admins.The platform combines a robust backend (implemented using Next.js API routes) with an elegant, responsive UI for a smooth and interactive exam experience. Instructors can create, publish, and manage exams, design questions, and analyze results, while students can enroll in exams, take timed assessments with real-time tracking, and view instant results and performance analytics.With features like auto-save during exams, live timers, real-time dashboards, and instant scoring, Examify delivers reliability and engagement for both learners and educators.Built using modern technologies like Next.js 15, TypeScript, Tailwind CSS, Framer Motion, and Mongoose, the platform ensures exceptional performance, scalability, and developer experience.",
+    githubRepositoryUrl: "https://github.com/mohnishgorana1/Examify",
     techStacks: [
       "/assets/techStacks/next.svg",
       "/assets/techStacks/tail.svg",
       "/assets/techStacks/ts.svg",
+      "/assets/icons/mongodb.svg"
     ],
   },
   {
