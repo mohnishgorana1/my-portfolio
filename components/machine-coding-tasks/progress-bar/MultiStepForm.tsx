@@ -8,7 +8,6 @@ type FormStep = (typeof FORM_STEPS)[number];
 function MultiStepProgressForm() {
   const [currentActiveForm, setCurrentActiveForm] =
     useState<FormStep>("PERSONAL");
-  // 1. New state to track submission status
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleNext = () => {
@@ -18,9 +17,7 @@ function MultiStepProgressForm() {
     }
   };
 
-  // Function to handle the final form submission
   const handleSubmit = () => {
-    // In a real application, you would send the data to a server here.
     console.log("Form submitted successfully!");
     setIsSubmitted(true);
   };
@@ -28,7 +25,6 @@ function MultiStepProgressForm() {
   const isStepCompleted = (step: FormStep) => {
     const currentStepIndex = FORM_STEPS.indexOf(currentActiveForm);
     const stepIndex = FORM_STEPS.indexOf(step);
-    // A step is completed if its index is less than the current active step's index
     return stepIndex < currentStepIndex;
   };
 
@@ -37,40 +33,38 @@ function MultiStepProgressForm() {
   };
 
   return (
-    <main className="flex flex-col gap-y-8 text-white">
-      <h1 className="font-bold text-lg md:text-xl text-center text-indigo-500 ">
-        Multi-Step <br className="md:hidden" /> Progress Form with Stepper
-        <span className="ml-1 text-xs text-neutral-700 md:hidden">
-          *Desktop Friendly*
-        </span>
-      </h1>
-
+    <main className="flex flex-col gap-y-8 w-full items-center pt-8 pb-24">
       {/* --- FORM CONTENT SECTION ----- */}
-      <section className="mx-auto w-[80vw] sm:[50vw] lg:w-[40vw]">
+      <section className="relative w-[90vw] sm:w-[60vw] lg:w-[40vw] min-h-[300px] bg-white/80 backdrop-blur-xl border-t-4 border-b-4 border-y-indigo-500 rounded-2xl shadow-2xl shadow-slate-500/50 p-6 sm:p-8 transition-all duration-500">
         {/* Step 1: Personal */}
         <div
           className={`${
             currentActiveForm !== "PERSONAL" && "hidden"
-          } flex flex-col gap-y-2 p-3 rounded-lg shadow-sm shadow-neutral-600 bg-neutral-900`}
+          } flex flex-col gap-y-5 animate-in slide-in-from-right-4 fade-in duration-300`}
         >
-          <h2 className="font-semibold text-indigo-400">
-            Step 1: Personal Information
-          </h2>
-          <input
-            type="text"
-            placeholder="Full Name"
-            className="md:ml-2 rounded-xl px-3 py-1.5 bg-neutral-800 outline-none focus:ring-1 focus:ring-600 text-sm md:text-base text-gray-200"
-          />
-          <input
-            type="email"
-            placeholder="Email Address"
-            className="md:ml-2 rounded-xl px-3 py-1.5 bg-neutral-800 outline-none focus:ring-1 focus:ring-600 text-sm md:text-base text-gray-200"
-          />
+          <div className="mb-2">
+            <h2 className="text-xl font-bold text-slate-800">Personal Info</h2>
+            <p className="text-sm text-slate-400">Let's get to know you</p>
+          </div>
+
+          <div className="space-y-4">
+            <input
+              type="text"
+              placeholder="Full Name"
+              className="w-full rounded-xl px-4 py-3 bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-300 text-slate-700 transition-all placeholder:text-slate-400"
+            />
+            <input
+              type="email"
+              placeholder="Email Address"
+              className="w-full rounded-xl px-4 py-3 bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-300 text-slate-700 transition-all placeholder:text-slate-400"
+            />
+          </div>
+
           <button
             onClick={handleNext}
-            className="my-2 bg-indigo-700 hover:bg-indigo-800 transition-all rounded-lg font-medium self-center px-5 py-1.5"
+            className="mt-4 w-full sm:w-auto self-end bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl px-6 py-3 shadow-lg shadow-indigo-200 transition-all active:scale-95"
           >
-            Save & Continue
+            Continue
           </button>
         </div>
 
@@ -78,26 +72,33 @@ function MultiStepProgressForm() {
         <div
           className={`${
             currentActiveForm !== "EDUCATION" && "hidden"
-          } flex flex-col gap-y-2 p-3 rounded-lg shadow-sm shadow-neutral-600 bg-neutral-900`}
+          } flex flex-col gap-y-5 animate-in slide-in-from-right-4 fade-in duration-300`}
         >
-          <h2 className="font-semibold text-indigo-400">
-            Step 2: Educational Background
-          </h2>
-          <input
-            type="text"
-            placeholder="Highest Qualification"
-            className="md:ml-2 rounded-xl px-3 py-1.5 bg-neutral-800 outline-none focus:ring-1 focus:ring-600 text-sm md:text-base text-gray-200"
-          />
-          <input
-            type="text"
-            placeholder="University / Institute Name"
-            className="md:ml-2 rounded-xl px-3 py-1.5 bg-neutral-800 outline-none focus:ring-1 focus:ring-600 text-sm md:text-base text-gray-200"
-          />
+          <div className="mb-2">
+            <h2 className="text-xl font-bold text-slate-800">Education</h2>
+            <p className="text-sm text-slate-400">
+              Tell us about your academics
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <input
+              type="text"
+              placeholder="Highest Qualification"
+              className="w-full rounded-xl px-4 py-3 bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-300 text-slate-700 transition-all placeholder:text-slate-400"
+            />
+            <input
+              type="text"
+              placeholder="University / Institute Name"
+              className="w-full rounded-xl px-4 py-3 bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-300 text-slate-700 transition-all placeholder:text-slate-400"
+            />
+          </div>
+
           <button
             onClick={handleNext}
-            className="my-2 bg-indigo-700 hover:bg-indigo-800 transition-all rounded-lg font-medium self-center px-5 py-1.5"
+            className="mt-4 w-full sm:w-auto self-end bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl px-6 py-3 shadow-lg shadow-indigo-200 transition-all active:scale-95"
           >
-            Save & Continue
+            Continue
           </button>
         </div>
 
@@ -105,79 +106,100 @@ function MultiStepProgressForm() {
         <div
           className={`${
             currentActiveForm !== "ADDRESS" && "hidden"
-          } flex flex-col gap-y-2 p-3 rounded-lg shadow-sm shadow-neutral-600 bg-neutral-900`}
+          } flex flex-col gap-y-5 animate-in slide-in-from-right-4 fade-in duration-300`}
         >
-          <h2 className="font-semibold text-indigo-400">
-            Step 3: Address Details
-          </h2>
-          <input
-            type="text"
-            placeholder="City / District"
-            className="md:ml-2 rounded-xl px-3 py-1.5 bg-neutral-800 outline-none focus:ring-1 focus:ring-600 text-sm md:text-base text-gray-200"
-          />
-          <input
-            type="text"
-            placeholder="State / Province"
-            className="md:ml-2 rounded-xl px-3 py-1.5 bg-neutral-800 outline-none focus:ring-1 focus:ring-600 text-sm md:text-base text-gray-200"
-          />
-          {/* 💡 Submission Button Logic */}
+          <div className="mb-2">
+            <h2 className="text-xl font-bold text-slate-800">Location</h2>
+            <p className="text-sm text-slate-400">Where can we find you?</p>
+          </div>
+
+          <div className="space-y-4">
+            <input
+              type="text"
+              placeholder="City / District"
+              className="w-full rounded-xl px-4 py-3 bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-300 text-slate-700 transition-all placeholder:text-slate-400"
+            />
+            <input
+              type="text"
+              placeholder="State / Province"
+              className="w-full rounded-xl px-4 py-3 bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-300 text-slate-700 transition-all placeholder:text-slate-400"
+            />
+          </div>
+
           <button
             onClick={handleSubmit}
             disabled={isSubmitted}
-            className={`w-full my-2 transition-all rounded-lg font-medium self-center px-5 py-1.5
-              flex items-center justify-center space-x-2
+            className={`mt-4 w-full rounded-xl font-semibold px-6 py-3 flex items-center justify-center gap-2 shadow-lg transition-all active:scale-95
               ${
                 isSubmitted
-                  ? "bg-green-600 cursor-not-allowed"
-                  : "bg-green-700 hover:bg-green-800"
+                  ? "bg-emerald-500 text-white cursor-default shadow-emerald-200"
+                  : "bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-200"
               }`}
           >
             {isSubmitted ? (
               <>
                 <FaCheck className="h-4 w-4" />
-                <span>Submitted Successfully!</span>
+                <span>Submitted</span>
               </>
             ) : (
-              <span>Submit</span>
+              <span>Complete Registration</span>
             )}
           </button>
         </div>
       </section>
 
       {/* PROGRESS INDICATOR SECTION */}
-      <section className="mx-auto w-[80vw] sm:[50vw] lg:w-[40vw]">
-        <div className="flex w-full items-center justify-between px-2 md:px-6">
+      <section className="w-[90vw] sm:w-[60vw] lg:w-[40vw]">
+        <div className="flex w-full items-center justify-between px-4 sm:px-10">
           {FORM_STEPS.map((step, index) => {
-            const isCompleted = isStepCompleted(step) || isSubmitted; // Consider all steps complete if form is submitted
-            const isActive = isStepActive(step) && !isSubmitted; // Step is only active if form isn't submitted
+            const isCompleted = isStepCompleted(step) || isSubmitted;
+            const isActive = isStepActive(step) && !isSubmitted;
 
             return (
               <React.Fragment key={step}>
-                {/* Connector Line (Render before step 2 and 3) */}
+                {/* Connector Line */}
                 {index > 0 && (
                   <div
-                    className={`flex-1 mx-2 h-0.5 transition-colors duration-500 ${
-                      isCompleted ? "bg-indigo-500" : "bg-neutral-600"
+                    className={`flex-1 mx-2 sm:mx-4 h-1 rounded-full transition-colors duration-500 ease-in-out ${
+                      isCompleted ? "bg-indigo-500" : "bg-slate-200"
                     }`}
                   ></div>
                 )}
 
-                {/* Step Circle/Button */}
-                <div
-                  className={`
-                    rounded-full h-8 w-8 flex items-center justify-center 
-                    text-sm font-semibold transition-all duration-500 shrink-0
-                    ${
-                      isCompleted // Completed Step
-                        ? "bg-indigo-500 text-white"
-                        : isActive // Active Step
-                        ? "bg-indigo-700 border-2 border-indigo-500 text-white"
-                        : "bg-neutral-700 border border-neutral-600 text-neutral-400" // Inactive Step
-                    }
-                  `}
-                >
-                  {/* Display checkmark if completed or submitted, otherwise display step number */}
-                  {isCompleted ? <FaCheck className="h-3 w-3" /> : index + 1}
+                {/* Step Circle */}
+                <div className="flex flex-col items-center gap-2 relative group">
+                  <div
+                    className={`
+                        rounded-full h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center 
+                        text-sm font-bold transition-all duration-500 shrink-0 z-10
+                        ${
+                          isCompleted
+                            ? "bg-indigo-500 text-white shadow-lg shadow-indigo-300 scale-105"
+                            : isActive
+                            ? "bg-white border-4 border-indigo-100 text-indigo-600 ring-2 ring-indigo-500 shadow-md"
+                            : "bg-white border border-slate-200 text-slate-500"
+                        }
+                    `}
+                  >
+                    {isCompleted ? (
+                      <FaCheck className="h-3 w-3 sm:h-4 sm:w-4" />
+                    ) : (
+                      index + 1
+                    )}
+                  </div>
+
+                  {/* Label (Optional tooltop or label below) */}
+                  <span
+                    className={`hidden sm:block absolute -bottom-6 text-[10px] font-bold tracking-wider
+                        ${
+                          isActive || isCompleted
+                            ? "text-indigo-600"
+                            : "text-slate-500"
+                        }
+                    `}
+                  >
+                    {step}
+                  </span>
                 </div>
               </React.Fragment>
             );
@@ -185,10 +207,15 @@ function MultiStepProgressForm() {
         </div>
       </section>
 
+      {/* Success Toast Animation */}
       {isSubmitted && (
-        <div className="mx-auto mt-4 p-1 px-2 rounded-lg bg-indigo-800 text-white text-sm text-center shadow-lg transition-all duration-500 flex items-center gap-x-1.5">
-          <FaCheck />
-          Submission Successfully
+        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 animate-in slide-in-from-bottom-10 fade-in duration-500">
+          <div className="px-6 py-3 rounded-full bg-emerald-500 text-white text-sm font-semibold shadow-2xl shadow-emerald-200 flex items-center gap-2 backdrop-blur-md">
+            <div className="bg-white/20 rounded-full p-1">
+              <FaCheck size={10} />
+            </div>
+            Registration Successful!
+          </div>
         </div>
       )}
     </main>

@@ -1,10 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import { BsCheckCircleFill } from "react-icons/bs";
+import { TbReload } from "react-icons/tb";
 
 function OTPINPUT({ OTP_DIGITS_COUNT }: { OTP_DIGITS_COUNT: number }) {
   const inputRefs = useRef<HTMLInputElement[]>([]);
   const [otp, setOtp] = useState<string[]>(Array(OTP_DIGITS_COUNT).fill(""));
-  const [submittedOpt, setSubmittedOpt] = useState<string | null>(null);
+  const [submittedOtp, setSubmittedOtp] = useState<string | null>(null);
 
   const [hasStarted, setHasStarted] = useState(false);
 
@@ -37,7 +39,7 @@ function OTPINPUT({ OTP_DIGITS_COUNT }: { OTP_DIGITS_COUNT: number }) {
     if (idx === OTP_DIGITS_COUNT - 1) {
       const otpValue = newOtp.join("");
       if (!newOtp.includes("")) {
-        setSubmittedOpt(otpValue);
+        setSubmittedOtp(otpValue);
         resetFields();
       }
     }
@@ -51,7 +53,7 @@ function OTPINPUT({ OTP_DIGITS_COUNT }: { OTP_DIGITS_COUNT: number }) {
   useEffect(() => {
     setOtp(Array(OTP_DIGITS_COUNT).fill(""));
     setHasStarted(false);
-    setSubmittedOpt(null);
+    setSubmittedOtp(null);
     inputRefs.current = [];
   }, [OTP_DIGITS_COUNT]);
 
@@ -63,14 +65,17 @@ function OTPINPUT({ OTP_DIGITS_COUNT }: { OTP_DIGITS_COUNT: number }) {
   }, [currentActive, hasStarted]);
 
   return (
-    <main className="min-h-72 grid md:grid-cols-2 gap-x-3 gap-y-3 mb-5">
-      <div className="space-y-3 bg-neutral-900 px-4 py-2 rounded-sm md:rounded-xl flex flex-col items-center justify-center">
-        <h3 className="text-xl">
-          {" "}
-          Validate OTP{" "}
-          <span className="text-neutral-500 text-lg">(auto-submit)</span>
-        </h3>
-        <span className="flex">
+    <main className="min-h-[300px] grid md:grid-cols-2 gap-6">
+      {/* Input Section */}
+      <div className="bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl shadow-sm p-6 flex flex-col items-center justify-center space-y-6 relative overflow-hidden">
+        <div className="text-center">
+          <h3 className="text-2xl font-bold text-slate-700">Validate OTP</h3>
+          <p className="text-slate-400 text-base mt-3 font-medium uppercase tracking-wide">
+            Enter the code sent to you
+          </p>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-2">
           {Array.from({ length: OTP_DIGITS_COUNT }).map((_, idx) => (
             <input
               type="text"
@@ -85,29 +90,57 @@ function OTPINPUT({ OTP_DIGITS_COUNT }: { OTP_DIGITS_COUNT: number }) {
                   inputRefs.current[idx] = element;
                 }
               }}
-              className={`w-12 h-12 text-center text-lg border rounded-md m-2 
+              className={`
+                w-10 h-12 sm:w-12 sm:h-14 text-center text-xl sm:text-2xl font-bold rounded-xl border-2 transition-all duration-200 ease-out shadow-sm
                 ${
                   idx === currentActive
-                    ? "focus:outline-none focus:ring-2 focus:ring-blue-700 bg-neutral-800"
-                    : "bg-neutral-700 opacity-50 cursor-not-allowed"
-                }`}
+                    ? "border-blue-400 bg-white text-blue-700 ring-4 ring-blue-100 scale-105 z-10 shadow-blue-200/50"
+                    : "border-slate-200 bg-slate-50 text-slate-400 opacity-60 cursor-not-allowed hover:border-slate-300"
+                }
+                focus:outline-none
+              `}
             />
           ))}
-        </span>
+        </div>
+
         <button
-          onClick={resetFields}
-          className="px-3 py-1 rounded-lg bg-neutral-950 shadow-sm shadow-neutral-700"
+          onClick={() => {
+            setSubmittedOtp(null);
+            resetFields();
+          }}
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-sm font-semibold transition-all duration-200 border border-slate-300 ring-2 ring-blue-200/50  ease-linear hover:ring-blue-400 hover:shadow-sm"
         >
+          <TbReload className={hasStarted ? "animate-spin-slow" : ""} />
           Reset OTP
         </button>
       </div>
-      <div className="bg-neutral-900/55 px-4 py-2 rounded-sm md:rounded-xl flex items-center justify-center">
-        <h2 className="text-xl">
-          Last Submitted OTP{" "}
-          <span className="font-sans font-bold text-blue-400">
-            {submittedOpt}
-          </span>
+
+      {/* Result Section */}
+      <div className="bg-gradient-to-br from-slate-50 to-slate-100/50 backdrop-blur-md border border-white/60 rounded-2xl shadow-inner p-6 flex flex-col items-center justify-center text-center">
+        <h2 className="text-slate-500 font-medium text-sm uppercase tracking-widest mb-4">
+          Status Monitor
         </h2>
+
+        {submittedOtp ? (
+          <div className="animate-in zoom-in fade-in duration-300 flex flex-col items-center">
+            <BsCheckCircleFill className="text-5xl text-emerald-500 mb-3 drop-shadow-sm" />
+            <p className="text-slate-600 font-medium">Successfully Verified</p>
+            <div className="mt-4 bg-white border border-emerald-100 rounded-xl px-6 py-3 shadow-sm shadow-emerald-100/50">
+              <span className="text-xs text-slate-400 block mb-1">
+                Last Submitted Code
+              </span>
+              <span className="font-mono text-3xl font-bold tracking-widest text-emerald-600">
+                {submittedOtp}
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center opacity-40">
+            <div className="w-16 h-16 rounded-full bg-slate-200 mb-4 animate-pulse"></div>
+            <p className="text-slate-400 font-medium">Waiting for input...</p>
+            <div className="mt-4 h-16 w-48 bg-slate-200/50 rounded-xl border border-slate-200 border-dashed"></div>
+          </div>
+        )}
       </div>
     </main>
   );

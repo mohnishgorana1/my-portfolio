@@ -15,47 +15,60 @@ function ProgressBarLine() {
     });
   };
   return (
-    <main className="flex flex-col gap-y-4 w-full">
-      <h1 className="font-bold text-lg md:text-xl text-center text-indigo-500 ">
-        Progress Bar
+    <main className="flex flex-col gap-y-6 w-full max-w-2xl px-4">
+      <h1 className="font-bold text-base uppercase tracking-widest text-center text-slate-500">
+        Live Preview
       </h1>
-      <div className="flex flex-col items-center justify-center my-8">
-        <div className="rounded-3xl h-8 border border-gray-300 w-[90%] md:w-[50vw] p-[1px]">
+      
+      <div className="flex flex-col items-center justify-center my-4 w-full">
+        {/* Progress Track */}
+        <div className="relative w-full md:w-[80%] h-6 bg-slate-200/70 rounded-full shadow-inner overflow-hidden border border-slate-100">
+          {/* Progress Fill */}
           <div
-            className={`bg-green-500 h-full rounded-3xl transition-all duration-300 ease-out flex items-center justify-end pr-2 ${
-              currentProgress < 1 && "hidden"
-            }`}
+            className={`h-full rounded-full transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) flex items-center justify-end pr-3 shadow-sm
+            ${
+              currentProgress === 100 
+                ? "bg-gradient-to-r from-emerald-400 to-emerald-500" 
+                : "bg-gradient-to-r from-indigo-400 to-purple-500"
+            }
+            ${currentProgress < 1 && "opacity-0"}
+            `}
             style={{ width: `${currentProgress}%` }}
           >
-            {currentProgress > 5 && (
-              <span className="text-white text-xs font-semibold">
+            {currentProgress > 10 && (
+              <span className="text-white text-[10px] font-bold tracking-wider drop-shadow-md">
                 {currentProgress}%
               </span>
             )}
           </div>
         </div>
-        <div className="mt-4 space-x-3">
+
+        {/* Controls */}
+        <div className="mt-8 flex items-center gap-4">
           <button
             onClick={() => handleProgress("decrement")}
             disabled={currentProgress === 0}
-            className={`h-10 px-6 rounded-full text-white font-semibold transition-colors duration-200 ${
+            className={`h-10 px-6 rounded-full font-semibold text-sm transition-all duration-200 shadow-sm border
+            ${
               currentProgress === 0
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-orange-600 hover:bg-orange-700 active:bg-orange-800"
+                ? "bg-slate-100 text-slate-300 border-slate-100 cursor-not-allowed"
+                : "bg-white text-slate-600 border-slate-200 hover:border-orange-200 hover:text-orange-600 hover:shadow-md active:scale-95"
             }`}
           >
-            -10%
+            Decrease
           </button>
+          
           <button
             onClick={() => handleProgress("increment")}
             disabled={currentProgress === 100}
-            className={`h-10 px-6 rounded-full text-white font-semibold transition-colors duration-200 ${
+            className={`h-10 px-6 rounded-full font-semibold text-sm transition-all duration-200 shadow-lg shadow-indigo-200/50 border border-transparent
+            ${
               currentProgress === 100
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700 active:bg-blue-800"
+                ? "bg-slate-100 text-slate-300 shadow-none cursor-not-allowed"
+                : "bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-indigo-300/60 active:scale-95"
             }`}
           >
-            +10%
+            Increase
           </button>
         </div>
       </div>

@@ -1,31 +1,61 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 import { projects } from "@/lib/constants";
-import { HoverEffect } from "./ui/card-hover-effect";
 import ProjectCard from "./ProjectCard";
-import { FocusCards } from "./ui/focus-cards";
-import { FocusCardsProjects } from "./ui/focus-cards-projects";
 
 function ProjectsSection() {
+  const topProjects = projects.slice(0, 3);
+
   return (
-    <section className="px-4 lg:px-24 py-20  flex flex-col items-center gap-y-8 ">
-      <div className="flex flex-col items-center gap-y-8">
-        <h1 className="text-5xl lg:text-8xl font-bold opacity-80">Projects</h1>
-        <span className="flex text-xl py-1 px-4 rounded-xl bg-gradient-to-r from-purple-500 from-10% via-violet-700 via-40% to to-pink-600 to-80% hover:from-pink-600 hover:via-violet-400 hover:to-purple-500 duration-700  ease-linear">
-          <span>Explore My Projects &nbsp; </span>
-          <span className="hidden md:flex">
-            Innovative Solutions Crafted with Passion and Expertise
-          </span>
-        </span>
+    <section
+      className="
+      relative w-full py-24 px-4 lg:px-24 
+      bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20
+      overflow-hidden
+    "
+    >
+      {/* SOFT BACKGROUND ORNAMENTS */}
+      <div className="absolute top-10 -left-10 w-60 h-60 bg-blue-500/50 blur-3xl rounded-full pointer-events-none" />
+      <div className="absolute top-10 -right-10 w-72 h-72 bg-blue-500/50 blur-3xl rounded-full pointer-events-none" />
+
+      {/* SECTION HEADING */}
+      <motion.h1
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-5xl lg:text-6xl font-extrabold text-gray-900 text-center"
+      >
+        Featured Projects
+      </motion.h1>
+
+      <motion.p
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="text-gray-700 text-lg lg:text-xl text-center mt-4 max-w-2xl mx-auto"
+      >
+        A selection of my finest and most impactful work — built with modern
+        tech, precision, and creativity.
+      </motion.p>
+
+      {/* PROJECT LIST */}
+      <div className="flex flex-col gap-14 w-full mt-16">
+        {topProjects.map((project, index) => (
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: index * 0.15 }}
+            viewport={{ once: true }}
+          >
+            <ProjectCard project={project} />
+          </motion.div>
+        ))}
       </div>
-      {/* projects card */}
-      <section className="mt-12 flex flex-col items-center justify-center w-full">
-        <div className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-16">
-          {projects.map((project, idx) => (
-            <ProjectCard project={project} key={idx} />
-          ))}
-        </div>
-      </section>
-      {/* <FocusCardsProjects cards={projects} /> */}
     </section>
   );
 }

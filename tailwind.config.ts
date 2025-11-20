@@ -68,6 +68,9 @@ const config: Config = {
         shimmer: "shimmer 2s linear infinite",
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        orbit: "orbit calc(var(--duration) * 1s) linear infinite",
+        beam: "spin 5s linear infinite",
+        blob: "blob 7s infinite",
       },
       keyframes: {
         spotlight: {
@@ -91,6 +94,40 @@ const config: Config = {
           },
           to: {
             backgroundPosition: "-200% 0",
+          },
+        },
+        orbit: {
+          "0%": {
+            transform:
+              "rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg))",
+          },
+          "100%": {
+            transform:
+              "rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg))",
+          },
+        },
+        beam: {
+          "0%": {
+            transform: "rotate(0deg) translate(0, -50%)", // Start rotation
+            opacity: "0.7",
+          },
+          "50%": {
+            opacity: "1", // Fade in slightly as it passes the top/bottom
+          },
+          "100%": {
+            transform: "rotate(360deg) translate(0, -50%)", // Complete rotation
+            opacity: "0.7",
+          },
+        },
+        blob: {
+          "0%, 100%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+          "33%": {
+            transform: "translate(30px, -50px) scale(1.1)",
+          },
+          "66%": {
+            transform: "translate(-20px, 30px) scale(0.9)",
           },
         },
       },

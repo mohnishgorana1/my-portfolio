@@ -1,49 +1,83 @@
-import { cn } from "@/lib/utils";
+"use client";
+
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { techStacksMap } from "@/lib/constants";
+import { ArrowRight, ArrowRightCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-function ProjectCard({ project }: any) {
-  const { link, thumbnail, title, description, techStacks } = project;
-  return (
-    <Link
-      className="rounded-2xl w-full h-[80vh] group shadow-sm shadow-white hover:shadow-md ease-in hover:shadow-white group"
-      href={link}
-    >
-      <div className="flex flex-col h-full items-center rounded-2xl p-2">
-        <section className="h-[60%] group-hover:h-[58%] w-full duration-1000">
-          <Image
-            src={thumbnail}
-            alt="thumbnail"
-            width={1000}
-            height={1000}
-            className="h-full object-cover md:opacity-30 opacity-65 group-hover:opacity-100 duration-200 ease-linear"
-          />
-        </section>
-        <section className="rounded-b-2xl w-full h-[40%] group-hover:h-[42%] duration-1000 ease-out bg-[#090909] py-4 flex flex-col items-center justify-center gap-y-4">
-          <div className="max-w-full flex flex-wrap ">
-            {techStacks.map(
-              (icon:any) =>
-                icon && (
-                  <span
-                    key={icon}
-                    className="flex rounded-full border p-2 -ml-2 bg-[#00040ad3] hover:scale-125 duration-200"
-                  >
-                    <Image src={icon} alt={icon} width={20} height={18} />
-                  </span>
-                )
-            )}
-          </div>
-          <h1 className="text-2xl md:text-4xl text-center duration-1000">
-            {title}
-          </h1>
-          <h2 className="text-white hidden duration-1000 group-hover:flex text-opacity-55 overflow-hidden text-sm">
-            {description}
-          </h2>
-        </section>
-      </div>
-    </Link>
-  );
+interface ProjectCardProps {
+  project: {
+    id: string | number;
+    title: string;
+    link: string;
+    thumbnail: string;
+    shortDescription: string;
+    techStacks: string[]; // now string keys like "next", "tailwind"
+  };
 }
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const router = useRouter();
+  const { title, link, thumbnail, shortDescription, techStacks, id } = project;
+
+  return (
+    <div
+      onClick={() => router.push(`/projects/${id}`)}
+      className="group cursor-pointer relative flex flex-col lg:flex-row items-center bg-white rounded-3xl shadow-lg hover:shadow-xl shadow-gray-300 transition-shadow duration-500 overflow-hidden"
+    >
+      {/* Image */}
+      <section className="relative w-full lg:w-1/2 h-64 lg:h-80 overflow-hidden">
+        <Image
+          src={thumbnail}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      </section>
+
+      {/* Info */}
+      <section className="w-full lg:w-1/2 p-6 lg:p-12 flex flex-col justify-center gap-y-4">
+        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+          {title}
+        </h2>
+        <p className="text-gray-700 text-lg lg:text-xl leading-relaxed">
+          {shortDescription}
+        </p>
+
+        {/* Tech Stack */}
+        <div className="flex flex-wrap mt-2">
+          {project.techStacks.map((tech, idx) => {
+            const techData = techStacksMap[tech];
+            if (!techData) return null;
+
+            const Icon = techData.icon;
+            const color = techData.color;
+
+            return (
+              <div
+                key={idx}
+                className={`${
+                  idx > 0 && "-ml-2"
+                } p-3  bg-gray-100 rounded-full border border-gray-500/50 flex items-center justify-center hover:scale-125 duration-300 ease-out`}
+              >
+                <Icon size={25} color={color} />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Button */}
+        <Link
+          href={`/projects/${id}`}
+          className="mt-4 mr-auto py-1.5 px-2 text-blue-600 hover:text-white border border-blue-700 hover:border-transparent duration-300 ease-in hover:bg-blue-500 rounded-lg font-medium cursor-pointer flex items-center gap-x-2"
+        >
+          View Project Details <ArrowRightCircle />
+        </Link>
+      </section>
+    </div>
+  );
+};
 
 export default ProjectCard;

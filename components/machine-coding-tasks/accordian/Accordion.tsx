@@ -1,6 +1,7 @@
-'use client'
+"use client";
 import React, { useState } from "react";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
+import { BsQuestionCircleFill } from "react-icons/bs";
 
 export const ACCORDIAN_DATA = [
   {
@@ -35,61 +36,100 @@ export const ACCORDIAN_DATA = [
   },
 ];
 
-function Accordian() {
-  const [data, setData] = useState(ACCORDIAN_DATA);
-  const [currentOpenAccoridan, setCurrentOpenAccoridan] = useState<
+function Accordion() {
+  const [currentOpenAccordian, setCurrentOpenAccordian] = useState<
     null | number
   >(null);
 
   const handleAccordian = (itemId: number) => {
-    if (currentOpenAccoridan === itemId) {
-      setCurrentOpenAccoridan(null);
+    if (currentOpenAccordian === itemId) {
+      setCurrentOpenAccordian(null);
       return;
     }
-    setCurrentOpenAccoridan(itemId);
+    setCurrentOpenAccordian(itemId);
   };
 
   return (
-    <main className="min-h-72 gap-x-3 gap-y-3 mb-5">
-      <div className="min-h-56 px-2 py-2 lg:pt-4 rounded-sm md:rounded-xl flex flex-col gap-y-1">
-        {data.map((item) => {
-          const isOpen = currentOpenAccoridan === item.id;
-          return (
-            <div
-              key={item.id}
-              className="space-y-1 my-1 bg-neutral-800 px-4  rounded-md "
-            >
-              <section
-                className="mt-1.5 flex items-center justify-between cursor-pointer"
-                onClick={() => handleAccordian(item.id)}
-              >
-                <h2 className="text-lg font-semibold">{item.name}</h2>
-                <button
-                  className={`${
-                    currentOpenAccoridan === item.id && "rotate-180 "
-                  } duration-500`}
-                  onClick={() => handleAccordian(item.id)}
-                >
-                  <FaAngleDown />
-                </button>
-              </section>
-              <section
-                className={`transition-all duration-300 ease-in-out overflow-hidden
-                  ${isOpen ? "max-h-96 opacity-100 pb-2" : "max-h-0 opacity-0"}
+    <main className="w-full">
+      <div className="relative overflow-hidden rounded-3xl border border-gray-300/60 bg-gray-400/40 backdrop-blur-xl shadow-2xl shadow-blue-100/50 p-6 sm:p-8 transition-all">
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-400/30 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-orange-400/30 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="flex items-center gap-2 mb-6 border-b border-slate-200/60 pb-4 relative z-10">
+          <BsQuestionCircleFill className="text-blue-500 text-xl" />
+          <h2 className="font-bold text-slate-700">
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        <div className="flex flex-col gap-3 relative z-10">
+          {ACCORDIAN_DATA.map((item) => {
+            const isOpen = currentOpenAccordian === item.id;
+            return (
+              <div
+                key={item.id}
+                className={`
+                    group rounded-2xl border transition-all duration-300 overflow-hidden
+                    ${
+                      isOpen
+                        ? "bg-blue-100/20 border-blue-200 shadow-md shadow-blue-50"
+                        : "bg-white/50 border-white/60 hover:bg-blue-200/25 hover:border-blue-300 hover:shadow-sm"
+                    }
                 `}
               >
-                <div className="pt-2">
-                  <p className="text-sm font-medium text-gray-400 border-t border-t-neutral-700/70 pt-2">
-                    {item.content}
-                  </p>
+                {/* Header */}
+                <button
+                  className="w-full p-4 sm:px-6 flex items-center justify-between cursor-pointer text-left focus:outline-none"
+                  onClick={() => handleAccordian(item.id)}
+                >
+                  <span
+                    className={`font-bold text-sm sm:text-base transition-colors ${
+                      isOpen
+                        ? "text-blue-700"
+                        : "text-slate-700 group-hover:text-blue-600"
+                    }`}
+                  >
+                    {item.name}
+                  </span>
+
+                  <div
+                    className={`
+                    p-2 rounded-full transition-all duration-300 
+                    ${
+                      isOpen
+                        ? "bg-blue-100 text-blue-600 rotate-180"
+                        : "bg-slate-100 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-500"
+                    }
+                  `}
+                  >
+                    <FaChevronDown className="text-xs" />
+                  </div>
+                </button>
+
+                {/* Body (Animated with Grid) */}
+                <div
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    isOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-4 sm:px-6 pb-5 pt-1">
+                      <div className="h-px w-full bg-gradient-to-r from-blue-100 to-transparent mb-3"></div>
+                      <p className="text-sm text-slate-500 font-medium leading-relaxed">
+                        {item.content}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </section>
-            </div>
-          );
-        })}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </main>
   );
 }
 
-export default Accordian;
+export default Accordion;

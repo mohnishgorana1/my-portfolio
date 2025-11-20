@@ -55,79 +55,126 @@ function Pagination() {
 
   const pageNumbersArray = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-
   return (
-    <main className="min-h-72 grid md:grid-cols-2 gap-x-3 gap-y-3 mb-5">
-      {/* fetched data */}
-      <div className="overflow-auto  bg-neutral-900 px-4 py-2 rounded-sm md:rounded-xl grid md:grid-cols-2  gap-3">
-        {loading && (
-          <TextShimmer className="font-mono text-sm" duration={1}>
-            Fetching...
-          </TextShimmer>
-        )}
-        {paginatedProducts &&
-          paginatedProducts.length > 0 &&
-          paginatedProducts.map((product: any) => (
-            <div
-              key={product.id}
-              className="bg-neutral-800 rounded-md flex items-center justify-between px-4 py-3"
-            >
-              <span className="flex gap-x-1">
-                <p>{product.id}.</p>
-                <h1>{product.title}</h1>
-              </span>
+    <main className="min-h-[600px] grid lg:grid-cols-[1.5fr_1fr] gap-6 mb-5">
+      {/* --- Left Side: Fetched Data List --- */}
+      <div className="flex flex-col bg-white/50 backdrop-blur-sm border border-white/60 rounded-2xl shadow-sm p-4 h-full">
+        <h2 className="text-lg md:text-xl font-bold text-slate-700 mb-4 px-2 flex items-center gap-3">
+          📦 Product List{" "}
+          <span className="text-xs font-normal text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-300">
+            Page {currentPage}
+          </span>
+        </h2>
 
-              <Image
-                src={product.thumbnail}
-                height={50}
-                width={50}
-                alt="image"
-              />
-            </div>
-          ))}
-        {loading && error && <div className="text-xl text-orange-600">No Products Found {error}</div>}
-      </div>
-      {/* pagination btn */}
-      <div className="bg-neutral-900/55 px-4 py-2 rounded-sm md:rounded-xl">
-        {fetchedData && fetchedData.length > 0 && (
-          <div className="flex items-center flex-col my-12 gap-y-12">
-            <p className="font-bold text-xl">
-              Total Products : {fetchedData.length}
-            </p>
-            <span className="flex flex-col justify-center items-center flex-wrap gap-4">
-              <button
-                className="px-4 py-2 rounded-full border border-gray-500 text-gray-300 transition-colors duration-200 hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={prevPage}
-                disabled={currentPage === 1} // IMPORTANT: Add disabled state
+        <div className="flex-1 overflow-y-auto pr-2 space-y-3 custom-scrollbar">
+          {loading && (
+            <div className="flex items-center justify-center h-64">
+              <TextShimmer
+                className="font-mono text-sm md:text-base lg:text-xl text-blue-600"
+                duration={1}
               >
-                Prev
-              </button>
-              <span className="flex gap-2 flex-wrap justify-center">
+                Fetching Products...
+              </TextShimmer>
+            </div>
+          )}
+
+          {paginatedProducts &&
+            paginatedProducts.length > 0 &&
+            paginatedProducts.map((product: any) => (
+              <div
+                key={product.id}
+                className="group bg-slate-200 border border-slate-100 rounded-xl p-3 flex items-center justify-between hover:shadow-md hover:border-blue-300 transition-all duration-200 ease-out"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="text-xs font-mono text-slate-400 w-6">
+                    #{product.id}
+                  </span>
+                  <h1 className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors">
+                    {product.title}
+                  </h1>
+                </div>
+
+                <div className="relative h-10 w-10 md:h-12 md:w-12 rounded-lg overflow-hidden bg-slate-50 border border-slate-100">
+                  <Image
+                    src={product.thumbnail}
+                    fill
+                    className="object-cover"
+                    alt={product.title}
+                  />
+                </div>
+              </div>
+            ))}
+
+          {loading && error && (
+            <div className="text-center p-4 text-red-500 bg-red-50 rounded-lg border border-red-100">
+              {error}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* --- Right Side: Pagination Controls --- */}
+      <div className="flex flex-col justify-center items-center bg-white/70 backdrop-blur-md border border-white/60 rounded-2xl shadow-lg shadow-blue-500/5 p-6 h-fit lg:h-full">
+        {fetchedData && fetchedData.length > 0 && (
+          <div className="w-full flex flex-col items-center gap-y-8">
+            {/* Info Header */}
+            <div className="text-center space-y-1">
+              <p className="text-4xl font-black text-slate-800 tracking-tight">
+                {fetchedData.length}
+              </p>
+              <p className="text-sm font-medium text-slate-400 uppercase tracking-wider">
+                Total Products
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className="w-16 h-1 bg-slate-200 rounded-full"></div>
+
+            {/* Pagination Logic */}
+            <div className="flex flex-col items-center gap-6 w-full">
+              {/* Page Numbers Grid */}
+              <div className="flex flex-wrap justify-center gap-2 max-w-xs">
                 {pageNumbersArray.map((pageNumber) => (
                   <button
                     key={pageNumber}
                     onClick={() => goToPage(pageNumber)}
-                    // Ensure consistent sizing and centering for the circular buttons
-                    className={`w-10 h-10 text-lg rounded-full flex items-center justify-center transition-all duration-200
-                ${
-                  pageNumber === currentPage
-                    ? "bg-blue-600 text-white font-bold shadow-md shadow-blue-600/50 scale-105" // Active style
-                    : "border border-gray-500 text-gray-300 hover:bg-neutral-800" // Inactive style
-                }`}
+                    className={`
+                      w-9 h-9 text-sm font-semibold rounded-full flex items-center justify-center transition-all duration-300 ease-out
+                      ${
+                        pageNumber === currentPage
+                          ? "bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/40 scale-110"
+                          : "bg-white text-slate-500 border border-slate-200 hover:border-blue-300 hover:text-blue-600 hover:shadow-sm"
+                      }
+                    `}
                   >
                     {pageNumber}
                   </button>
                 ))}
-              </span>
+              </div>
 
-              <button
-                onClick={nextPage}
-                disabled={currentPage === totalPages} // IMPORTANT: Add disabled state
-                className="px-4 py-2 rounded-full border border-gray-500 text-gray-300 transition-colors duration-200 hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Next
-              </button>
-            </span>
+              {/* Navigation Buttons */}
+              <div className="flex items-center gap-4 w-full justify-center mt-2">
+                <button
+                  onClick={prevPage}
+                  disabled={currentPage === 1}
+                  className="flex-1 max-w-[120px] px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-600 hover:text-slate-800 font-medium text-sm
+                           transition-all duration-200 hover:bg-slate-50 hover:border-blue-400 hover:shadow-sm 
+                           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:bg-white"
+                >
+                  ← Prev
+                </button>
+
+                <button
+                  onClick={nextPage}
+                  disabled={currentPage === totalPages}
+                  className="flex-1 max-w-[120px] px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-600 hover:text-slate-800 font-medium text-sm
+                           transition-all duration-200 hover:bg-slate-50 hover:border-blue-400 hover:shadow-sm 
+                           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:bg-white"
+                >
+                  Next →
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </div>

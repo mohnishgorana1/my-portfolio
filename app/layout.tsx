@@ -29,18 +29,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#000000] text-white relative`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100 text-black relative`}
       >
-        <div className="flex flex-col gap-y-2 items-center border border-black mx-auto py-2 sm:py-3 lg:py-4 justify-between">
-          <nav className="w-[98vw] md:w-[95vw]">
-            <Navbar />
-          </nav>
-
-          <main className="w-full">{children}</main>
-
-          <footer className="w-full mt-8 self-end"><Footer /></footer>
-
-        </div>
+        <main className="w-full flex flex-col justify-between ">
+          <div className="min-h-[80vh]">{children}</div>
+          <footer className="w-full mt-8 self-end">
+            <Footer />
+          </footer>
+        </main>
       </body>
     </html>
   );

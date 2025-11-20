@@ -1,18 +1,23 @@
+// projects/[projectId]/page.tsx
 "use client";
-import { projects } from "@/lib/constants";
+
+import { projects, techStacksMap } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
 
-function ProjectDescription({ params }: { params: { projectId: string } }) {
+function ProjectDetails({ params }: { params: { projectId: string } }) {
   const projectId = params.projectId;
   const currentProject = projects.find((project) => project.id === projectId);
+
+  if (!currentProject) return <div>Project not found</div>;
+
   const {
-    id,
     title,
     link,
     thumbnail,
-    description,
     shortDescription,
     detailedDescription,
     techStacks,
@@ -20,60 +25,104 @@ function ProjectDescription({ params }: { params: { projectId: string } }) {
   } = currentProject;
 
   return (
-    <main className="w-full min-h-[90vh]  relative flex flex-col items-center gap-y-8">
-      <header className="px-4 lg:px-8 w-full lg:pl-3 py-12 text-2xl lg:text-4xl flex flex-col items-center  gap-y-8 bg-black bg-dot-pink-300/[0.2]">
-        <h1 className="bg-gradient-to-r from-purple-900 to to-blue-500 w-fit px-4 py-1 rounded-xl font-serif">
+    <main className="w-full min-h-[90vh] bg-gray-50 flex flex-col items-center gap-y-12 py-12 px-4 lg:px-20">
+      <Navbar />
+      {/* Header */}
+      <header className="pt-12 w-full flex flex-col items-center gap-y-6 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="h-12 md:h-20 text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500"
+        >
           {title}
-        </h1>
-        <h2 className="text-xl lg:text-3xl text--center font-bold font-sans">
+        </motion.h1>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="text-lg md:text-2xl text-gray-700 font-medium"
+        >
           {shortDescription}
-        </h2>
-        <div className="w-full md:w-[60%] p-2   rounded-2xl shadow-sm shadow-neutral-300 hover:shadow-md hover:shadow-white ">
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="w-full md:w-3/5 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+        >
           <Image
             src={thumbnail}
-            height={1000}
-            width={1000}
-            alt="image"
-            className="object-contain w-full  rounded-xl"
+            alt={title}
+            width={1200}
+            height={800}
+            className="w-full h-auto object-cover rounded-xl"
           />
-        </div>
+        </motion.div>
       </header>
 
-      <div className="py-4 lg:py-16 px-4 w-full md:w-[80%] flex flex-col items-center justify-center gap-y-12">
-        <div className="md:self-start flex flex-col md:flex-row gap-x-5 gap-y-5">
-          <Link
-            href={githubRepositoryUrl}
-            className=" border py-1 px-8 rounded-xl bg-purple-500 border-transparent"
-          >
-            Source Code
-          </Link>
-          <Link
-            href={link}
-            className="self-start border py-1 px-8 rounded-xl bg-blue-600 border-transparent"
-          >
-            View Project
-          </Link>
+      {/* Links */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.6 }}
+        className="flex flex-col sm:flex-row gap-4 items-center justify-center"
+      >
+        <Link
+          href={githubRepositoryUrl}
+          className="px-6 py-2 rounded-lg bg-gray-800 text-white font-semibold hover:bg-gray-900 transition"
+        >
+          Source Code
+        </Link>
+        <Link
+          href={link}
+          className="px-6 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+        >
+          View Project
+        </Link>
+      </motion.div>
+
+      {/* Description */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.8 }}
+        className="w-full md:w-4/5 bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300"
+      >
+        <p className="text-gray-700 text-justify text-base md:text-lg leading-relaxed">
+          {detailedDescription}
+        </p>
+      </motion.div>
+
+      {/* Technologies Used */}
+      <section className="w-full md:w-4/5 flex flex-col gap-y-6">
+        <h3 className="text-2xl font-bold text-gray-800">Technologies Used</h3>
+        <div className="flex flex-wrap gap-4">
+          {techStacks &&
+            techStacks.map((tech, idx) => {
+              const techData = techStacksMap[tech];
+              if (!techData) return null;
+              const Icon = techData.icon;
+              const color = techData.color;
+
+              return (
+                <motion.div
+                  key={idx}
+                  whileHover={{ scale: 1.2 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="flex items-center justify-center gap-2 bg-gray-100 px-4 py-2 rounded-xl shadow-sm hover:shadow-md transition-all"
+                >
+                  <Icon size={24} color={color} />
+                  <span className="font-semibold text-gray-800">{tech}</span>
+                </motion.div>
+              );
+            })}
         </div>
-        <h3 className="text-justify text-xs sm:text-sm md:text-lg lg:text-xl tracking-tight">{detailedDescription}</h3>
-        <div className="self-start flex flex-wrap gap-x-12 justify-center gap-y-4 items-center">
-          <h2 className="text-xl font-semibold ">Technologies Used</h2>
-          <div className="max-w-full flex flex-wrap ">
-            {techStacks.map(
-              (icon: any) =>
-                icon && (
-                  <span
-                    key={icon}
-                    className="flex rounded-full border p-2 -ml-2 bg-[#00040ad3] hover:scale-125 duration-200"
-                  >
-                    <Image src={icon} alt={icon} width={20} height={18} />
-                  </span>
-                )
-            )}
-          </div>
-        </div>
-      </div>
+      </section>
     </main>
   );
 }
 
-export default ProjectDescription;
+export default ProjectDetails;

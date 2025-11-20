@@ -2,8 +2,10 @@
 
 import { TextShimmer } from "@/components/ui/text-shimmer";
 import axios from "axios";
+import { Star } from "lucide-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { AiFillLike, AiFillDislike } from "react-icons/ai";
+import { AiFillLike, AiFillDislike, AiOutlineEye } from "react-icons/ai";
+import { TbStarFilled } from "react-icons/tb";
 
 const BATCH_SIZE = 10; // Number of posts per load
 
@@ -65,16 +67,22 @@ function InfiniteScroll() {
   }, []);
 
   return (
-    <main className="w-full">
-      <section>
-        <h1 className="text-xl md:text-2xl font-extrabold text-center mt-6 text-indigo-400 tracking-wide">
-          🚀 Infinite Scroll Feed
-        </h1>
-        <p className="text-center text-gray-400 text-sm mt-1">
-          Keep scrolling — more posts will load automatically!
+    <main className="min-h-screen w-full bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-8 px-4">
+      {/* Header Section */}
+      <section className="mb-10 text-center space-y-3">
+        <div className="animate-pulse inline-flex items-center justify-center gap-2 bg-white/50 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/60 shadow-sm mb-2">
+          <TbStarFilled className="text-amber-400" />
+          <span className="text-lg  font-bold tracking-widest text-blue-500 uppercase">
+            Live Feed
+          </span>
+        </div>
+        <p className="text-slate-500 text-sm md:text-base max-w-md mx-auto">
+          Keep scrolling to load more content automatically.
         </p>
       </section>
-      <section className="space-y-6 my-4">
+
+      {/* Feed Section */}
+      <section className="space-y-6 max-w-2xl mx-auto">
         {posts &&
           posts.length > 0 &&
           posts.map((post, idx) => {
@@ -82,60 +90,107 @@ function InfiniteScroll() {
             return (
               <div
                 key={id}
-                className="max-w-full md:max-w-lg lg:max-w-md mx-auto flex flex-col items-start px-4 rounded-lg my-2 border border-neutral-900 py-4 shadow shadow-neutral-500 bg-neutral-900 hover:shadow-neutral-300 hover:shadow-md duration-200 ease-in-out space-y-3"
+                className="group relative overflow-hidden rounded-2xl bg-white/60 backdrop-blur-xl border border-white/60 p-6 shadow-lg shadow-blue-100/50 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-200/60 hover:bg-white/80"
               >
-                <section className="flex justify-between items-baseline w-full gap-x-12">
-                  <h2 className="text-lg font-semibold">
-                    {idx + 1}. {title}
-                  </h2>
-                  <h1 className="text-[10px] md:text-xs opacity-70">
-                    User Id: {userId}
-                  </h1>
-                </section>
-                <p className="text-sm my-4 opacity-75">{body}</p>
-                <span className="flex flex-wrap gap-2">
-                  {tags &&
-                    tags.length > 0 &&
-                    tags.map((tag: string | null) => (
+                {/* Decorative shine on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out pointer-events-none" />
+
+                {/* Header: Index & User */}
+                <div className="flex justify-between items-start mb-3">
+                  <div className="flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold text-sm shadow-inner">
+                      {idx + 1}
+                    </span>
+                    <h2 className="text-lg md:text-xl font-bold text-slate-800 leading-tight group-hover:text-blue-700 transition-colors">
+                      {title}
+                    </h2>
+                  </div>
+                </div>
+
+                {/* Body */}
+                <p className="text-slate-600 text-sm md:text-base leading-relaxed pl-11 mb-4">
+                  {body}
+                </p>
+
+                {/* Footer Info */}
+                <div className="pl-0 sm:pl-11 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-blue-50">
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {tags &&
+                      tags.length > 0 &&
+                      tags.map((tag: string | null) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-600 border border-blue-100 text-xs font-medium transition-colors hover:bg-blue-100"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                  </div>
+
+                  {/* Stats */}
+                  <div className="flex items-center gap-4 text-sm">
+                    <div className="flex items-center gap-3 bg-white/50 rounded-lg px-2 py-1 border border-white/50 shadow-sm">
                       <span
-                        key={tag}
-                        className="bg-neutral-800 rounded-lg px-2 text-xs py-0.5"
+                        className="flex items-center gap-1 text-emerald-600 font-medium"
+                        title="Likes"
                       >
-                        #{tag}
+                        <AiFillLike className="text-lg" />{" "}
+                        {reactions?.likes ?? 0}
                       </span>
-                    ))}
-                </span>
-                <section className="w-full flex items-center justify-between gap-x-2 text-sm">
-                  <span className="gap-x-4 flex items-center">
-                    <p className="flex items-center gap-x-0.5">
-                      <AiFillLike /> {reactions?.likes ?? 0}
-                    </p>
-                    <p className="flex items-center gap-x-0.5">
-                      <AiFillDislike /> {reactions?.dislikes ?? 0}
-                    </p>
-                  </span>
-                  <p className="text-xs opacity-40">Views: {views}</p>
-                </section>
+                      <div className="w-px h-3 bg-slate-200"></div>
+                      <span
+                        className="flex items-center gap-1 text-rose-500 font-medium"
+                        title="Dislikes"
+                      >
+                        <AiFillDislike className="text-lg" />{" "}
+                        {reactions?.dislikes ?? 0}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 text-slate-400 text-xs font-medium bg-slate-100/50 px-2 py-1 rounded-md">
+                      <AiOutlineEye />
+                      <span>{views} views</span>
+                    </div>
+
+                    <span className="text-[10px] font-mono text-slate-300">
+                      User: {userId}
+                    </span>
+                  </div>
+                </div>
               </div>
             );
           })}
       </section>
 
+      {/* Loading State */}
       {loading && (
-        <div className="mx-auto w-full flex items-center justify-center">
+        <div className="mx-auto w-full flex flex-col items-center justify-center py-8 gap-2">
+          <div className="w-6 h-6 border-2 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
           <TextShimmer
-            className="text-center font-mono text-base md:text-xl lg:my-4"
+            className="text-center font-medium text-blue-400 text-sm tracking-wide"
             duration={1}
           >
-            Loading...
+            Fetching more posts...
           </TextShimmer>
         </div>
       )}
 
-      {hasMore && <div ref={observerRef} className="h-6"></div>}
+      {/* Observer Target */}
+      {hasMore && (
+        <div
+          ref={observerRef}
+          className="h-10 opacity-0 pointer-events-none"
+        ></div>
+      )}
 
+      {/* End of Feed */}
       {!hasMore && (
-        <p className="text-center text-gray-400 my-4">No more posts to show</p>
+        <div className="text-center py-8">
+          <span className="inline-block px-4 py-2 rounded-full bg-slate-200/50 text-slate-500 text-sm font-medium">
+            You've reached the end! 🎉
+          </span>
+        </div>
       )}
     </main>
   );

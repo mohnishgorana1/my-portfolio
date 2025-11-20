@@ -1,89 +1,171 @@
 "use client";
 import React, { useState } from "react";
-import { MdCancel } from "react-icons/md";
+import { MdCancel, MdCheckCircle } from "react-icons/md";
+import { BsTerminal } from "react-icons/bs";
+import { IoIosAddCircleOutline } from "react-icons/io";
+
 function ChipsInput() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<string[]>([]);
   const [currentValue, setCurrentValue] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentValue(e.target.value);
+    if (error) setError("");
   };
 
-  const handleKeyDown = (e: any) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      if (currentValue.trim() === "") return;
-      setData((prev: any) => {
-        return [...prev, currentValue];
-      });
+      e.preventDefault();
+      const trimmed = currentValue.trim();
+      
+      if (trimmed === "") {
+        setError("Please enter a valid text");
+        return;
+      }
+      
+      if (data.includes(trimmed)) {
+        setError("This chip already exists");
+        return;
+      }
+
+      setData((prev) => [...prev, trimmed]);
       setCurrentValue("");
+      setIsSubmitted(false); // Reset submit state on modification
     }
   };
+
   const handleDelete = (itemToDelete: string) => {
     const newData = data.filter((oldValues) => oldValues !== itemToDelete);
     setData(newData);
+    setIsSubmitted(false);
   };
 
   return (
-    <main className="min-h-72 grid md:grid-cols-2 gap-x-3 gap-y-3 mb-5">
-      <div className="space-y-4 bg-neutral-900 px-4 py-2 lg:pt-4 pb-6 rounded-sm md:rounded-xl flex flex-col items-center gap-y-4">
-        <div className="w-full flex flex-col  my-auto gap-y-4">
+    <main className="grid lg:grid-cols-2 gap-8 min-h-[500px]">
+      
+      {/* LEFT: Input Section */}
+      <section className="flex flex-col h-full relative overflow-hidden rounded-3xl border border-white/60 bg-gray-200 backdrop-blur-xl shadow-xl shadow-blue-100/50 p-6 sm:p-8 transition-all hover:bg-gray-300/50">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-400"></div>
+        
+        <div className="mb-6">
+          <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+            <IoIosAddCircleOutline className="text-blue-500 text-2xl" />
+            Add Tags
+          </h2>
+          <p className="text-sm text-slate-500 mt-1">
+            Type a keyword and press <kbd className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 font-mono text-xs text-slate-600 font-bold">Enter</kbd>
+          </p>
+        </div>
+
+        {/* Input Field */}
+        <div className="relative group mb-4">
           <input
             type="text"
-            className="bg-neutral-800 shadow-neutral-600 rounded-xl py-2 px-4 outline-none focus:ring-1 focus:ring-blue-300"
+            className="w-full bg-white border border-slate-200 rounded-xl py-3 px-4 pl-4 outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-400 transition-all shadow-sm text-slate-700 placeholder:text-slate-400"
             value={currentValue}
-            onChange={(e) => handleChange(e)}
+            onChange={handleChange}
             onKeyDown={handleKeyDown}
-            placeholder="Type something and press Enter"
+            placeholder="e.g. React, Design, UI..."
           />
-          <span className="flex items-center flex-wrap gap-3">
-            {data &&
-              data.length > 0 &&
-              data.map((item, idx) => (
-                <p
-                  className="rounded-xl px-3 text-center bg-neutral-800 flex items-center gap-x-4"
-                  key={idx}
+          {error && (
+            <span className="absolute -bottom-6 left-1 text-xs text-rose-500 font-medium animate-in slide-in-from-top-1">
+              {error}
+            </span>
+          )}
+        </div>
+
+        {/* Chips Container */}
+        <div className="flex flex-wrap gap-2 mt-4 flex-grow content-start min-h-[100px]">
+          {data.length > 0 ? (
+            data.map((item, idx) => (
+              <div
+                key={idx}
+                className="group/chip flex items-center gap-2 pl-3 pr-1 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-sm font-medium transition-all hover:bg-blue-100 hover:shadow-sm animate-in zoom-in duration-200"
+              >
+                <span>{item}</span>
+                <button
+                  className="p-0.5 rounded-full hover:bg-blue-200 text-blue-400 hover:text-blue-600 transition-colors"
+                  onClick={() => handleDelete(item)}
                 >
-                  <span>{item}</span>
-                  <button
-                    className="text-red-600 text-xl"
-                    onClick={() => handleDelete(item)}
-                  >
-                    <MdCancel />
-                  </button>
-                </p>
-              ))}
+                  <MdCancel className="text-lg" />
+                </button>
+              </div>
+            ))
+          ) : (
+            <div className="w-full h-full flex items-center justify-center border-2 border-dashed border-slate-200 rounded-xl p-8 text-slate-500 text-base italic bg-slate-50/50">
+              No chips added yet
+            </div>
+          )}
+        </div>
+
+        {/* Action Bar */}
+        <div className="mt-8 pt-6 border-t border-slate-200 flex justify-between items-center">
+          <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+            {data.length} {data.length === 1 ? 'Item' : 'Items'} Added
           </span>
           <button
-            className="cursor-pointer px-4 py-1 rounded-3xl bg-blue-700 shadow-sm shadow-blue-600 w-28 self-center"
+            className={`
+              px-6 py-2.5 rounded-xl font-bold text-sm shadow-lg transition-all active:scale-95 flex items-center gap-2
+              ${data.length < 1 
+                ? "bg-slate-100 text-slate-300 shadow-none cursor-not-allowed" 
+                : "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-200 hover:shadow-blue-300"}
+            `}
             onClick={() => setIsSubmitted(true)}
             disabled={data.length < 1}
           >
-            Submit
+            <span>Save Changes</span>
+            <MdCheckCircle />
           </button>
         </div>
-      </div>
+      </section>
 
-      <div className="bg-neutral-900/55 px-4 py-2 lg:py-4 rounded-sm md:rounded-xl w-full flex flex-col ">
-        <h1 className="text-xl md:text-2xl font-semibold mb-5 md:animate-pulse text-start md:text-center">
-          Submitted Data
-        </h1>
-        <div className="w-full text-neutral-300 space-y-3 leading-relaxed text-xl">
-          {isSubmitted && data.length > 0 ? (
-            <p className="flex flex-col">
-              <span>&#91;</span>
-              <span className="ml-4 flex flex-col">
-                {data.map((item) => (
-                  <span className="ml-1">"{item}"</span>
-                ))}
-              </span>
-              <span>&#93;</span>
-            </p>
-          ) : (
-            <p>No Value Added</p>
-          )}
+      {/* RIGHT: Output Section */}
+      <section className="flex flex-col h-full relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-2xl shadow-slate-400/20 p-0">
+        {/* Terminal Header */}
+        <div className="bg-slate-950/50 border-b border-white/10 px-4 py-3 flex items-center justify-between backdrop-blur-md">
+            <div className="flex items-center gap-2">
+                <div className="flex gap-1.5">
+                    <span className="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                    <span className="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                    <span className="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                </div>
+            </div>
+            <div className="flex items-center gap-2 text-slate-500 text-xs font-mono">
+                <BsTerminal />
+                <span>output.json</span>
+            </div>
         </div>
-      </div>
+
+        {/* Terminal Body */}
+        <div className="flex-grow p-6 font-mono text-sm overflow-auto custom-scrollbar relative">
+            {isSubmitted && data.length > 0 ? (
+                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <span className="text-purple-400">const</span> <span className="text-blue-400">submittedData</span> <span className="text-slate-400">=</span> <span className="text-yellow-400">[</span>
+                    <div className="pl-4 flex flex-col gap-1 my-1">
+                        {data.map((item, i) => (
+                            <span key={i} className="text-emerald-400">
+                                "{item}"<span className="text-slate-500">{i < data.length - 1 ? "," : ""}</span>
+                            </span>
+                        ))}
+                    </div>
+                    <span className="text-yellow-400">];</span>
+                    
+                    <div className="mt-6 text-slate-500 border-t border-slate-800 pt-4 text-xs">
+                        // Data ready for API submission
+                    </div>
+                 </div>
+            ) : (
+                <div className="h-full flex flex-col items-center justify-center text-slate-700 gap-2 select-none">
+                    <div className="w-12 h-12 rounded-xl border border-dashed border-slate-800 bg-slate-800/50 flex items-center justify-center">
+                         <span className="text-2xl opacity-50">⚡</span>
+                    </div>
+                    <p>Waiting for submission...</p>
+                </div>
+            )}
+        </div>
+      </section>
     </main>
   );
 }

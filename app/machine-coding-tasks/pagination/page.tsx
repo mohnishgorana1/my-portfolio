@@ -3,63 +3,57 @@ import React from "react";
 
 function PaginationPage() {
   return (
-    <main className="space-y-6 md:px-6 lg:px-12">
+    <main className="min-h-screen w-full py-8 md:px-6 md:mx-2 bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-50">
       {/* --- Description Section --- */}
-      <article className="space-y-2">
-        <h1 className="my-4 text-2xl md:text-3xl font-bold text-neutral-100 text-center">
-          PAGINATION
-        </h1>
-        <p className="text-gray-200 text-xs sm:text-sm md:text-base ">
-          A fully functional <strong>Frontend Pagination System</strong> built
-          using <strong>React</strong> and <strong>Tailwind CSS</strong>. It
-          efficiently handles large datasets by dividing them into smaller,
-          manageable pages that can be easily navigated using intuitive
-          controls.
-        </p>
-        <span className="text-neutral-500 text-xs sm:text-sm">10 Products per page</span>
-        <ul className="ml-2 list-disc list-inside text-xs sm:text-sm md:text-base">
-          <li>
-            1. Fetches product data once from <strong>dummyjson.com</strong>{" "}
-            (100 items total).
-          </li>
-          <li>
-            2. Displays <strong>10 products per page</strong> using local
-            slicing for fast and responsive navigation.
-          </li>
-          <li>
-            3. Includes <strong>Next</strong>, <strong>Previous</strong>, and{" "}
-            <strong>Direct Page</strong> navigation controls for an enhanced
-            user experience.
-          </li>
-          <li>
-            4. No additional re-fetching — only local pagination ensures smooth
-            transitions.
-          </li>
+      <article className="md:grid md:grid-cols-5 mb-8 ">
+        <div className="md:col-span-4 space-y-4">
+          <p className=" text-base sm:text-lg text-slate-600 leading-relaxed ">
+            A fully functional{" "}
+            <strong className="text-blue-600">
+              Frontend Pagination System
+            </strong>{" "}
+            built using <strong>React</strong> and <strong>Tailwind CSS</strong>
+            . <br className="hidden md:flex" /> It efficiently handles large
+            datasets by dividing them into smaller, manageable pages.
+          </p>
+          <div className="flex flex-col sm:flex-row items-start md:items-center gap-4 text-xs sm:text-sm text-slate-500">
+            <span className="px-3 py-1 bg-white rounded-full border border-slate-200 shadow-sm">
+              📦 10 Products per page
+            </span>
+            <span className="px-3 py-1 bg-white rounded-full border border-slate-200 shadow-sm">
+              ⚡ Client-side slicing
+            </span>
+          </div>
+          <p className="text-sm sm:text-base text-slate-500 mt-4">
+            👉 You can check out the full source code here:{" "}
+            <a
+              href="https://github.com/mohnishgorana1/my-portfolio/tree/master/components/machine-coding-tasks/Pagination"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-700 font-medium underline decoration-blue-300 underline-offset-4 transition-colors"
+            >
+              GitHub Link
+            </a>
+          </p>
+        </div>
+
+        <ul className="col-span-1 hidden md:flex md:flex-col gap-1 text-base text-slate-500 mt-2">
+          <li>• Fetches 100 items once</li>
+          <li>• No re-fetching</li>
+          <li>• Instant transitions</li>
         </ul>
-
-        <p className="text-neutral-400 text-xs sm:text-sm">
-          👉 You can check out the full source code here:{" "}
-          <a
-            href="https://github.com/mohnishgorana1/my-portfolio/tree/master/components/machine-coding-tasks/Pagination"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 underline"
-          >
-            GitHub Link
-          </a>
-        </p>
-
-        <span className="text-neutral-500 text-xs sm:text-sm">
-          ⚡ Note: Built purely with <strong>React + Tailwind CSS</strong>{" "}
-          without using any third-party pagination or UI libraries. The focus is
-          on understanding how to handle client-side data efficiently and
-          provide a seamless user interaction.
-        </span>
       </article>
 
       {/* --- Demo Section --- */}
-      <section className="border border-neutral-800 rounded-lg shadow-sm shadow-neutral-700 p-4">
-        <Pagination />
+      {/* Glass Container for the Component */}
+      <section className=" relative overflow-hidden rounded-3xl border border-blue-800/60 bg-white/30 backdrop-blur-xl shadow-xl shadow-blue-100/50 p-1">
+        {/* Decorative Gradients */}
+        <div className="absolute -top-24 -left-24 w-72 h-72 bg-blue-200/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-indigo-200/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="relative z-10">
+          <Pagination />
+        </div>
       </section>
     </main>
   );
