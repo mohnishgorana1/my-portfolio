@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { techStacksMap } from "@/lib/constants";
-import { ArrowRight, ArrowRightCircle } from "lucide-react";
+import { ArrowRightCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface ProjectCardProps {
@@ -12,68 +12,95 @@ interface ProjectCardProps {
     id: string | number;
     title: string;
     link: string;
-    thumbnail: string;
+    images: string[];
+    video?: string;
     shortDescription: string;
-    techStacks: string[]; // now string keys like "next", "tailwind"
+    techStacks: string[];
   };
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const router = useRouter();
-  const { title, link, thumbnail, shortDescription, techStacks, id } = project;
+  const { title, images, video, shortDescription, techStacks, id } = project;
 
   return (
     <div
       onClick={() => router.push(`/projects/${id}`)}
-      className="group cursor-pointer relative flex flex-col lg:flex-row items-center bg-white rounded-3xl shadow-lg hover:shadow-xl shadow-gray-300 transition-shadow duration-500 overflow-hidden"
+      className="group cursor-pointer w-full flex flex-col lg:flex-row items-stretch rounded-[2rem] border border-white/20 bg-white/80 backdrop-blur-xl shadow-xl hover:shadow-2xl shadow-gray-200/50 transition-all duration-500 overflow-hidden"
     >
-      {/* Image */}
-      <section className="relative w-full lg:w-1/2 h-64 lg:h-80 overflow-hidden">
-        <Image
-          src={thumbnail}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+      {/* left section: video/image */}
+      <section className="relative w-full lg:w-1/2 h-64 lg:h-auto bg-gray-900/80 overflow-hidden border-b lg:border-b-0 lg:border-r border-gray-200/50">
+        {video ? (
+          <>
+            <video
+              src={video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-overlay blur-[1px] grayscale scale-110 transition-all duration-1000 group-hover:blur-0 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent z-10" />
+          </>
+        ) : images && images.length > 0 ? (
+          <Image
+            src={images[0]}
+            alt={`${title} preview`}
+            fill
+            className="object-cover opacity-60 blur-[2px] grayscale scale-110 transition-all duration-1000 group-hover:blur-0 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-500">
+            No Preview
+          </div>
+        )}
       </section>
 
-      {/* Info */}
-      <section className="w-full lg:w-1/2 p-6 lg:p-12 flex flex-col justify-center gap-y-4">
-        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+      {/* left section: Project brief description */}
+      <section className="w-full lg:w-1/2 p-8 lg:p-10 flex flex-col justify-center gap-y-5 relative z-20">
+        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
           {title}
         </h2>
-        <p className="text-gray-700 text-lg lg:text-xl leading-relaxed">
+        <p className="text-gray-600 text-lg leading-relaxed font-medium">
           {shortDescription}
         </p>
 
-        {/* Tech Stack */}
+        {/* Tech Stack Pills with Individual Expand Effect */}
         <div className="flex flex-wrap mt-2">
           {project.techStacks.map((tech, idx) => {
             const techData = techStacksMap[tech];
             if (!techData) return null;
-
             const Icon = techData.icon;
             const color = techData.color;
 
             return (
               <div
                 key={idx}
-                className={`${
-                  idx > 0 && "-ml-2"
-                } p-3  bg-gray-100 rounded-full border border-gray-500/50 flex items-center justify-center hover:scale-125 duration-300 ease-out`}
+                className="group/tech flex items-center p-2 bg-white/80 backdrop-blur-sm border border-gray-400/60 rounded-full shadow-sm hover:shadow-md transition-all duration-500 ease-in-out cursor-pointer overflow-hidden hover:pr-4 -ml-2.5 hover:-mx-0"
               >
-                <Icon size={25} color={color} />
+                {/* Icon Wrapper */}
+                <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 group-hover/tech:bg-white transition-colors duration-300">
+                  <Icon size={20} color={color} />
+                </div>
+
+                
+                <span
+                style={{ color: color }}
+                className={`max-w-0 overflow-hidden opacity-0 group-hover/tech:max-w-xs group-hover/tech:opacity-100 group-hover/tech:ml-2 transition-all duration-500 ease-in-out whitespace-nowrap text-sm font-semibold `}>
+                  {tech}
+                </span>
               </div>
             );
           })}
         </div>
 
-        {/* Button */}
         <Link
           href={`/projects/${id}`}
-          className="mt-4 mr-auto py-1.5 px-2 text-blue-600 hover:text-white border border-blue-700 hover:border-transparent duration-300 ease-in hover:bg-blue-500 rounded-lg font-medium cursor-pointer flex items-center gap-x-2"
+          className="mt-4 mr-auto py-2 px-5 text-blue-600 font-semibold rounded-full border border-blue-100 bg-blue-50 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300 flex items-center gap-x-2 group/btn"
+          onClick={(e) => e.stopPropagation()}
         >
-          View Project Details <ArrowRightCircle />
+          View Details
+          <ArrowRightCircle className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
         </Link>
       </section>
     </div>
