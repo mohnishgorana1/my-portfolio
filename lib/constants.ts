@@ -6,7 +6,6 @@ import {
   Palette,
   Headphones,
 } from "lucide-react";
-
 import {
   SiNextdotjs,
   SiTailwindcss,
@@ -15,68 +14,71 @@ import {
   SiReact,
   SiGreensock,
   SiFramer,
+  SiPusher,
+  SiNodedotjs,
+  SiExpress,
+  SiClerk,
 } from "react-icons/si";
-import { TbBrandThreejs } from "react-icons/tb";
-
-export const services = [
-  {
-    title: "Web Development",
-    description:
-      "I create responsive, user-friendly websites using technologies like HTML, CSS, JavaScript, React and Next.js.",
-    icon: Globe,
-    bgImageSrc: "/assets/images/service-frontend.svg",
-  },
-  {
-    title: "Backend Development",
-    description:
-      "I build efficient backend systems using Node.js, Express, and MongoDB for API and server-side logic.",
-    icon: Server,
-    bgImageSrc: "/assets/images/service-backend.jpeg",
-  },
-  {
-    title: "Database Designing",
-    description:
-      "Design scalable and normalized database schemas ensuring long-term performance and security.",
-    icon: Database,
-    bgImageSrc: "/assets/images/service-database.jpg",
-  },
-  {
-    title: "Cloud Integration",
-    description:
-      "Integrate cloud services like AWS and Firebase for secure, scalable applications.",
-    icon: Cloud,
-    bgImageSrc: "/assets/images/service-cloud.jpg",
-  },
-  {
-    title: "Website Designing",
-    description:
-      "Design modern, clean, and intuitive UI/UX ensuring the best user experience.",
-    icon: Palette,
-    bgImageSrc: "/assets/images/service-design.jpeg",
-  },
-  {
-    title: "IT-enabled Services",
-    description:
-      "Provide various IT-enabled services including business support, data handling, and technical operations.",
-    icon: Headphones,
-    bgImageSrc: "/assets/images/service-it-enabled.jpg",
-  },
-];
+import { TbBrandThreejs, TbBrandSocketIo } from "react-icons/tb";
+import { imgIcon } from "@/helpers/icon";
 
 export const techStacksMap: any = {
   NextJS: { icon: SiNextdotjs, color: "#000000" },
   TailwindCSS: { icon: SiTailwindcss, color: "#06B6D4" },
   Typescript: { icon: SiTypescript, color: "#3178C6" },
+  NodeJS: { icon: SiNodedotjs, color: "#68A063" },
+  ExpressJS: { icon: SiExpress, color: "#000120" },
   MongoDB: { icon: SiMongodb, color: "#47A248" },
   ReactJS: { icon: SiReact, color: "#61DAFB" },
   ThreeJS: { icon: TbBrandThreejs, color: "#101010" },
-  GSAP: { icon: SiGreensock, color: "#65851b" },
   FramerMotion: { icon: SiFramer, color: "#9147c9" },
+  SocketIO: { icon: TbBrandSocketIo, color: "#9147c9" },
+  Pusher: { icon: SiPusher, color: "#5B00BA" },
+  Stream: { 
+    icon: imgIcon("/assets/icons/stream.png"), 
+    color: "#0000FF" 
+  },
+  Liveblocks: {
+    icon: imgIcon("/assets/icons/liveblocks.png"),
+    color: "#101010",
+  },
+  GSAP: {
+    icon: imgIcon("/assets/icons/gsap.png"),
+    color: "#88CE02",
+  },
+  Clerk: {
+    icon: imgIcon("/assets/icons/clerk.png"),
+    color: "#4B32B3",
+  },
 };
 
 export const projects = [
   {
     id: "1",
+    title: "CodeConnect",
+    link: "https://code-connect-demo.vercel.app/", // Update with actual deployment link
+    images: [], // Add screen captures here when available
+    video: "/assets/projects/examify/video.mp4", // Using your default placeholder
+    description:
+      "A full-stack Collaborative Interview Platform for virtual technical interviews, integrating live video conferencing, collaborative coding, and instant code evaluations.",
+    shortDescription:
+      "Real-time technical interview platform with video and collaborative coding.",
+    detailedDescription:
+      "CodeConnect is a comprehensive platform designed to revolutionize remote technical interviews. Built with Next.js 15 and TypeScript, it creates a seamless environment where audio, video, and code coexist. The platform integrates the Stream Video SDK for low-latency video conferencing and uses Liveblocks with the Monaco Editor to enable real-time, multi-user collaborative coding. \n\nIt features secure role-based access control via Clerk, distinguishing between Interviewers and Candidates to manage permissions effectively. Interviewers have access to a dedicated dashboard for structured feedback, live code execution capabilities, and automatic meeting recordings for post-interview review. The UI is crafted with Tailwind CSS and animated with Framer Motion and GSAP for a polished, professional experience.",
+    githubRepositoryUrl: "https://github.com/mohnishgorana1/CodeConnect", // Update if repo name is different
+    techStacks: [
+      "NextJS",
+      "Typescript",
+      "TailwindCSS",
+      "MongoDB",
+      "Clerk",
+      "Stream",
+      "Liveblocks",
+      "FramerMotion",
+    ],
+  },
+  {
+    id: "2",
     title: "Examify",
     link: "https://examify-three.vercel.app/",
     // thumbnail: "/assets/projects/examify.png",
@@ -97,8 +99,7 @@ export const projects = [
     ],
   },
   {
-    id: "2",
-
+    id: "3",
     title: "DocStream",
     link: "https://docstream.vercel.app/",
     // thumbnail: "/assets/projects/doc-stream.png",
@@ -108,15 +109,15 @@ export const projects = [
     description:
       "Doc Stream enables users to upload, store, and organize their files effortlessly while providing real-time collaboration tools for team projects. With features like file sharing, version history, and secure cloud storage, users can access their documents from any device, anytime.",
     shortDescription:
-      "A cloud-based file management solution with real-time collaboration.",
+      "A cloud-based document management solution with real-time collaboration.",
     detailedDescription:
       "DocStream is a comprehensive file management platform inspired by Google Drive. It allows users to upload, organize, and store documents in the cloud, while offering powerful real-time collaboration features. Team members can collaborate on documents simultaneously, track changes through version control, and share files securely with external users. The platform ensures that all files are stored safely in the cloud, making them accessible from any device. DocStream's intuitive interface and rich collaboration features make it ideal for businesses, teams, and individuals looking for a streamlined solution to manage and share files efficiently.",
     githubRepositoryUrl:
       "https://github.com/mohnishgorana1/DocStream--realtime-docs",
-    techStacks: ["NextJS", "Typescript", "TailwindCSS"],
+    techStacks: ["NextJS", "Typescript", "TailwindCSS", "Liveblocks"],
   },
   {
-    id: "3",
+    id: "4",
     title: "Career Hub",
     link: "https://career-hub-sooty.vercel.app/",
     // thumbnail: "/assets/projects/career-hub.png",
@@ -130,11 +131,17 @@ export const projects = [
     detailedDescription:
       "Career Hub is a job portal designed to bridge the gap between job seekers and recruiters. The platform features advanced filtering options, enabling users to quickly find job opportunities based on parameters like location, company, industry, and job type. For recruiters, Career Hub provides tools to manage job postings, track applicants, and streamline the recruitment process. The platform is optimized for speed and efficiency, making it easy for individuals to find their ideal job and companies to connect with top talent. Its user-friendly interface ensures a smooth experience for both job seekers and employers.",
     githubRepositoryUrl: "https://github.com/mohnishgorana1/career-hub",
-    techStacks: ["NextJS", "Typescript", "MongoDB", "TailwindCSS"],
+    techStacks: [
+      "NextJS",
+      "Typescript",
+      "MongoDB",
+      "TailwindCSS",
+      "ExpressJS",
+      "NodeJS",
+    ],
   },
   {
     id: "5",
-
     title: "Carewell",
     link: "https://carewell-eight.vercel.app/",
     // thumbnail: "/assets/projects/care-well.png",
@@ -152,13 +159,11 @@ export const projects = [
   },
   {
     id: "6",
-
     title: "Chat App",
     link: "https://chat-app-two-flame.vercel.app/",
     // thumbnail: "/assets/projects/chat-app.png",
     images: [],
     video: "/assets/projects/examify/video.mp4",
-
     description:
       "This Chat App enables seamless communication between users. With features like instant messaging.",
     shortDescription:
@@ -166,7 +171,15 @@ export const projects = [
     detailedDescription:
       "Chat App is a fast, real-time messaging platform that facilitates seamless communication between users. It supports a wide range of features such as instant messaging. The app is optimized for speed and reliability, ensuring that messages are delivered instantly, even in low-bandwidth conditions. Its user-friendly interface makes it easy to stay connected across multiple devices, and its secure messaging system ensures privacy and data protection. Whether for personal communication or business collaboration, Chat App offers a smooth and efficient user experience.",
     githubRepositoryUrl: "https://github.com/mohnishgorana1/chat-app",
-    techStacks: ["NextJS", "Typescript", "MongoDB", "TailwindCSS"],
+    techStacks: [
+      "NextJS",
+      "Typescript",
+      "MongoDB",
+      "ExpressJS",
+      "NodeJS",
+      "TailwindCSS",
+      "Pusher",
+    ],
   },
   {
     id: "7",
@@ -183,7 +196,14 @@ export const projects = [
     detailedDescription:
       "Ignite LMS is a robust learning management system designed for both educators and students. It streamlines the entire course creation process with tools that make managing educational content easy and efficient. Educators can create interactive learning modules, track student performance through quizzes and assignments, and maintain real-time communication with students. The system also supports role-based access, enabling tailored user experiences for instructors, students, and administrators. With its user-friendly design, Ignite LMS enhances the online learning experience, allowing educators to focus on teaching and students to focus on learning.",
     githubRepositoryUrl: "https://github.com/mohnishgorana1/ignite-lms",
-    techStacks: ["NextJS", "Typescript", "MongoDB", "TailwindCSS"],
+    techStacks: [
+      "NextJS",
+      "Typescript",
+      "MongoDB",
+      "ExpressJS",
+      "NodeJS",
+      "TailwindCSS",
+    ],
   },
   {
     id: "8",
@@ -200,7 +220,14 @@ export const projects = [
     detailedDescription:
       "Mega Drive is a secure and scalable cloud-based file storage platform designed to help users manage their files efficiently. It supports multi-format file uploads, advanced folder organization, and tagging systems, allowing users to keep their files neatly organized and easily accessible from any device. With remote access capabilities, users can collaborate on files, share folders with other users, and manage permissions for enhanced security. Mega Drive is built with scalability in mind, ensuring it can accommodate both individual users and large teams. Its intuitive design simplifies file management, while offering robust data protection and security.",
     githubRepositoryUrl: "https://github.com/mohnishgorana1/mega-drive",
-    techStacks: ["NextJS", "Typescript", "MongoDB", "TailwindCSS"],
+    techStacks: [
+      "NextJS",
+      "Typescript",
+      "MongoDB",
+      "ExpressJS",
+      "NodeJS",
+      "TailwindCSS",
+    ],
   },
 
   {
@@ -258,6 +285,50 @@ export const projects = [
   },
 ];
 
+export const services = [
+  {
+    title: "Web Development",
+    description:
+      "I create responsive, user-friendly websites using technologies like HTML, CSS, JavaScript, React and Next.js.",
+    icon: Globe,
+    bgImageSrc: "/assets/images/service-frontend.svg",
+  },
+  {
+    title: "Backend Development",
+    description:
+      "I build efficient backend systems using Node.js, Express, and MongoDB for API and server-side logic.",
+    icon: Server,
+    bgImageSrc: "/assets/images/service-backend.jpeg",
+  },
+  {
+    title: "Database Designing",
+    description:
+      "Design scalable and normalized database schemas ensuring long-term performance and security.",
+    icon: Database,
+    bgImageSrc: "/assets/images/service-database.jpg",
+  },
+  {
+    title: "Cloud Integration",
+    description:
+      "Integrate cloud services like AWS and Firebase for secure, scalable applications.",
+    icon: Cloud,
+    bgImageSrc: "/assets/images/service-cloud.jpg",
+  },
+  {
+    title: "Website Designing",
+    description:
+      "Design modern, clean, and intuitive UI/UX ensuring the best user experience.",
+    icon: Palette,
+    bgImageSrc: "/assets/images/service-design.jpeg",
+  },
+  {
+    title: "IT-enabled Services",
+    description:
+      "Provide various IT-enabled services including business support, data handling, and technical operations.",
+    icon: Headphones,
+    bgImageSrc: "/assets/images/service-it-enabled.jpg",
+  },
+];
 export const academics = [
   {
     title: "Master of Computer Application (MCA)",

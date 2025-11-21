@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { techStacksMap } from "@/lib/constants";
@@ -23,6 +23,41 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const router = useRouter();
   const { title, images, video, shortDescription, techStacks, id } = project;
 
+  // 🎥 REF & STATE FOR VIDEO INTERSECTION
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          // Play when in viewport
+          videoElement.play().catch((error) => {
+            // Auto-play was prevented (usually due to browser policies if not muted)
+            console.log("Video play prevented:", error);
+          });
+          setIsVideoLoaded(true); // Optional: useful if you want to lazy load source
+        } else {
+          // Pause when out of viewport to save resources
+          videoElement.pause();
+        }
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of the video is visible
+      }
+    );
+
+    observer.observe(videoElement);
+
+    return () => {
+      if (videoElement) observer.unobserve(videoElement);
+    };
+  }, [video]);
+
   return (
     <div
       onClick={() => router.push(`/projects/${id}`)}
@@ -33,11 +68,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         {video ? (
           <>
             <video
+              ref={videoRef} // 👈 Added Ref here
               src={video}
-              autoPlay
               muted
               loop
               playsInline
+              preload="none" // 👈 Don't download until we need it (optional optimization)
+              // ❌ Removed 'autoPlay' prop so we control it manually
               className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-overlay blur-[1px] grayscale scale-110 transition-all duration-1000 group-hover:blur-0 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent z-10" />
@@ -56,7 +93,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         )}
       </section>
 
-      {/* left section: Project brief description */}
+      {/* right section: Project brief description */}
       <section className="w-full lg:w-1/2 p-8 lg:p-10 flex flex-col justify-center gap-y-5 relative z-20">
         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
           {title}
@@ -83,10 +120,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   <Icon size={20} color={color} />
                 </div>
 
-                
                 <span
-                style={{ color: color }}
-                className={`max-w-0 overflow-hidden opacity-0 group-hover/tech:max-w-xs group-hover/tech:opacity-100 group-hover/tech:ml-2 transition-all duration-500 ease-in-out whitespace-nowrap text-sm font-semibold `}>
+                  style={{ color: color }}
+                  className={`max-w-0 overflow-hidden opacity-0 group-hover/tech:max-w-xs group-hover/tech:opacity-100 group-hover/tech:ml-2 transition-all duration-500 ease-in-out whitespace-nowrap text-sm font-semibold `}
+                >
                   {tech}
                 </span>
               </div>
