@@ -22,6 +22,7 @@ import {
 import { TbBrandThreejs, TbBrandSocketIo } from "react-icons/tb";
 import { imgIcon } from "@/helpers/icon";
 
+
 export const techStacksMap: any = {
   NextJS: { icon: SiNextdotjs, color: "#000000" },
   TailwindCSS: { icon: SiTailwindcss, color: "#06B6D4" },
