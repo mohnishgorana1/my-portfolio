@@ -18,7 +18,8 @@ export const AcademicCard = ({
   return (
     <div
       className={cn(
-        `w-full bg-gradient-to-br from-white/30 via-white/10 to-white/5 backdrop-blur-2xl rounded-2xl border border-white/25 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_45px_rgba(0,0,0,0.18)] hover:scale-[1.02] transition-all duration-300 p-6`
+        `w-full bg-gradient-to-br from-white/30 via-white/10 to-white/5 backdrop-blur-2xl rounded-2xl border border-white/25 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_45px_rgba(0,0,0,0.18)] 
+        hover:scale-[1.02] transition-all duration-300 p-6`
       )}
     >
       <div className="md:grid md:grid-cols-5 justify-between items-center">
