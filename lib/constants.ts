@@ -56,6 +56,7 @@ export const projects = [
   {
     id: "1",
     title: "CodeConnect",
+    slug: "codeconnect",
     link: "https://code-connect-demo.vercel.app/", // Update with actual deployment link
     images: [], // Add screen captures here when available
     video: "/assets/projects/examify/video.mp4", // Using your default placeholder
@@ -81,6 +82,7 @@ export const projects = [
   {
     id: "2",
     title: "Examify",
+    slug: "examify",
     link: "https://examify-three.vercel.app/",
     // thumbnail: "/assets/projects/examify.png",
     images: [
@@ -115,6 +117,7 @@ export const projects = [
   {
     id: "3",
     title: "DocStream",
+    slug: "docstream",
     link: "https://docstream.vercel.app/",
     // thumbnail: "/assets/projects/doc-stream.png",
     images: [],
@@ -134,6 +137,7 @@ export const projects = [
   {
     id: "4",
     title: "Career Hub",
+    slug: "careerhub",
     link: "https://career-hub-sooty.vercel.app/",
     // thumbnail: "/assets/projects/career-hub.png",
     images: [],
@@ -159,6 +163,7 @@ export const projects = [
   {
     id: "5",
     title: "Carewell",
+    slug: "carewell",
     link: "https://carewell-eight.vercel.app/",
     // thumbnail: "/assets/projects/care-well.png",
     images: [],
@@ -177,6 +182,7 @@ export const projects = [
   {
     id: "6",
     title: "Chat App",
+    slug: "chatapp",
     link: "https://chat-app-two-flame.vercel.app/",
     // thumbnail: "/assets/projects/chat-app.png",
     images: [],
@@ -202,6 +208,7 @@ export const projects = [
   {
     id: "7",
     title: "Ignite LMS",
+    slug: "ignite-lms",
     link: "https://ignite-lms.vercel.app/",
     // thumbnail: "/assets/projects/ignite-lms.png",
     images: [],
@@ -228,6 +235,7 @@ export const projects = [
     id: "8",
 
     title: "Mega Drive",
+    slug: "megadrive",
     link: "https://mega-drive-nine.vercel.app/",
     // thumbnail: "/assets/projects/mega-drive.png",
     images: [],
@@ -254,6 +262,7 @@ export const projects = [
     id: "9",
 
     title: "Phantom Feedback",
+    slug: "phantom-feedback",
     link: "https://phantom-feedback.vercel.app/",
     // thumbnail: "/assets/projects/phantom-message.png",
     images: [],
@@ -272,6 +281,7 @@ export const projects = [
     id: "10",
 
     title: "Gymate UI",
+    slug: "gymate",
     link: "https://gym-website-ui-clone.vercel.app/",
     // thumbnail: "/assets/projects/gymate.png",
     images: [],
@@ -291,6 +301,7 @@ export const projects = [
     id: "11",
 
     title: "Iphone15 UI Clone",
+    slug: "iphone15-clone",
     link: "https://dev-mohnishgorana-iphone15-ui-clone.netlify.app/",
     // thumbnail: "/assets/projects/iphone-website-ui-clone.png",
     images: [],

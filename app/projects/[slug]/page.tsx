@@ -27,9 +27,9 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-function ProjectDetails({ params }: { params: { projectId: string } }) {
-  const projectId = params.projectId;
-  const currentProject = projects.find((project) => project.id === projectId);
+function ProjectDetails({ params }: { params: { slug: string } }) {
+  const slug = params.slug;
+  const currentProject = projects.find((project) => project.slug === slug);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -69,8 +69,8 @@ function ProjectDetails({ params }: { params: { projectId: string } }) {
       <Navbar />
       {/* Header */}
       <header className="relative pt-12 w-full flex flex-col items-center gap-y-6 text-center">
-        <div className="absolute top-2 right-2 w-96 h-96 animate-pulse bg-blue-400 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-2 left-2 w-96 h-96 animate-pulse bg-indigo-400 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="animate-pulse absolute top- right-1 lg:right-1 w-48 h-48 md:w-96 md:h-96  bg-purple-400 lg:bg-purple-400/50 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="animate-pulse absolute top- left-1 lg:-left-1 w-48 h-48 md:w-96 md:h-96 bg-blue-400 lg:bg-blue-400/50 rounded-full blur-3xl pointer-events-none"></div>
         <motion.h1
           variants={itemVariants}
           className="h-12 md:h-20 text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500"
@@ -89,7 +89,8 @@ function ProjectDetails({ params }: { params: { projectId: string } }) {
         <motion.div
           variants={itemVariants}
           transition={{ duration: 0.8 }}
-          className="w-full max-w-3xl mx-auto mt-6"         >
+          className="w-full max-w-4xl mx-auto mt-6"
+        >
           {/* Container Frame: Added better shadow and slight border */}
           <div className="relative w-full aspect-video bg-gray-900 rounded-3xl overflow-hidden shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] border border-gray-700/50">
             {images && images.length > 0 ? (
@@ -218,21 +219,15 @@ function ProjectDetails({ params }: { params: { projectId: string } }) {
               const color = techData.color;
 
               return (
-                <motion.div
+                <button
                   key={idx}
-                  whileHover={{
-                    scale: 1.05,
-                    y: -2,
-                    boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)",
-                  }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  className="flex items-center justify-center gap-2 bg-white/90 px-4 py-2 rounded-xl shadow-md cursor-pointer border border-gray-100"
+                  className="flex items-center justify-center gap-2 bg-gray-200/90 px-4 py-2 rounded-xl shadow-xl hover:shadow-gray-400 duration-300 ease-in cursor-pointer border border-gray-300 hover:ring-2 hover:ring-gray-400 hover:scale-105"
                 >
                   <Icon size={20} color={color} />
                   <span className="font-semibold text-gray-800 text-sm">
                     {tech}
                   </span>
-                </motion.div>
+                </button>
               );
             })}
         </motion.div>

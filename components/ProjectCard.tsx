@@ -11,6 +11,7 @@ interface ProjectCardProps {
   project: {
     id: string | number;
     title: string;
+    slug: string;
     link: string;
     images: string[];
     video?: string;
@@ -22,7 +23,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const router = useRouter();
-  const { title, images, video, shortVideo, shortDescription, techStacks, id } = project;
+  const { title, images, video, shortVideo, shortDescription, techStacks, id, slug } = project;
 
   const videoSource = shortVideo || video;
 
@@ -63,7 +64,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <div
-      onClick={() => router.push(`/projects/${id}`)}
+      onClick={() => router.push(`/projects/${slug}`)}
       className="group cursor-pointer w-full flex flex-col lg:flex-row items-stretch rounded-[2rem] border border-white/20 bg-white/80 backdrop-blur-xl shadow-xl hover:shadow-2xl shadow-gray-200/50 transition-all duration-500 overflow-hidden"
     >
       {/* left section: video/image */}
@@ -135,7 +136,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
 
         <Link
-          href={`/projects/${id}`}
+          href={`/projects/${slug}`}
           className="mt-4 mr-auto py-2 px-5 text-blue-600 font-semibold rounded-full border border-blue-100 bg-blue-50 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300 flex items-center gap-x-2 group/btn"
           onClick={(e) => e.stopPropagation()}
         >
