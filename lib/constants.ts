@@ -22,7 +22,6 @@ import {
 import { TbBrandThreejs, TbBrandSocketIo } from "react-icons/tb";
 import { imgIcon } from "@/helpers/icon";
 
-
 export const techStacksMap: any = {
   NextJS: { icon: SiNextdotjs, color: "#000000" },
   TailwindCSS: { icon: SiTailwindcss, color: "#06B6D4" },
@@ -35,9 +34,9 @@ export const techStacksMap: any = {
   FramerMotion: { icon: SiFramer, color: "#9147c9" },
   SocketIO: { icon: TbBrandSocketIo, color: "#9147c9" },
   Pusher: { icon: SiPusher, color: "#5B00BA" },
-  Stream: { 
-    icon: imgIcon("/assets/icons/stream.png"), 
-    color: "#0000FF" 
+  Stream: {
+    icon: imgIcon("/assets/icons/stream.png"),
+    color: "#0000FF",
   },
   Liveblocks: {
     icon: imgIcon("/assets/icons/liveblocks.png"),
@@ -60,6 +59,7 @@ export const projects = [
     link: "https://code-connect-demo.vercel.app/", // Update with actual deployment link
     images: [], // Add screen captures here when available
     video: "/assets/projects/examify/video.mp4", // Using your default placeholder
+    shortVideo: "/assets/projects/examify/gif.mp4",
     description:
       "A full-stack Collaborative Interview Platform for virtual technical interviews, integrating live video conferencing, collaborative coding, and instant code evaluations.",
     shortDescription:
@@ -83,13 +83,26 @@ export const projects = [
     title: "Examify",
     link: "https://examify-three.vercel.app/",
     // thumbnail: "/assets/projects/examify.png",
-    images: ["/assets/projects/examify/images/one.png"],
+    images: [
+      "/assets/projects/examify/images/1.png",
+      "/assets/projects/examify/images/2.png",
+      "/assets/projects/examify/images/3.png",
+      "/assets/projects/examify/images/4.png",
+      "/assets/projects/examify/images/6.png",
+      "/assets/projects/examify/images/7.png",
+      "/assets/projects/examify/images/8.png",
+      "/assets/projects/examify/images/9.png",
+      "/assets/projects/examify/images/10.png",
+      "/assets/projects/examify/images/11.png",
+      "/assets/projects/examify/images/12.png",
+    ],
     video: "/assets/projects/examify/video.mp4",
+    shortVideo: "/assets/projects/examify/gif.mp4",
     description:
       "A full-stack online examination platform with role-based features, enabling seamless exam creation, participation, and evaluation.",
     shortDescription: "Online exam platform for students and instructors.",
     detailedDescription:
-      "Examify is a full-stack online examination platform built with Next.js (App Router) and powered by a MongoDB database. It features secure, role-based access control integrated through Clerk authentication, ensuring seamless management for students, instructors, and admins.The platform combines a robust backend (implemented using Next.js API routes) with an elegant, responsive UI for a smooth and interactive exam experience. Instructors can create, publish, and manage exams, design questions, and analyze results, while students can enroll in exams, take timed assessments with real-time tracking, and view instant results and performance analytics.With features like auto-save during exams, live timers, real-time dashboards, and instant scoring, Examify delivers reliability and engagement for both learners and educators.Built using modern technologies like Next.js 15, TypeScript, Tailwind CSS, Framer Motion, and Mongoose, the platform ensures exceptional performance, scalability, and developer experience.",
+      "Examify is a full-stack online examination platform built with Next.js (App Router) and powered by a MongoDB database. It features secure, role-based access control integrated through Clerk authentication, ensuring seamless management for students, instructors, and admins. \n\n The platform combines a robust backend (implemented using Next.js API routes) with an elegant, responsive UI for a smooth and interactive exam experience. Instructors can create, publish, and manage exams, design questions, and analyze results, while students can enroll in exams, take timed assessments with real-time tracking, and view instant results and performance analytics.\n\n With features like auto-save during exams, live timers, real-time dashboards, and instant scoring, Examify delivers reliability and engagement for both learners and educators.\n\nBuilt using modern technologies like Next.js 15, TypeScript, Tailwind CSS, Framer Motion, and Mongoose, the platform ensures exceptional performance, scalability, and developer experience.",
     githubRepositoryUrl: "https://github.com/mohnishgorana1/Examify",
     techStacks: [
       "NextJS",
@@ -106,6 +119,7 @@ export const projects = [
     // thumbnail: "/assets/projects/doc-stream.png",
     images: [],
     video: "/assets/projects/examify/video.mp4",
+    shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
       "Doc Stream enables users to upload, store, and organize their files effortlessly while providing real-time collaboration tools for team projects. With features like file sharing, version history, and secure cloud storage, users can access their documents from any device, anytime.",
@@ -124,6 +138,7 @@ export const projects = [
     // thumbnail: "/assets/projects/career-hub.png",
     images: [],
     video: "/assets/projects/examify/video.mp4",
+    shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
       "Career Hub is optimized for fast, intuitive user experiences, helping individuals find their next career opportunity and companies their ideal candidates.",
@@ -148,6 +163,7 @@ export const projects = [
     // thumbnail: "/assets/projects/care-well.png",
     images: [],
     video: "/assets/projects/examify/video.mp4",
+    shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
       "An appointment booking platform designed specifically for patients. While an admin manages and oversees all appointment details to ensure smooth and efficient operations.",
@@ -165,6 +181,7 @@ export const projects = [
     // thumbnail: "/assets/projects/chat-app.png",
     images: [],
     video: "/assets/projects/examify/video.mp4",
+    shortVideo: "/assets/projects/examify/gif.mp4",
     description:
       "This Chat App enables seamless communication between users. With features like instant messaging.",
     shortDescription:
@@ -189,6 +206,7 @@ export const projects = [
     // thumbnail: "/assets/projects/ignite-lms.png",
     images: [],
     video: "/assets/projects/examify/video.mp4",
+    shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
       "It empowers educators to create, manage, and deliver courses effortlessly, while providing students with a seamless learning experience.",
@@ -214,6 +232,7 @@ export const projects = [
     // thumbnail: "/assets/projects/mega-drive.png",
     images: [],
     video: "/assets/projects/examify/video.mp4",
+    shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
       "A secure and scalable cloud-based file storage platform that allows users to upload, organize, and access their files from anywhere.",
@@ -239,6 +258,7 @@ export const projects = [
     // thumbnail: "/assets/projects/phantom-message.png",
     images: [],
     video: "/assets/projects/examify/video.mp4",
+    shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
       "Phantom Feedback allows users to receive honest, anonymous feedback from others, whether for personal insights, team improvements, or open communication.",
@@ -256,6 +276,7 @@ export const projects = [
     // thumbnail: "/assets/projects/gymate.png",
     images: [],
     video: "/assets/projects/examify/video.mp4",
+    shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
       "Gymate features an elegant layout, providing users with essential information about each gym, including location, amenities, membership options, and available classes. Designed for easy navigation.",
@@ -274,6 +295,7 @@ export const projects = [
     // thumbnail: "/assets/projects/iphone-website-ui-clone.png",
     images: [],
     video: "/assets/projects/examify/video.mp4",
+    shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
       "An immersive UI clone of the iPhone 15 website, featuring a stunning 3D model and innovative animations that bring the product to life.",

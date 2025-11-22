@@ -14,6 +14,7 @@ interface ProjectCardProps {
     link: string;
     images: string[];
     video?: string;
+    shortVideo?: string;
     shortDescription: string;
     techStacks: string[];
   };
@@ -21,7 +22,9 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const router = useRouter();
-  const { title, images, video, shortDescription, techStacks, id } = project;
+  const { title, images, video, shortVideo, shortDescription, techStacks, id } = project;
+
+  const videoSource = shortVideo || video;
 
   // 🎥 REF & STATE FOR VIDEO INTERSECTION
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -29,7 +32,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   useEffect(() => {
     const videoElement = videoRef.current;
-    if (!videoElement) return;
+    if (!videoElement || !videoSource) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -56,7 +59,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     return () => {
       if (videoElement) observer.unobserve(videoElement);
     };
-  }, [video]);
+  }, [videoSource]);
 
   return (
     <div
@@ -65,11 +68,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     >
       {/* left section: video/image */}
       <section className="relative w-full lg:w-1/2 h-64 lg:h-auto bg-gray-900/80 overflow-hidden border-b lg:border-b-0 lg:border-r border-gray-200/50">
-        {video ? (
+        {videoSource ? (
           <>
             <video
               ref={videoRef} // 👈 Added Ref here
-              src={video}
+              src={videoSource}
               muted
               loop
               playsInline

@@ -4,102 +4,212 @@
 import { projects, techStacksMap } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import { Link as LinkIcon } from "lucide-react"; // Imported for button icons
+import { BsGithub } from "react-icons/bs";
+
+// Frame definition for initial load speed
+const mainContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.1,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 function ProjectDetails({ params }: { params: { projectId: string } }) {
   const projectId = params.projectId;
   const currentProject = projects.find((project) => project.id === projectId);
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!currentProject) return <div>Project not found</div>;
 
   const {
     title,
     link,
-    thumbnail,
+    images,
     shortDescription,
     detailedDescription,
     techStacks,
     githubRepositoryUrl,
+    video,
   } = currentProject;
 
+  // Automatic Carousel Logic (Kept for performance and function)
+  useEffect(() => {
+    if (!images || images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, [images]);
+
   return (
-    <main className="w-full min-h-[90vh] bg-gray-50 flex flex-col items-center gap-y-12 py-12 px-4 lg:px-20">
+    <motion.main
+      variants={mainContainerVariants}
+      initial="hidden"
+      animate="visible"
+      className="w-full min-h-[100vh] bg-gray-50 flex flex-col items-center gap-y-12 py-12 px-4 lg:px-20"
+    >
       <Navbar />
       {/* Header */}
-      <header className="pt-12 w-full flex flex-col items-center gap-y-6 text-center">
+      <header className="relative pt-12 w-full flex flex-col items-center gap-y-6 text-center">
+        <div className="absolute top-2 right-2 w-96 h-96 animate-pulse bg-blue-400 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-2 left-2 w-96 h-96 animate-pulse bg-indigo-400 rounded-full blur-3xl pointer-events-none"></div>
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          variants={itemVariants}
           className="h-12 md:h-20 text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500"
         >
           {title}
         </motion.h1>
 
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          variants={itemVariants}
           className="text-lg md:text-2xl text-gray-700 font-medium"
         >
           {shortDescription}
         </motion.h2>
 
+        {/* --- Enhanced Carousel Section (Significantly Smaller) --- */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="w-full md:w-3/5 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
-        >
-          <Image
-            src={thumbnail}
-            alt={title}
-            width={1200}
-            height={800}
-            className="w-full h-auto object-cover rounded-xl"
-          />
+          variants={itemVariants}
+          transition={{ duration: 0.8 }}
+          className="w-full max-w-3xl mx-auto mt-6"         >
+          {/* Container Frame: Added better shadow and slight border */}
+          <div className="relative w-full aspect-video bg-gray-900 rounded-3xl overflow-hidden shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] border border-gray-700/50">
+            {images && images.length > 0 ? (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentImageIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  {/* 1. Background Layer (Blurred & Zoomed) - Creates the premium fill */}
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      src={images[currentImageIndex]}
+                      alt={`Background ${title} ${currentImageIndex}`}
+                      fill
+                      className="object-cover blur-2xl opacity-50 brightness-50 scale-110"
+                      priority={currentImageIndex === 0}
+                    />
+                  </div>
+
+                  {/* 2. Foreground Layer (Clear Image) */}
+                  <div className="absolute inset-0 w-full h-full flex items-center justify-center p-3 md:p-4">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={images[currentImageIndex]}
+                        alt={`${title} screenshot ${currentImageIndex + 1}`}
+                        fill
+                        className="object-contain drop-shadow-2xl"
+                        priority={currentImageIndex === 0}
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gray-800 text-gray-400 font-semibold">
+                No Visual Preview Available
+              </div>
+            )}
+
+            {/* Simple Progress Bar */}
+            {images && images.length > 1 && (
+              <div className="absolute bottom-0 left-0 h-0.5 bg-white/10 w-full">
+                <motion.div
+                  key={currentImageIndex}
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 2.5, ease: "linear" }}
+                  className="h-full bg-blue-400"
+                />
+              </div>
+            )}
+          </div>
         </motion.div>
       </header>
-
-      {/* Links */}
+      {/* --- Links (Enhanced Buttons) --- */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.6 }}
+        variants={itemVariants}
         className="flex flex-col sm:flex-row gap-4 items-center justify-center"
       >
-        <Link
+        <motion.a
           href={githubRepositoryUrl}
-          className="px-6 py-2 rounded-lg bg-gray-800 text-white font-semibold hover:bg-gray-900 transition"
+          target="_blank"
+          whileHover={{
+            scale: 1.05,
+            boxShadow:
+              "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+          }}
+          whileTap={{ scale: 0.95 }}
+          className="px-6 py-3 rounded-xl bg-gray-800 text-white font-semibold flex items-center gap-2 transition duration-200 shadow-md"
         >
+          <BsGithub size={20} />
           Source Code
-        </Link>
-        <Link
+        </motion.a>
+        <motion.a
           href={link}
-          className="px-6 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+          target="_blank"
+          whileHover={{
+            scale: 1.05,
+            boxShadow:
+              "0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -2px rgba(59, 130, 246, 0.2)",
+          }}
+          whileTap={{ scale: 0.95 }}
+          className="px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold flex items-center gap-2 transition duration-200 shadow-md"
         >
+          <LinkIcon size={20} />
           View Project
-        </Link>
+        </motion.a>
       </motion.div>
-
-      {/* Description */}
+      {/* --- Description (Glassy Effect) --- */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.8 }}
-        className="w-full md:w-4/5 bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300"
+        variants={itemVariants}
+        className="w-full md:w-4/5 rounded-3xl p-6 shadow-lg transition-shadow duration-500 backdrop-blur-md bg-gray-300/70 border-2 border-blue-300/50 hover:border-blue-300 hover:shadow-blue-300"
+        style={{ WebkitBackdropFilter: "blur(12px)" }} // For Safari support
       >
-        <p className="text-gray-700 text-justify text-base md:text-lg leading-relaxed">
+        <h3 className="text-xl font-bold text-gray-800 mb-4">
+          Project Overview
+        </h3>
+        <p className="text-gray-500 text-justify text-base md:text-lg font-medium whitespace-pre-line">
           {detailedDescription}
         </p>
       </motion.div>
-
-      {/* Technologies Used */}
+      ---
+      {/* --- Technologies Used (Glassy Effect) --- */}
       <section className="w-full md:w-4/5 flex flex-col gap-y-6">
-        <h3 className="text-2xl font-bold text-gray-800">Technologies Used</h3>
-        <div className="flex flex-wrap gap-4">
+        <motion.h3
+          variants={itemVariants}
+          className="text-2xl font-bold text-gray-800"
+        >
+          Technologies Used
+        </motion.h3>
+
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-wrap gap-3 p-4 rounded-3xl shadow-lg backdrop-blur-md bg-white/70 border border-white/50"
+          style={{ WebkitBackdropFilter: "blur(12px)" }}
+        >
           {techStacks &&
             techStacks.map((tech, idx) => {
               const techData = techStacksMap[tech];
@@ -110,18 +220,24 @@ function ProjectDetails({ params }: { params: { projectId: string } }) {
               return (
                 <motion.div
                   key={idx}
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="flex items-center justify-center gap-2 bg-gray-100 px-4 py-2 rounded-xl shadow-sm hover:shadow-md transition-all"
+                  whileHover={{
+                    scale: 1.05,
+                    y: -2,
+                    boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)",
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="flex items-center justify-center gap-2 bg-white/90 px-4 py-2 rounded-xl shadow-md cursor-pointer border border-gray-100"
                 >
-                  <Icon size={24} color={color} />
-                  <span className="font-semibold text-gray-800">{tech}</span>
+                  <Icon size={20} color={color} />
+                  <span className="font-semibold text-gray-800 text-sm">
+                    {tech}
+                  </span>
                 </motion.div>
               );
             })}
-        </div>
+        </motion.div>
       </section>
-    </main>
+    </motion.main>
   );
 }
 
