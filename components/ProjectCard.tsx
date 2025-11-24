@@ -68,7 +68,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       className="group cursor-pointer w-full flex flex-col lg:flex-row items-stretch rounded-[2rem] border border-white/20 bg-white/80 backdrop-blur-xl shadow-xl hover:shadow-2xl shadow-gray-200/50 transition-all duration-500 overflow-hidden"
     >
       {/* left section: video/image */}
-      <section className="relative w-full lg:w-1/2 h-64 lg:h-auto bg-gray-900/80 overflow-hidden border-b lg:border-b-0 lg:border-r border-gray-200/50">
+      <section className="relative w-full lg:w-1/2 h-64 lg:h-auto overflow-hidden border-b lg:border-b-0 lg:border-r border-gray-200/50">
         {videoSource ? (
           <>
             <video
@@ -78,8 +78,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               loop
               playsInline
               preload="none" // 👈 Don't download until we need it (optional optimization)
-              // ❌ Removed 'autoPlay' prop so we control it manually
-              className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-overlay blur-[1px] grayscale scale-110 transition-all duration-1000 group-hover:blur-0 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover opacity-80 blur-[1px] scale-110 transition-all duration-1000 group-hover:blur-0 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent z-10" />
           </>

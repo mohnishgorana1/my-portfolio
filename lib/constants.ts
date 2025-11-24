@@ -57,17 +57,23 @@ export const projects = [
     id: "1",
     title: "CodeConnect",
     slug: "codeconnect",
-    link: "https://code-connect-demo.vercel.app/", // Update with actual deployment link
-    images: [], // Add screen captures here when available
-    video: "/assets/projects/examify/video.mp4", // Using your default placeholder
-    shortVideo: "/assets/projects/examify/gif.mp4",
+    link: "https://code-connect-v1.vercel.app/",
+    images: [
+      "/assets/projects/code-connect/images/1.png",
+      "/assets/projects/code-connect/images/2.png",
+      "/assets/projects/code-connect/images/6.png",
+      "/assets/projects/code-connect/images/3.png",
+      "/assets/projects/code-connect/images/4.png",
+      "/assets/projects/code-connect/images/5.png",
+    ],
+    shortVideo: "/assets/projects/code-connect/video.mp4",
     description:
       "A full-stack Collaborative Interview Platform for virtual technical interviews, integrating live video conferencing, collaborative coding, and instant code evaluations.",
     shortDescription:
       "Real-time technical interview platform with video and collaborative coding.",
     detailedDescription:
       "CodeConnect is a comprehensive platform designed to revolutionize remote technical interviews. Built with Next.js 15 and TypeScript, it creates a seamless environment where audio, video, and code coexist. The platform integrates the Stream Video SDK for low-latency video conferencing and uses Liveblocks with the Monaco Editor to enable real-time, multi-user collaborative coding. \n\nIt features secure role-based access control via Clerk, distinguishing between Interviewers and Candidates to manage permissions effectively. Interviewers have access to a dedicated dashboard for structured feedback, live code execution capabilities, and automatic meeting recordings for post-interview review. The UI is crafted with Tailwind CSS and animated with Framer Motion and GSAP for a polished, professional experience.",
-    githubRepositoryUrl: "https://github.com/mohnishgorana1/CodeConnect", // Update if repo name is different
+    githubRepositoryUrl: "https://github.com/mohnishgorana1/code-connect",
     techStacks: [
       "NextJS",
       "Typescript",
@@ -98,7 +104,6 @@ export const projects = [
       "/assets/projects/examify/images/11.png",
       "/assets/projects/examify/images/12.png",
     ],
-    video: "/assets/projects/examify/video.mp4",
     shortVideo: "/assets/projects/examify/gif.mp4",
     description:
       "A full-stack online examination platform with role-based features, enabling seamless exam creation, participation, and evaluation.",
@@ -121,7 +126,6 @@ export const projects = [
     link: "https://docstream.vercel.app/",
     // thumbnail: "/assets/projects/doc-stream.png",
     images: [],
-    video: "/assets/projects/examify/video.mp4",
     shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
@@ -141,7 +145,6 @@ export const projects = [
     link: "https://career-hub-sooty.vercel.app/",
     // thumbnail: "/assets/projects/career-hub.png",
     images: [],
-    video: "/assets/projects/examify/video.mp4",
     shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
@@ -167,7 +170,6 @@ export const projects = [
     link: "https://carewell-eight.vercel.app/",
     // thumbnail: "/assets/projects/care-well.png",
     images: [],
-    video: "/assets/projects/examify/video.mp4",
     shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
@@ -186,7 +188,6 @@ export const projects = [
     link: "https://chat-app-two-flame.vercel.app/",
     // thumbnail: "/assets/projects/chat-app.png",
     images: [],
-    video: "/assets/projects/examify/video.mp4",
     shortVideo: "/assets/projects/examify/gif.mp4",
     description:
       "This Chat App enables seamless communication between users. With features like instant messaging.",
@@ -212,7 +213,6 @@ export const projects = [
     link: "https://ignite-lms.vercel.app/",
     // thumbnail: "/assets/projects/ignite-lms.png",
     images: [],
-    video: "/assets/projects/examify/video.mp4",
     shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
@@ -239,7 +239,6 @@ export const projects = [
     link: "https://mega-drive-nine.vercel.app/",
     // thumbnail: "/assets/projects/mega-drive.png",
     images: [],
-    video: "/assets/projects/examify/video.mp4",
     shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
@@ -266,7 +265,6 @@ export const projects = [
     link: "https://phantom-feedback.vercel.app/",
     // thumbnail: "/assets/projects/phantom-message.png",
     images: [],
-    video: "/assets/projects/examify/video.mp4",
     shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
@@ -285,7 +283,6 @@ export const projects = [
     link: "https://gym-website-ui-clone.vercel.app/",
     // thumbnail: "/assets/projects/gymate.png",
     images: [],
-    video: "/assets/projects/examify/video.mp4",
     shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
@@ -305,7 +302,6 @@ export const projects = [
     link: "https://dev-mohnishgorana-iphone15-ui-clone.netlify.app/",
     // thumbnail: "/assets/projects/iphone-website-ui-clone.png",
     images: [],
-    video: "/assets/projects/examify/video.mp4",
     shortVideo: "/assets/projects/examify/gif.mp4",
 
     description:
