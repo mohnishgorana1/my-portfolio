@@ -23,7 +23,16 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const router = useRouter();
-  const { title, images, video, shortVideo, shortDescription, techStacks, id, slug } = project;
+  const {
+    title,
+    images,
+    video,
+    shortVideo,
+    shortDescription,
+    techStacks,
+    id,
+    slug,
+  } = project;
 
   const videoSource = shortVideo || video;
 
@@ -41,12 +50,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         if (entry.isIntersecting) {
           // Play when in viewport
           videoElement.play().catch((error) => {
-            // Auto-play was prevented (usually due to browser policies if not muted)
             console.log("Video play prevented:", error);
           });
-          setIsVideoLoaded(true); // Optional: useful if you want to lazy load source
         } else {
-          // Pause when out of viewport to save resources
           videoElement.pause();
         }
       },
@@ -62,6 +68,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     };
   }, [videoSource]);
 
+  const handleVideoLoadedData = () => {
+    setIsVideoLoaded(true);
+  };
   return (
     <div
       onClick={() => router.push(`/projects/${slug}`)}
@@ -78,8 +87,26 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               loop
               playsInline
               preload="none" // 👈 Don't download until we need it (optional optimization)
+              onLoadedData={handleVideoLoadedData}
               className="absolute inset-0 w-full h-full object-cover opacity-80 blur-[1px] scale-110 transition-all duration-1000 group-hover:blur-0 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
             />
+            {!isVideoLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-200/90 animate-pulse">
+                {/* Option 1: Use the first image as a low-res placeholder */}
+                {images && images.length > 0 && (
+                  <Image
+                    src={images[0]}
+                    alt={`${title} placeholder`}
+                    fill
+                    className="object-cover opacity-30"
+                  />
+                )}
+                <span className="text-gray-600 z-10 font-medium">
+                  Loading Video Preview...
+                </span>
+              </div>
+            )}
+            {/* 🌟 END SKELETON LOADER/PLACEHOLDER */}
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent z-10" />
           </>
         ) : images && images.length > 0 ? (
