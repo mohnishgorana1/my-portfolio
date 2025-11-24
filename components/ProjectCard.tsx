@@ -92,7 +92,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             />
             {!isVideoLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-200/90 animate-pulse">
-                {/* Option 1: Use the first image as a low-res placeholder */}
                 {images && images.length > 0 && (
                   <Image
                     src={images[0]}
@@ -101,9 +100,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     className="object-cover opacity-30"
                   />
                 )}
-                <span className="text-gray-600 z-10 font-medium">
-                  Loading Video Preview...
-                </span>
               </div>
             )}
             {/* 🌟 END SKELETON LOADER/PLACEHOLDER */}
