@@ -125,8 +125,8 @@ export const projects = [
     slug: "docstream",
     link: "https://docstream.vercel.app/",
     // thumbnail: "/assets/projects/doc-stream.png",
-    images: [],
-    shortVideo: "/assets/projects/examify/gif.mp4",
+    images: ["/assets/projects/doc-stream.png"],
+    shortVideo: "",
 
     description:
       "Doc Stream enables users to upload, store, and organize their files effortlessly while providing real-time collaboration tools for team projects. With features like file sharing, version history, and secure cloud storage, users can access their documents from any device, anytime.",
@@ -144,8 +144,8 @@ export const projects = [
     slug: "careerhub",
     link: "https://career-hub-sooty.vercel.app/",
     // thumbnail: "/assets/projects/career-hub.png",
-    images: [],
-    shortVideo: "/assets/projects/examify/gif.mp4",
+    images: ["/assets/projects/career-hub.png"],
+    shortVideo: "",
 
     description:
       "Career Hub is optimized for fast, intuitive user experiences, helping individuals find their next career opportunity and companies their ideal candidates.",
@@ -169,8 +169,8 @@ export const projects = [
     slug: "carewell",
     link: "https://carewell-eight.vercel.app/",
     // thumbnail: "/assets/projects/care-well.png",
-    images: [],
-    shortVideo: "/assets/projects/examify/gif.mp4",
+    images: ["/assets/projects/care-well.png"],
+    shortVideo: "",
 
     description:
       "An appointment booking platform designed specifically for patients. While an admin manages and oversees all appointment details to ensure smooth and efficient operations.",
@@ -187,8 +187,8 @@ export const projects = [
     slug: "chatapp",
     link: "https://chat-app-two-flame.vercel.app/",
     // thumbnail: "/assets/projects/chat-app.png",
-    images: [],
-    shortVideo: "/assets/projects/examify/gif.mp4",
+    images: ["/assets/projects/chat-app.png"],
+    shortVideo: "",
     description:
       "This Chat App enables seamless communication between users. With features like instant messaging.",
     shortDescription:
@@ -212,8 +212,8 @@ export const projects = [
     slug: "ignite-lms",
     link: "https://ignite-lms.vercel.app/",
     // thumbnail: "/assets/projects/ignite-lms.png",
-    images: [],
-    shortVideo: "/assets/projects/examify/gif.mp4",
+    images: ["/assets/projects/ignite-lms.png"],
+    shortVideo: "",
 
     description:
       "It empowers educators to create, manage, and deliver courses effortlessly, while providing students with a seamless learning experience.",
@@ -238,8 +238,8 @@ export const projects = [
     slug: "megadrive",
     link: "https://mega-drive-nine.vercel.app/",
     // thumbnail: "/assets/projects/mega-drive.png",
-    images: [],
-    shortVideo: "/assets/projects/examify/gif.mp4",
+    images: ["/assets/projects/mega-drive.png"],
+    shortVideo: "",
 
     description:
       "A secure and scalable cloud-based file storage platform that allows users to upload, organize, and access their files from anywhere.",
@@ -264,8 +264,8 @@ export const projects = [
     slug: "phantom-feedback",
     link: "https://phantom-feedback.vercel.app/",
     // thumbnail: "/assets/projects/phantom-message.png",
-    images: [],
-    shortVideo: "/assets/projects/examify/gif.mp4",
+    images: ["/assets/projects/phantom-message.png"],
+    shortVideo: "",
 
     description:
       "Phantom Feedback allows users to receive honest, anonymous feedback from others, whether for personal insights, team improvements, or open communication.",
@@ -282,8 +282,8 @@ export const projects = [
     slug: "gymate",
     link: "https://gym-website-ui-clone.vercel.app/",
     // thumbnail: "/assets/projects/gymate.png",
-    images: [],
-    shortVideo: "/assets/projects/examify/gif.mp4",
+    images: ["/assets/projects/gymate.png"],
+    shortVideo: "",
 
     description:
       "Gymate features an elegant layout, providing users with essential information about each gym, including location, amenities, membership options, and available classes. Designed for easy navigation.",
@@ -301,8 +301,8 @@ export const projects = [
     slug: "iphone15-clone",
     link: "https://dev-mohnishgorana-iphone15-ui-clone.netlify.app/",
     // thumbnail: "/assets/projects/iphone-website-ui-clone.png",
-    images: [],
-    shortVideo: "/assets/projects/examify/gif.mp4",
+    images: ["/assets/projects/iphone-website-ui-clone.png"],
+    shortVideo: "",
 
     description:
       "An immersive UI clone of the iPhone 15 website, featuring a stunning 3D model and innovative animations that bring the product to life.",

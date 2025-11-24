@@ -88,7 +88,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               playsInline
               preload="none"
               onLoadedData={handleVideoLoadedData}
-              className="absolute inset-0 w-full h-full object-cover opacity-90 blur-[1px] transition-all duration-1000 group-hover:blur-0 group-hover:opacity-100 group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover opacity-90 blur-[0.5px] transition-all duration-1000 group-hover:blur-0 group-hover:opacity-100 group-hover:scale-105"
             />
             {!isVideoLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-200/90 animate-pulse">
@@ -109,7 +109,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             src={images[0]}
             alt={`${title} preview`}
             fill
-            className="object-cover opacity-60 blur-[2px] grayscale scale-110 transition-all duration-1000 group-hover:blur-0 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+            className="object-cover opacity-80 blur-[0.5px] transition-all duration-1000 group-hover:blur-0 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-500">
