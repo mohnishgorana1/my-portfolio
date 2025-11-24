@@ -9,7 +9,7 @@ import { TextLoop } from "@/components/ui/text-loop";
 
 export default function ProjectsPage() {
   return (
-    <main className="relative min-h-screen w-full bg-gray-200 overflow-hidden">
+    <main className="relative min-h-screen w-full overflow-hidden bg-gray-200">
       {/* Floating Shapes and Navbar (unchanged) */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -108,7 +108,7 @@ export default function ProjectsPage() {
         </svg>
       </div>
 
-      <section className="flex justify-center mt-4 relative z-20">
+      <section className="flex justify-center mt-4 relative z-20 ">
         <motion.span
           initial={{ opacity: 0, scale: 0.85 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -123,26 +123,9 @@ export default function ProjectsPage() {
       </section>
 
       <section className="py-20 px-4 lg:px-24 relative z-20">
-        <div className="grid gap-12">
+        <div className="grid md:grid-cols-2 gap-16">
           {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="
-                rounded-3xl 
-                backdrop-blur-xl 
-                bg-white/60 
-                border border-white/40 
-                shadow-lg 
-                hover:shadow-2xl 
-                transition-all
-              "
-            >
               <ProjectCard project={project} />
-            </motion.div>
           ))}
         </div>
       </section>

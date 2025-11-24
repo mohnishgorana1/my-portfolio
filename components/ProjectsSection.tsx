@@ -6,13 +6,13 @@ import { projects } from "@/lib/constants";
 import ProjectCard from "./ProjectCard";
 
 function ProjectsSection() {
-  const topProjects = projects.slice(0, 3);
+  const topProjects = projects.slice(0, 2);
 
   return (
     <section
       className="
       relative w-full py-24 px-4 lg:px-24 
-      bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20
+      bg-gradient-to-br from-blue-100 via-fuchsia-200/30 to-indigo-200
       overflow-hidden
     "
     >
@@ -43,7 +43,7 @@ function ProjectsSection() {
       </motion.p>
 
       {/* PROJECT LIST */}
-      <div className="flex flex-col gap-14 w-full mt-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full mt-16 auto-rows-fr">
         {topProjects.map((project, index) => (
           <motion.div
             key={project.id}
@@ -51,6 +51,8 @@ function ProjectsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: index * 0.15 }}
             viewport={{ once: true }}
+            // 2. Add h-full here to make the wrapper fill the grid cell height
+            className="h-full"
           >
             <ProjectCard project={project} />
           </motion.div>

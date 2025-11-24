@@ -74,21 +74,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <div
       onClick={() => router.push(`/projects/${slug}`)}
-      className="group cursor-pointer w-full flex flex-col lg:flex-row items-stretch rounded-[2rem] border border-white/20 bg-white/80 backdrop-blur-xl shadow-xl hover:shadow-2xl shadow-gray-200/50 transition-all duration-500 overflow-hidden"
+      className="group cursor-pointer w-full h-full flex flex-col rounded-[1.5rem] bg-gray-100/50 backdrop-blur-xl shadow-xl hover:shadow-2xl shadow-gray-400 hover:shadow-gray-600 transition-all duration-500 overflow-hidden"
     >
-      {/* left section: video/image */}
-      <section className="relative w-full lg:w-1/2 h-64 lg:h-auto overflow-hidden border-b lg:border-b-0 lg:border-r border-gray-200/50">
+      {/* TOP SECTION: VIDEO/IMAGE */}
+      <section className="relative w-full h-64 shrink-0 overflow-hidden">
         {videoSource ? (
           <>
             <video
-              ref={videoRef} // 👈 Added Ref here
+              ref={videoRef}
               src={videoSource}
               muted
               loop
               playsInline
-              preload="none" // 👈 Don't download until we need it (optional optimization)
+              preload="none"
               onLoadedData={handleVideoLoadedData}
-              className="absolute inset-0 w-full h-full object-cover opacity-80 blur-[1px] scale-110 transition-all duration-1000 group-hover:blur-0 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover opacity-90 blur-[1px] transition-all duration-1000 group-hover:blur-0 group-hover:opacity-100 group-hover:scale-105"
             />
             {!isVideoLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-200/90 animate-pulse">
@@ -102,7 +102,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 )}
               </div>
             )}
-            {/* 🌟 END SKELETON LOADER/PLACEHOLDER */}
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent z-10" />
           </>
         ) : images && images.length > 0 ? (
@@ -119,36 +118,48 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         )}
       </section>
 
-      {/* right section: Project brief description */}
-      <section className="w-full lg:w-1/2 p-8 lg:p-10 flex flex-col justify-center gap-y-5 relative z-20">
-        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
+      {/* BOTTOM SECTION: DESCRIPTION */}
+      <section
+        className="w-full p-6 flex flex-col flex-1 relative z-20 bg-white/30 backdrop-blur-2xl border-t border-white/50"
+      >
+        <h2
+          className="text-2xl lg:text-3xl font-semibold text-gray-900 tracking-tight group-hover:text-blue-600 transition-colors duration-300"
+        >
           {title}
         </h2>
-        <p className="text-gray-600 text-lg leading-relaxed font-medium">
+
+        {/* Description */}
+        <p
+          className="text-gray-600 text-base lg:text-lg leading-relaxed mt-3 line-clamp-3"
+        >
           {shortDescription}
         </p>
 
-        {/* Tech Stack Pills with Individual Expand Effect */}
-        <div className="flex flex-wrap mt-2">
+        {/* Tech Stack – iOS Glass Pills */}
+        <div className="flex flex-wrap mt-4">
           {project.techStacks.map((tech, idx) => {
             const techData = techStacksMap[tech];
             if (!techData) return null;
+
             const Icon = techData.icon;
             const color = techData.color;
 
             return (
               <div
                 key={idx}
-                className="group/tech flex items-center p-2 bg-white/80 backdrop-blur-sm border border-gray-400/60 rounded-full shadow-sm hover:shadow-md transition-all duration-500 ease-in-out cursor-pointer overflow-hidden hover:pr-4 -ml-2.5 hover:-mx-0"
+                className="group/tech flex items-center -ml-2 p-1.5  bg-gray-100 backdrop-blur-xl border border-gray-300 rounded-full shadow-sm hover:shadow-md hover:bg-gray-200 transition-all duration-500 cursor-pointer overflow-hidden"
               >
-                {/* Icon Wrapper */}
-                <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 group-hover/tech:bg-white transition-colors duration-300">
+                {/* Icon */}
+                <div
+                  className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white shadow-sm"
+                >
                   <Icon size={20} color={color} />
                 </div>
 
+                {/* Tech Name */}
                 <span
-                  style={{ color: color }}
-                  className={`max-w-0 overflow-hidden opacity-0 group-hover/tech:max-w-xs group-hover/tech:opacity-100 group-hover/tech:ml-2 transition-all duration-500 ease-in-out whitespace-nowrap text-sm font-semibold `}
+                  style={{ color }}
+                  className="max-w-0 opacity-0 ml-0 group-hover/tech:max-w-xs group-hover/tech:opacity-100 group-hover/tech:mx-3 transition-all duration-500 text-xs font-semibold whitespace-nowrap"
                 >
                   {tech}
                 </span>
@@ -157,14 +168,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           })}
         </div>
 
-        <Link
-          href={`/projects/${slug}`}
-          className="mt-4 mr-auto py-2 px-5 text-blue-600 font-semibold rounded-full border border-blue-100 bg-blue-50 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300 flex items-center gap-x-2 group/btn"
-          onClick={(e) => e.stopPropagation()}
-        >
-          View Details
-          <ArrowRightCircle className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-        </Link>
+        {/* Button – iOS Blue Button */}
+        <div className="mt-auto pt-6">
+          <Link
+            href={`/projects/${slug}`}
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-x-2 px-5 py-2.5 text-sm font-semibold text-blue-600 bg-blue-50 border border-blue-200 rounded-full shadow-sm hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300 group"
+          >
+            View Details
+            <ArrowRightCircle
+              className="w-5 h-5 transition-all duration-300 group-hover:translate-x-1"
+            />
+          </Link>
+        </div>
       </section>
     </div>
   );
