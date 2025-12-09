@@ -34,7 +34,7 @@ const Navbar = () => {
           >
             {/* <span className="hidden md:flex">Mohnish Gorana</span>
             <span className="md:hidden">MG</span> */}
-            <span className="hidden md:flex">Mohnish Gorana</span>
+            <span className="">Mohnish Gorana</span>
 
             <span className="text-blue-500">.</span>
           </Link>
