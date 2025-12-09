@@ -8,11 +8,11 @@ function AboutSection() {
   return (
     <main className="w-full bg-background dark:text-zinc-50 mx-auto">
       <div
-        className="backdrop-blur-3xl rounded-2xl p-6 flex flex-col gap-y-4
+        className="backdrop-blur-3xl rounded-full p-6 flex flex-col items-center gap-y-4 px-12 mx-auto
           bg-gradient-to-br from-white/40 via-white/20 to-white/10 dark:from-zinc-900/40 dark:via-zinc-900/20 dark:to-zinc-900/10
-          border-l-4 border-blue-500
+          border-x-4 border-blue-500/50
           shadow-[0_8px_32px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_32px_rgba(255,255,255,0.05)]
-          text-gray-800 dark:text-zinc-100"
+          text-gray-800 dark:text-zinc-100 "
       >
         {/* <h2 className="text-2xl font-bold tracking-wide">
             I&apos;m Mohnish Gorana
@@ -27,7 +27,7 @@ function AboutSection() {
             <br />I build intuitive interfaces and scalable backends.
           </h3> */}
 
-        <h4 className="text-[16px] lg:text-lg opacity-70 italic text-gray-900 dark:text-zinc-400 leading-relaxed">
+        <h4 className="text-[16px] lg:text-lg opacity-70 italic text-gray-900 dark:text-zinc-400 leading-relaxed mx-auto max-w-lg md:max-w-xl text-center">
           When I'm not coding, I explore new tech, upgrade my skills, and stay
           updated with the latest trends in web dev.
         </h4>
@@ -44,7 +44,7 @@ function AboutSection() {
           target="_blank"
           rel="noopener noreferrer"
           download
-          className="self-start px-6 py-2 bg-blue-600 hover:bg-blue-700 duration-300 text-white font-semibold rounded-md shadow-md hover:shadow-lg"
+          className="px-6 py-2 bg-blue-600 hover:bg-blue-700 duration-300 text-white font-semibold rounded-full shadow-md hover:shadow-lg"
         >
           Download Resume
         </Link>

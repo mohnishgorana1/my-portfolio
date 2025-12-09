@@ -4,9 +4,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
-const navItems = [
-  { name: "Projects", href: "/projects" },
-];
+const navItems = [{ name: "Projects", href: "/projects" }];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,12 +27,16 @@ const Navbar = () => {
       <div className="">
         <div className="flex justify-between items-center py-4">
           {/* Logo/Name */}
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="text-2xl font-extrabold 
                        text-foreground hover:text-blue-500 transition-colors flex gap-x-1"
           >
-            Mohnish Gorana<span className="text-blue-500">.</span>
+            {/* <span className="hidden md:flex">Mohnish Gorana</span>
+            <span className="md:hidden">MG</span> */}
+            <span className="hidden md:flex">Mohnish Gorana</span>
+
+            <span className="text-blue-500">.</span>
           </Link>
 
           {/* Desktop Links and Theme Toggle */}
@@ -63,8 +65,10 @@ const Navbar = () => {
 
       {/* Mobile Menu (Sliding down from the top) */}
       {isOpen && (
-        <div className="md:hidden absolute w-full left-0 z-40 
-                       bg-card border-t border-border shadow-xl">
+        <div
+          className="md:hidden absolute w-full left-0 z-40 
+                       bg-card border-t border-border shadow-xl"
+        >
           <div className="flex flex-col p-4 space-y-1">
             {navItems.map((item) => (
               <Link

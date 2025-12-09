@@ -48,7 +48,7 @@ function HeroSection() {
                      text-xl md:text-2xl 
                      text-gray-800 dark:text-gray-200 // ⬅️ Updated text color
                      bg-gray-200 dark:bg-gray-800 // ⬅️ Updated background color
-                     font-mono font-bold rounded-lg"
+                     font-mono font-bold rounded-full"
         >
           <span className="text-gray-900 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent">
             MERN Stack Developer
@@ -72,6 +72,7 @@ function HeroSection() {
             focus on developer experience.
           </p>
         </div>
+        
         {/* BUTTONS */}
         <div className="flex flex-col md:flex-row md:items-center gap-4 pt-6">
           {/* Primary Button: View My Work (Already good, but added shadow/focus update) */}
@@ -86,7 +87,7 @@ function HeroSection() {
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative inline-flex h-12 md:h-14 items-center justify-center overflow-hidden rounded-xl bg-blue-600 px-8 font-medium text-white shadow-lg shadow-blue-500/30 transition-all duration-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-gray-950" // ⬅️ Updated focus ring offset
+              className="relative inline-flex h-12 md:h-14 items-center justify-center overflow-hidden rounded-full bg-blue-600 px-8 font-medium text-white shadow-lg shadow-blue-500/30 transition-all duration-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-gray-950" // ⬅️ Updated focus ring offset
             >
               <span className="mr-2">View My Work</span>
               <ArrowRight />
@@ -104,7 +105,7 @@ function HeroSection() {
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex h-12 md:h-14 items-center justify-center rounded-xl 
+              className="inline-flex h-12 md:h-14 items-center justify-center rounded-full 
                          border border-blue-200 dark:border-blue-700 
                          bg-white dark:bg-gray-900 
                          px-8 font-medium 
