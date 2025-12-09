@@ -7,21 +7,22 @@ import React from "react";
 
 function About() {
   return (
-    <main className="w-full bg-gray-50 text-gray-900">
-      <section className="relative">
-        <Navbar />
-      </section>
-
+    <main className="w-full bg-background dark:text-zinc-50">
       <section>
-        <BackgroundBeamsWithCollision className="flex flex-col items-center pt-24 lg:pt-36 gap-y-7 bg-white/60 backdrop-blur-xl shadow-sm border-b border-gray-200">
-          <div className="absolute top-2 right-2 w-96 h-96 animate-pulse bg-blue-200 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute bottom-2 left-2 w-96 h-96 animate-pulse bg-indigo-200 rounded-full blur-3xl pointer-events-none"></div>
+        <BackgroundBeamsWithCollision
+          className="flex flex-col items-center pt-10 gap-y-7 bg-background backdrop-blur-xl shadow-sm border-b border-gray-200 dark:border-zinc-700/50">
           <h1 className="text-5xl relative z-20 md:text-6xl lg:text-7xl font-bold text-center text-blue-600 font-sans tracking-tight pt-8 sm:pt-0">
             About Me
           </h1>
 
-          <div className="bg-gradient-to-br from-white/40 via-white/20 to-white/10 backdrop-blur-3xl rounded-2xl  border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.15)] p-6 flex flex-col gap-y-3 max-w-[90vw] lg:max-w-[60vw] text-gray-800">
-            <h2 className="text-2xl font-bold tracking-wide">I&apos;m Mohnish Gorana</h2>
+          <div
+            className="bg-gradient-to-br from-white/40 via-white/20 to-white/10 backdrop-blur-3xl rounded-2xl border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.15)] p-6 flex flex-col gap-y-3 max-w-[90vw] lg:max-w-[60vw] 
+                       text-gray-800 
+                       dark:from-zinc-900/40 dark:via-zinc-900/20 dark:to-zinc-900/10 dark:border-zinc-700/50 dark:shadow-[0_8px_32px_rgba(255,255,255,0.05)] dark:text-zinc-100"
+          >
+            <h2 className="text-2xl font-bold tracking-wide">
+              I&apos;m Mohnish Gorana
+            </h2>
 
             <h3 className="text-[16px] lg:text-lg opacity-80 leading-relaxed">
               A passionate full-stack developer skilled in
@@ -32,7 +33,9 @@ function About() {
               <br />I build intuitive interfaces and scalable backends.
             </h3>
 
-            <h4 className="text-[16px] lg:text-lg opacity-70 italic">
+            <h4
+              className="text-[16px] lg:text-lg opacity-70 italic text-gray-800 dark:text-zinc-300"
+            >
               When I'm not coding, I explore new tech, upgrade my skills, and
               stay updated with the latest trends in web dev.
             </h4>
@@ -52,12 +55,11 @@ function About() {
         </BackgroundBeamsWithCollision>
       </section>
 
-      <section className="relative py-14 md:py-20 w-full flex flex-col gap-y-8 md:gap-y-12 items-center bg-gray-300">
-        {/* bg blobs */}
-        <div className="absolute top-2 right-2 w-96 h-96 animate-pulse bg-blue-400/30 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-2 left-2 w-96 h-96 animate-pulse bg-orange-400/30 rounded-full blur-3xl pointer-events-none"></div>
-
-        <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-900">
+      <section
+      id="academic-qualifications"
+        className="relative py-14 md:py-20 w-full flex flex-col gap-y-8 md:gap-y-12 items-center bg-background"
+      >
+        <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-900 dark:text-zinc-50">
           Academic Qualifications
         </h2>
 

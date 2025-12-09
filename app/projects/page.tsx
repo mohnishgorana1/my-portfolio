@@ -9,34 +9,18 @@ import { TextLoop } from "@/components/ui/text-loop";
 
 export default function ProjectsPage() {
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-gray-200">
-      {/* Floating Shapes and Navbar (unchanged) */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 0.4, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 2 }}
-        className="absolute top-20 left-10 w-72 h-72 rounded-full bg-purple-300/40 blur-3xl"
-      />
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 0.4, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 2, delay: 0.4 }}
-        className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-blue-300/40 blur-3xl"
-      />
-
-      <Navbar />
+    <main className="relative min-h-screen w-full overflow-hidden bg-background ">
+     
 
       {/* Hero Section */}
-      <section className="w-full mx-auto pt-32 pb-12 px-4 text-center relative z-20">
+      <section className="w-full mx-auto pt-16 pb-12 text-center relative z-20">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-4xl md:text-7xl font-extrabold text-gray-900"
+          // Updated: text-gray-900 -> dark:text-gray-50
+          className="text-4xl md:text-7xl font-extrabold text-gray-900 dark:text-gray-50"
         >
           The Ultimate <br /> Full Stack Projects
         </motion.h1>
@@ -47,13 +31,15 @@ export default function ProjectsPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="hidden w-full lg:grid grid-cols-12 gap-x-2 mt-10 text-2xl md:text-4xl font-semibold text-gray-900"
+          // Updated: text-gray-900 -> dark:text-gray-200
+          className="hidden w-full lg:grid grid-cols-12 gap-x-2 mt-10 text-2xl md:text-4xl font-semibold text-gray-900 dark:text-gray-200"
         >
           <span className="col-span-7 text-end">
             Building the web&apos;s future with
           </span>{" "}
           <TextLoop
             interval={2}
+            // TextLoop children likely render with the parent's color but keeping the emphasis color.
             className="col-span-5 text-purple-600 font-bold inline-block text-start"
           >
             <span>Full Stack Power</span> <span>Modern Design</span>{" "}
@@ -67,14 +53,15 @@ export default function ProjectsPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="lg:hidden w-full mt-10 text-2xl md:text-4xl font-semibold text-gray-900"
+          className="lg:hidden w-full mt-10 text-2xl md:text-4xl font-semibold text-gray-900 dark:text-gray-200"
         >
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-3xl text-base md:text-xl mt-8 text-gray-700 mx-auto"
+            // Updated: text-gray-700 -> dark:text-gray-400
+            className="max-w-3xl text-base md:text-xl mt-8 text-gray-700 dark:text-gray-400 mx-auto"
           >
             A hand-picked collection of full stack applications showcasing clean
             architecture, modern UI, scalable backends, and real-world
@@ -86,7 +73,8 @@ export default function ProjectsPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="max-w-3xl text-base md:text-xl mt-4 text-gray-700 mx-auto"
+            // Updated: text-gray-700 -> dark:text-gray-400
+            className="max-w-3xl text-base md:text-xl mt-4 text-gray-700 dark:text-gray-400 mx-auto"
           >
             Built using Next.js, TypeScript, MongoDB, Tailwind CSS, and cloud
             technologies.
@@ -94,10 +82,11 @@ export default function ProjectsPage() {
         </motion.div>
       </section>
 
-      {/* Wavy Divider, Badge, and Projects Grid (unchanged) */}
-      <div className="overflow-hidden">
+      {/* Wavy Divider */}
+      <div className="overflow-hidden ">
         <svg
-          className="w-full h-20 text-gray-300"
+          // Updated: text-gray-300 -> dark:text-gray-900 for a subtle dark color, or dark:text-gray-950 to match bg
+          className="w-full h-20 text-gray-300 dark:hidden md:hidden" 
           viewBox="0 0 1440 320"
           preserveAspectRatio="none"
         >
@@ -108,8 +97,9 @@ export default function ProjectsPage() {
         </svg>
       </div>
 
+      {/* Badge (The badge itself uses a gradient and white text, so no changes needed there) */}
       <section className="flex justify-center mt-4 relative z-20 ">
-        <motion.span
+        <motion.button
           initial={{ opacity: 0, scale: 0.85 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -119,13 +109,15 @@ export default function ProjectsPage() {
             text-white shadow-md shadow-purple-300/30"
         >
           ✨ Featured Projects
-        </motion.span>
+        </motion.button>
       </section>
 
-      <section className="py-20 px-4 lg:px-24 relative z-20">
+      {/* Projects Grid (ProjectCard component will need to handle dark mode internally for card background/text) */}
+      <section className="py-20 px-4 md:px-0 relative z-20">
         <div className="grid md:grid-cols-2 gap-16">
+          {/* Note: ProjectCard component itself must be updated for dark mode compatibility. */}
           {projects.map((project, index) => (
-              <ProjectCard project={project} />
+              <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </section>
