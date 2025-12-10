@@ -1,10 +1,32 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Code, Menu, NotebookText, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
 
-const navItems = [{ name: "Projects", href: "/projects" }];
+const navItems = [
+  { name: "Projects", href: "/projects", icon: Code },
+  { name: "Blogs", href: "/blogs", icon: NotebookText },
+];
+
+const socialLinks = [
+  {
+    name: "GitHub",
+    href: "https://github.com/mohnishgorana1",
+    icon: BsGithub,
+    isExternal: true,
+    color: "#181717",
+    darkModeColor: "#FFFFFF",
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/mohnish-gorana/",
+    icon: BsLinkedin,
+    isExternal: true,
+    color: "#0A66C2",
+  },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +42,10 @@ const Navbar = () => {
   const linkClass = `
     dark:text-white/80 dark:hover:text-white
   `;
-
+  // Base class for social icon links
+  const socialIconBaseClass = `
+    p-2 rounded-full transition-colors 
+  `;
   return (
     <nav className={navContainerClasses}>
       {/* Centered container with max width */}
@@ -42,10 +67,38 @@ const Navbar = () => {
           {/* Desktop Links and Theme Toggle */}
           <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
             {navItems.map((item) => (
-              <Link key={item.name} href={item.href} className={linkClass}>
+              <Link key={item.name} href={item.href} className={`font-medium hover:text-blue-600 duration-300 ease-in-out ${linkClass}`}>
                 {item.name}
               </Link>
             ))}
+
+            {/* Social Icons (Desktop: Icon Only) */}
+            <div className="flex items-center space-x-2">
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    target={item.isExternal ? "_blank" : undefined}
+                    rel={item.isExternal ? "noopener noreferrer" : undefined}
+                    className={socialIconBaseClass}
+                    // Adding title for native tooltip hint on hover
+                    title={item.name}
+                    // Adding aria-label for accessibility
+                    aria-label={item.name}
+                  >
+                    {item.name === "GitHub" ? (
+                      <Icon
+                        className={`h-5 w-5 hover:scale-105 text-${item.color} dark:text-${item.darkModeColor}`}
+                      />
+                    ) : (
+                      <Icon className="h-5 w-5 hover:scale-105" style={{ color: item.color }} />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
             <ThemeToggle />
           </div>
 
@@ -57,7 +110,7 @@ const Navbar = () => {
               className="p-2 rounded-lg text-foreground hover:bg-secondary dark:hover:bg-zinc-800 transition-colors"
               aria-label="Toggle navigation menu"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -66,20 +119,49 @@ const Navbar = () => {
       {/* Mobile Menu (Sliding down from the top) */}
       {isOpen && (
         <div
-          className="md:hidden absolute w-full left-0 z-40 
-                       bg-card border-t border-border shadow-xl"
+          className={`md:hidden absolute w-full left-0 z-40 transition-all duration-300 ease-in-out ${
+            isOpen
+              ? "max-h-screen opacity-100 top-[100%]"
+              : "max-h-0 opacity-0 overflow-hidden top-[100%]"
+          } bg-card border-t border-border shadow-xl`}
         >
           <div className="flex flex-col p-4 space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`py-2 px-3 block text-base ${linkClass}`}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`py-2 px-3 block text-base font-medium ${linkClass} hover:bg-secondary rounded-lg flex items-center gap-2`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Icon className="h-5 w-5" />
+                  {item.name}
+                </Link>
+              );
+            })}
+            {socialLinks.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  target={item.isExternal ? "_blank" : undefined}
+                  rel={item.isExternal ? "noopener noreferrer" : undefined}
+                  className={`py-2 px-3 block text-base font-medium ${linkClass} hover:bg-secondary/50 rounded-lg flex items-center gap-2`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.name === "GitHub" ? (
+                    <Icon
+                      className={`h-5 w-5 text-${item.color} dark:text-${item.darkModeColor}`}
+                    />
+                  ) : (
+                    <Icon className="h-5 w-5" style={{ color: item.color }} />
+                  )}
+                  {item.name}
+                </Link>
+              );
+            })}
           </div>
         </div>
       )}

@@ -38,7 +38,7 @@ export default function ProjectsPage() {
             Building the web&apos;s future with
           </span>{" "}
           <TextLoop
-            interval={2}
+            interval={1.3}
             // TextLoop children likely render with the parent's color but keeping the emphasis color.
             className="col-span-5 text-purple-600 font-bold inline-block text-start"
           >
