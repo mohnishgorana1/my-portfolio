@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { techStacksMap } from "@/lib/constants";
-import { ArrowRightCircle } from "lucide-react";
+import { ArrowRightCircle, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface ProjectCardProps {
@@ -18,6 +18,7 @@ interface ProjectCardProps {
     shortVideo?: string;
     shortDescription: string;
     techStacks: string[];
+    isFeatured?: boolean;
   };
 }
 
@@ -32,6 +33,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     techStacks,
     id,
     slug,
+    isFeatured,
   } = project;
 
   const videoSource = shortVideo || video; // 🎥 REF & STATE FOR VIDEO INTERSECTION
@@ -78,14 +80,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       bg-white dark:bg-zinc-950 dark:border-zinc-800 
       border border-zinc-200 
       shadow-zinc-300/50 hover:shadow-xl dark:shadow-black/20 
-      transition-all duration-500 overflow-hidden"
+      transition-all duration-500 overflow-hidden relative"
     >
       {/* TOP SECTION: VIDEO/IMAGE */}
       <section className="relative w-full h-48 shrink-0 overflow-hidden">
-        
         {videoSource ? (
           <>
-            
             <video
               ref={videoRef}
               src={videoSource}
@@ -98,7 +98,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             />
             {!isVideoLoaded && ( // Placeholder background for video loading
               <div className="absolute inset-0 flex items-center justify-center bg-zinc-200/90 dark:bg-zinc-900/90 animate-pulse">
-                
                 {images && images.length > 0 && (
                   <Image
                     src={images[0]}
@@ -125,12 +124,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         )}
       </section>
 
-
       {/* BOTTOM SECTION: DESCRIPTION */}
-      <section className="w-full p-6 flex flex-col flex-1 relative z-20 
+      <section
+        className="w-full p-6 flex flex-col flex-1 relative z-20 
       bg-zinc-200/50 group-hover:bg-zinc-200 border-t border-zinc-900
-      dark:bg-zinc-900/50 dark:group-hover:bg-zinc-900/20 ">
-        
+      dark:bg-zinc-900/50 dark:group-hover:bg-zinc-900/20 "
+      >
+        {/* FEATURED BADGE */}
+        {isFeatured && (
+          <div className="absolute top-4 right-4 z-30">
+            <div className="relative group/badge">
+              <div className="relative flex items-center justify-center w-10 h-10 rounded-full shadow-sm">
+                <Sparkles className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+              </div>
+            </div>
+          </div>
+        )}
         <h2 className="text-2xl lg:text-3xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
           {title}
         </h2>
@@ -139,7 +148,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </p>
         {/* Tech Stack – Glass Pills */}
         <div className="flex flex-wrap mt-4">
-          
           {project.techStacks.map((tech, idx) => {
             const techData = techStacksMap[tech];
             if (!techData) return null;
@@ -168,7 +176,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
         {/* Button – iOS Blue Button */}
         <div className="mt-auto pt-6">
-          
           <Link
             href={`/projects/${slug}`}
             onClick={(e) => e.stopPropagation()}

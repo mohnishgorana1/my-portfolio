@@ -15,10 +15,10 @@ export default function ProjectsPage() {
     <main className="relative min-h-screen w-full overflow-hidden bg-background">
       {/* Floating Shapes and Navbar code remains same... */}
       <motion.div
-        // initial={{ opacity: 0, scale: 0.8 }}
-        // whileInView={{ opacity: 0.4, scale: 1.2 }}
-        // // viewport={{ once: true }}
-        // transition={{ duration: 0.3}}
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 0.4, scale: 1.2 }}
+        // viewport={{ once: true }}
+        transition={{ duration: 0.3}}
         className="absolute top-20 animate-pulse left-1/3 w-80 h-80 rounded-full bg-purple-500/50 dark:bg-purple-600/10 blur-3xl"
       />
       {/* <motion.div
@@ -105,7 +105,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* --- PROJECTS GRID WITH HOVER EFFECT --- */}
-      <section className="py-20 lg:px-24 relative z-20">
+      <section className="py-20  relative z-20">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           {projects.map((project, index) => (
             <div

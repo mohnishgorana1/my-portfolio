@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Send, Mail, MapPin } from "lucide-react"; // Added Linkedin and Github
-import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { BsGithub, BsLinkedin, BsWhatsapp } from "react-icons/bs";
 
 import { motion } from "framer-motion";
 
@@ -31,6 +31,12 @@ const socialTextVariants = {
 
 // Define your social media links here
 const SOCIAL_LINKS = [
+  {
+    icon: BsWhatsapp,
+    href: "https://wa.me/+917999517181?text=Hi%20Mohnish,%20I%20saw%20your%20portfolio...",
+    title: "WhatsApp",
+    color: "text-green-500",
+  },
   {
     icon: BsLinkedin,
     href: "https://www.linkedin.com/in/mohnish-gorana-804374340/",
@@ -246,7 +252,7 @@ const ContactDetail = ({
   icon: any;
   title: string;
   content: string;
-  link?: string; // Made link optional
+  link?: string;
 }) => (
   <div className="flex items-center space-x-4 p-4 rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800/50">
     <div className="p-3 rounded-full bg-blue-500/10 dark:bg-blue-500/20">

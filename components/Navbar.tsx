@@ -7,7 +7,7 @@ import { BsGithub, BsLinkedin } from "react-icons/bs";
 
 const navItems = [
   { name: "Projects", href: "/projects", icon: Code },
-  { name: "Blogs", href: "/blogs", icon: NotebookText },
+  // { name: "Blogs", href: "/blogs", icon: NotebookText },
   { name: "CodingTasks", href: "/machine-coding-tasks", icon: Code },
 ];
 
