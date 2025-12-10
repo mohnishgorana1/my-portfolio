@@ -22,27 +22,23 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg transition-all duration-300 w-8 h-8 flex items-center justify-center
-                 bg-gray-200  text-gray-700 hover:bg-gray-300 
-                 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700"
+      className="p-0 rounded-lg transition-all duration-300 w-8 h-8 flex items-center justify-center
+                bg-gray-200 text-gray-700 hover:bg-gray-300 
+                dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
       aria-label="Toggle theme"
     >
       {/* Lucide icon is animated for a smooth toggle */}
-      <span className="absolute">
+      <span className="absolute duration-500 ease-in">
         {theme === "light" ? (
           <Moon className="h-5 w-5 rotate-0 scale-100 transition-all duration-500" />
         ) : (
           <Sun className="h-5 w-5 rotate-90 scale-0 transition-all duration-500 dark:rotate-0 dark:scale-100" />
         )}
       </span>
-      
+
       {/* Placeholder for the opposite icon to ensure smooth transition */}
       <span className="absolute opacity-0">
-        {theme === "dark" ? (
-          <Moon className="h-5 w-5" />
-        ) : (
-          <Sun className="h-5 w-5" />
-        )}
+        {theme === "dark" ? <Moon size={20} /> : <Sun size={20} />}
       </span>
     </button>
   );

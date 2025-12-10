@@ -52,22 +52,39 @@ const Navbar = () => {
       <div className="">
         <div className="flex justify-between items-center py-4">
           {/* Logo/Name */}
-          <Link
+          {/* <Link
             href="/"
             className="text-2xl font-extrabold 
                        text-foreground hover:text-blue-500 transition-colors flex gap-x-1"
           >
-            {/* <span className="hidden md:flex">Mohnish Gorana</span>
-            <span className="md:hidden">MG</span> */}
             <span className="">Mohnish Gorana</span>
 
             <span className="text-blue-500">.</span>
+          </Link> */}
+          <Link
+            href="/"
+            className="group relative text-2xl font-extrabold 
+                        text-foreground transition-colors flex gap-x-1"
+          >
+            <span
+              className="group-hover:text-blue-400 transition-colors"
+            >
+              Mohnish Gorana
+            </span>
+            <span className="text-blue-500">.</span>
+            <span
+              className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-400 dark:bg-blue-400 transition-all duration-300 group-hover:w-full rounded-full"
+            ></span>
           </Link>
 
           {/* Desktop Links and Theme Toggle */}
-          <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
+          <div className="hidden md:flex items-center space-x-1 lg:space-x-4">
             {navItems.map((item) => (
-              <Link key={item.name} href={item.href} className={`font-medium hover:text-blue-600 duration-300 ease-in-out ${linkClass}`}>
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`font-medium hover:text-blue-600 duration-300 ease-in-out ${linkClass}`}
+              >
                 {item.name}
               </Link>
             ))}
@@ -88,13 +105,26 @@ const Navbar = () => {
                     // Adding aria-label for accessibility
                     aria-label={item.name}
                   >
-                    {item.name === "GitHub" ? (
-                      <Icon
-                        className={`h-5 w-5 hover:scale-105 text-${item.color} dark:text-${item.darkModeColor}`}
-                      />
-                    ) : (
-                      <Icon className="h-5 w-5 hover:scale-105" style={{ color: item.color }} />
-                    )}
+                    <button
+                      onClick={() => setIsOpen(!isOpen)}
+                      className="p-2 rounded-lg 
+                      bg-gray-200 hover:bg-gray-300 
+                    dark:bg-zinc-800 dark:hover:bg-zinc-700 transition-colors"
+                      aria-label="Toggle navigation menu "
+                    >
+                      {item.name === "GitHub" ? (
+                        <Icon
+                          className={` hover:scale-105 text-${item.color} dark:text-${item.darkModeColor}`}
+                          size={16}
+                        />
+                      ) : (
+                        <Icon
+                          className="hover:scale-105"
+                          style={{ color: item.color }}
+                          size={16}
+                        />
+                      )}
+                    </button>
                   </Link>
                 );
               })}
