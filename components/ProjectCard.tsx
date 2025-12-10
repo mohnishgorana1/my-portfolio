@@ -81,7 +81,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       transition-all duration-500 overflow-hidden"
     >
       {/* TOP SECTION: VIDEO/IMAGE */}
-      <section className="relative w-full h-64 shrink-0 overflow-hidden">
+      <section className="relative w-full h-48 shrink-0 overflow-hidden">
         
         {videoSource ? (
           <>

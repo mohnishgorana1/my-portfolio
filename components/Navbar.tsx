@@ -8,6 +8,7 @@ import { BsGithub, BsLinkedin } from "react-icons/bs";
 const navItems = [
   { name: "Projects", href: "/projects", icon: Code },
   { name: "Blogs", href: "/blogs", icon: NotebookText },
+  { name: "CodingTasks", href: "/machine-coding-tasks", icon: Code },
 ];
 
 const socialLinks = [
@@ -40,8 +41,11 @@ const Navbar = () => {
 
   // Class for individual links
   const linkClass = `
+  `;
+  const mobileLinkClass = `
     dark:text-white/80 dark:hover:text-white
   `;
+  
   // Base class for social icon links
   const socialIconBaseClass = `
     p-2 rounded-full transition-colors 
@@ -51,43 +55,31 @@ const Navbar = () => {
       {/* Centered container with max width */}
       <div className="">
         <div className="flex justify-between items-center py-4">
-          {/* Logo/Name */}
-          {/* <Link
-            href="/"
-            className="text-2xl font-extrabold 
-                       text-foreground hover:text-blue-500 transition-colors flex gap-x-1"
-          >
-            <span className="">Mohnish Gorana</span>
-
-            <span className="text-blue-500">.</span>
-          </Link> */}
           <Link
             href="/"
             className="group relative text-2xl font-extrabold 
                         text-foreground transition-colors flex gap-x-1"
           >
-            <span
-              className="group-hover:text-blue-400 transition-colors"
-            >
+            <span className="group-hover:text-blue-400 transition-colors">
               Mohnish Gorana
             </span>
             <span className="text-blue-500">.</span>
-            <span
-              className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-400 dark:bg-blue-400 transition-all duration-300 group-hover:w-full rounded-full"
-            ></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-400 dark:bg-blue-400 transition-all duration-300 group-hover:w-full rounded-full"></span>
           </Link>
 
           {/* Desktop Links and Theme Toggle */}
           <div className="hidden md:flex items-center space-x-1 lg:space-x-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`font-medium hover:text-blue-600 duration-300 ease-in-out ${linkClass}`}
-              >
-                {item.name}
-              </Link>
-            ))}
+            <div className="space-x-5">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`font-medium duration-300 ease-in-out text-gray-800 hover:text-blue-950 px-2  dark:text-gray-200 dark:hover:text-blue-200 ${linkClass}`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
 
             {/* Social Icons (Desktop: Icon Only) */}
             <div className="flex items-center space-x-2">
@@ -162,7 +154,7 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`py-2 px-3 block text-base font-medium ${linkClass} hover:bg-secondary rounded-lg flex items-center gap-2`}
+                  className={`py-2 px-3 block text-base font-medium ${mobileLinkClass} hover:bg-secondary rounded-lg flex items-center gap-2`}
                   onClick={() => setIsOpen(false)}
                 >
                   <Icon className="h-5 w-5" />
