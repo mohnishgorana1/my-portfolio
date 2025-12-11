@@ -19,7 +19,7 @@ export default function ProjectsPage() {
         whileInView={{ opacity: 0.4, scale: 1.2 }}
         // viewport={{ once: true }}
         transition={{ duration: 0.3}}
-        className="absolute top-20 animate-pulse left-1/3 w-80 h-80 rounded-full bg-purple-500/50 dark:bg-purple-600/10 blur-3xl"
+        className="absolute top-20 md:animate-pulse -left-1/3 md:left-1/3 w-80 h-80 rounded-full bg-purple-500/50 dark:bg-purple-600/10 blur-3xl"
       />
       {/* <motion.div
         initial={{ opacity: 0, scale: 0.8 }}

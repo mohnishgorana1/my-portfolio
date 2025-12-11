@@ -423,3 +423,106 @@ export const machineCodingTaskConfigs = [
   { name: "TAB FORM", path: "tab-form" },
   { name: "ACCORDION", path: "accordion" },
 ];
+
+
+
+export interface Blog {
+  id: number;
+  title: string;
+  slug: string; // Used for the URL: /blog/slug
+  shortDescription: string;
+  blogDescription: string; // Detailed description for the card/list view
+
+  date: string; // e.g., "Oct 26, 2024"
+  readingTime: string; // e.g., "7 min read"
+  author: string;
+
+  imageUrl: string; // Main image for the card/header
+  altText: string;
+
+  tags: string[]; // e.g., ["Next.js", "React", "State Management"]
+  category: "Development" | "Design" | "Career" | "Tutorials" | "Review";
+
+  isFeatured: boolean; // For placing on the homepage or a special section
+
+  contentPath: string;
+}
+export const allBlogs: Blog[] = [
+  {
+    id: 1,
+    title: "Server Components vs. Client Components: A Next.js Deep Dive",
+    slug: "nextjs-server-client-deep-dive",
+    shortDescription:
+      "The architectural shift towards React Server Components (RSC) is fundamentally changing how we build performant web applications with Next.js. This article clearly explains the division of labor between server and client, focusing on how RSC minimizes client-side JavaScript, accelerates page loading, and significantly contributes to achieving higher Core Web Vitals scores for superior user experience.",
+    blogDescription:
+      "This extensive article goes beyond the basics to dissect the architectural shift introduced by React Server Components (RSC) and how Next.js 13/14 effectively implements them. We explore the profound implications of rendering components on the server, including automatic code splitting, reduced client-side JavaScript bundles, and improved initial page load performance, which is critical for modern web applications aiming for 100% Core Web Vitals scores.",
+
+    date: "Oct 26, 2024",
+    readingTime: "7 min read",
+    author: "Mohnish Gorana",
+    imageUrl: "/assets/blogs/nextjs-components.jpg",
+    altText: "Diagram showing server and client component flow in Next.js",
+    tags: ["Next.js", "React", "RSC", "Performance"],
+    category: "Development",
+    isFeatured: true,
+    contentPath: "/blogs/server-client-deep-dive.md",
+  },
+  {
+    id: 2,
+    title: "The Subtle Art of Debouncing and Throttling in JavaScript",
+    slug: "debouncing-throttling-js",
+    shortDescription:
+      "Optimizing JavaScript function execution is essential to prevent UI lag, especially during rapid events like scrolling or typing. This article provides a comprehensive comparison of debouncing and throttling techniques, illustrating when to use each to manage function call frequency effectively. Master these concepts to ensure your web application remains fast, responsive, and resource-efficient for all users.",
+    blogDescription:
+      "Performance bottlenecks often stem from aggressively firing functions, especially during user input or scrolling. This tutorial provides clear, practical examples demonstrating the mechanisms of debouncing and throttling. We analyze real-world use cases, such as optimizing search bar input and scroll event handling, to show you how to maintain smooth UI responsiveness and conserve resources by limiting function execution rate.",
+
+    date: "Sep 15, 2024",
+    readingTime: "5 min read",
+    author: "Mohnish Gorana",
+    imageUrl: "/assets/blogs/debouncing-throttling.jpg",
+    altText: "Illustration of throttle vs debounce timing functions",
+    tags: ["JavaScript", "Performance", "Frontend", "Optimization"],
+    category: "Tutorials",
+    isFeatured: false,
+    contentPath: "/blogs/debouncing-throttling-js.md",
+  },
+  {
+    id: 3,
+    title:
+      "Why I Choose TypeScript Over JavaScript in 2026: A Modern Perspective",
+    slug: "why-typescript-over-javascript",
+    shortDescription:
+      "In the modern development landscape, TypeScript offers invaluable static typing that dramatically improves code quality and maintainability. This personal review details the compelling reasons for transitioning from JavaScript, highlighting how TypeScript prevents runtime errors, provides superior code navigation in IDEs, and fosters better collaboration across large engineering teams.",
+    blogDescription:
+      "As projects scale and teams grow, the inherent lack of type checking in vanilla JavaScript becomes a liability. This article explains my definitive shift to TypeScript, focusing on how static typing catches errors during compilation, enhances code readability through clearer contracts, and significantly boosts developer productivity via superior IDE tooling and auto-completion. This is a must-read for any developer looking to build robust applications.",
+
+    date: "Aug 10, 2024",
+    readingTime: "4 min read",
+    author: "Mohnish Gorana",
+    imageUrl: "/assets/blogs/typescript-review.jpg",
+    altText: "TypeScript logo next to JavaScript logo",
+    tags: ["TypeScript", "JavaScript", "Review", "Best Practices"],
+    category: "Review",
+    isFeatured: false,
+    contentPath: "/blogs/typescript-vs-js.md",
+  },
+  {
+    id: 4,
+    title: "My Favorite VS Code Extensions for Frontend Development",
+    slug: "favorite-vscode-extensions",
+    shortDescription:
+      "Maximizing developer productivity hinges on having a finely-tuned coding environment. This curated list presents the essential Visual Studio Code extensions that streamline workflow for React, Tailwind CSS, and full-stack JavaScript developers, including tools for instant feedback, better code formatting, and advanced debugging capabilities.",
+    blogDescription:
+      "The right tooling can elevate your coding speed and quality. I share my highly curated list of essential Visual Studio Code extensions. This list includes extensions for better Git management, intelligent code formatting (Prettier), advanced Tailwind CSS IntelliSense, and React snippet libraries, all designed to create a powerful, efficient, and personalized development environment for daily use.",
+
+    date: "Jul 22, 2024",
+    readingTime: "3 min read",
+    author: "Mohnish Gorana",
+    imageUrl: "/assets/blogs/vscode-extensions.jpg",
+    altText: "VS Code editor screen with extensions icon highlighted",
+    tags: ["VS Code", "Tooling", "Career"],
+    category: "Career",
+    isFeatured: true,
+    contentPath: "/blogs/vscode-extensions.md",
+  },
+];

@@ -37,7 +37,7 @@ function ProjectsSection() {
       </motion.p>
 
       {/* PROJECT LIST */}
-      <div className="md:px-16 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 w-full mt-16 auto-rows-fr ">
+      <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 w-full mt-16 auto-rows-fr ">
         {topProjects.map((project, index) => (
           <motion.div
             key={project.id}
