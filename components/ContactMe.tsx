@@ -51,6 +51,8 @@ const SOCIAL_LINKS = [
   },
 ];
 
+const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORM_PORTFOLIO_CONTACT_ME_ACCESS_KEY;
+
 const ContactMe = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -75,13 +77,50 @@ const ContactMe = () => {
       return;
     }
 
+    const data = new FormData();
+    data.append("access_key", ACCESS_KEY!);
+    data.append("name", formData.name);
+    data.append("email", formData.email);
+    data.append("message", formData.message);
+    data.append("subject", `New Message from Portfolio by ${formData.name}`);
+
+    console.log("Submitting form data:", formData);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      });
+
+      const json = await response.json();
+
+      console.log("Response from Web3Forms:", json);
+
+      if (json.success) {
+        setStatus("Thank you! Your message has been sent successfully.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        console.error(json.message);
+        setStatus(`Submission failed: ${json.message || "Please try again."}`);
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("There was a network error. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+
+
+
+
+    // +++++++++++++++++++++  SIMULATION  +++++++++++++++++++++++++++
     // --- Simulated Success for this example ---
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setStatus(
-      "Thank you! Your message has been sent successfully. (Simulated)"
-    );
-    setFormData({ name: "", email: "", message: "" });
-    setLoading(false); // ----------------------------------------
+    // await new Promise((resolve) => setTimeout(resolve, 1500));
+    // setStatus(
+    // "Thank you! Your message has been sent successfully. (Simulated)"
+    // );
+    // setFormData({ name: "", email: "", message: "" });
+    // setLoading(false); // ----------------------------------------
   };
 
   return (
