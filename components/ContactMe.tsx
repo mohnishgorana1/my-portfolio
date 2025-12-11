@@ -51,7 +51,7 @@ const SOCIAL_LINKS = [
   },
 ];
 
-const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORM_PORTFOLIO_CONTACT_ME_ACCESS_KEY;
+const ACCESS_KEY = String(process.env.NEXT_PUBLIC_WEB3FORM_PORTFOLIO_CONTACT_ME_ACCESS_KEY);
 
 const ContactMe = () => {
   const [formData, setFormData] = useState({
