@@ -424,8 +424,6 @@ export const machineCodingTaskConfigs = [
   { name: "ACCORDION", path: "accordion" },
 ];
 
-
-
 export interface Blog {
   id: number;
   title: string;

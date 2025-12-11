@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "motion/react";
 import { useState } from "react";
 import Link from "next/link";
 import { Code, Menu, NotebookText, X } from "lucide-react";
@@ -31,6 +32,7 @@ const socialLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   // Class for the main navigation bar container
   const navContainerClasses = `
@@ -45,7 +47,7 @@ const Navbar = () => {
   const mobileLinkClass = `
     dark:text-white/80 dark:hover:text-white
   `;
-  
+
   // Base class for social icon links
   const socialIconBaseClass = `
     p-2 rounded-full transition-colors 
@@ -69,14 +71,32 @@ const Navbar = () => {
 
           {/* Desktop Links and Theme Toggle */}
           <div className="hidden md:flex items-center space-x-1 lg:space-x-4">
-            <div className="space-x-5">
-              {navItems.map((item) => (
+            <div className="flex items-center">
+              {navItems.map((item, idx) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`font-medium duration-300 ease-in-out text-gray-800 hover:text-blue-950 px-2  dark:text-gray-200 dark:hover:text-blue-200 ${linkClass}`}
+                  onMouseEnter={() => setHovered(idx)}
+                  onMouseLeave={() => setHovered(null)}
+                  // className={`px-4 py-2 font-medium duration-300 ease-in-out text-gray-800 hover:text-blue-950 dark:text-gray-200 dark:hover:text-blue-200 relative text-center group `}
+                  className={`px-4 py-2 font-medium duration-300 ease-in-out 
+                                              text-gray-800 dark:text-gray-200 
+                                              hover:text-foreground dark:hover:text-foreground relative group rounded-full`}
                 >
-                  {item.name}
+                  {hovered === idx && (
+                    <motion.div
+                      layoutId={`hover`}
+                      className="absolute inset-0 rounded-full w-full h-full bg-zinc-200 dark:bg-zinc-800"
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 30,
+                      }}
+                    ></motion.div>
+                  )}
+                  <motion.span className="relative z-10">
+                    {item.name}
+                  </motion.span>
                 </Link>
               ))}
             </div>
