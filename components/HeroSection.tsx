@@ -72,7 +72,7 @@ function HeroSection() {
             focus on developer experience.
           </p>
         </div>
-        
+
         {/* BUTTONS */}
         <div className="flex flex-col md:flex-row md:items-center gap-4 pt-6">
           {/* Primary Button: View My Work (Already good, but added shadow/focus update) */}
@@ -126,21 +126,21 @@ function HeroSection() {
 
       {/* RIGHT SIDE → ORBITING TECH ICONS */}
       <div className="md:max-w-full relative hidden md:flex md:h-[500px] md:w-[500px] items-center justify-center">
-        <div className="relative h-[500px] w-full overflow-hidden text-7xl ">
+        <div className="relative h-[500px] w-full overflow-hidden text-6xl ">
           <OrbitingCircles>
-            <SiNodedotjs className="cursor-pointer rounded-full p-1 size-10 border-2 border-green-700 text-green-700" />
-            <SiNextdotjs className="cursor-pointer rounded-full p-1 size-10 border-2 border-black text-black dark:border-white dark:text-white" />
-            <SiReact className="cursor-pointer rounded-full p-1 size-10 border-2 border-blue-700 text-blue-700" />
-            <SiTailwindcss className="cursor-pointer rounded-full p-1 size-10 border-2 border-blue-700 text-blue-900" />
-            <SiExpress className="cursor-pointer rounded-full p-1 size-10 border-2 border-black text-black dark:border-white dark:text-white" />{" "}
-            <SiMongodb className="cursor-pointer rounded-full p-1 size-10 border-2 border-green-700 text-green-700" />
+            <SiNextdotjs className="bg-background rounded-full p-2 border-2 size-10 border-black text-black dark:bg-black dark:text-white" />
+            <SiNodedotjs className="bg-background rounded-full p-2 border-2 size-10 text-green-700 border-green-700 dark:bg-green-700 dark:text-white" />
+            <SiReact className="bg-background rounded-full p-2 border-2 size-10 border-cyan-700 text-cyan-700 dark:bg-cyan-700 dark:text-white" />
+            <SiExpress className="bg-background rounded-full p-2 border-2 size-10 border-black text-black dark:text-black dark:border-white dark:bg-white " />
+            <SiTailwindcss className="bg-background rounded-full p-2 border-2 size-10 border-blue-700 text-blue-700 dark:bg-blue-700 dark:text-white" />
+            <SiMongodb className="bg-background rounded-full p-2 border-2 size-10 border-green-500  text-green-700 dark:bg-green-500 dark:text-white" />
           </OrbitingCircles>
-          <OrbitingCircles radius={60} reverse>
-            <SiHtml5 className="cursor-pointer rounded-full p-1 size-10 border-2 border-orange-700 text-orange-700" />
-            <SiFramer className="cursor-pointer rounded-full p-1 size-10 border-2 border-black text-black dark:border-white dark:text-white" />
-            <SiGithub className="cursor-pointer rounded-full p-1 size-10 border-2 border-black text-black dark:border-white dark:text-white" />{" "}
-            <SiTypescript className="cursor-pointer rounded-full p-1 size-10 border-2 border-blue-700 text-blue-800" />
-            <SiRedux className="cursor-pointer rounded-full p-1 size-10 border-2 border-purple-700 text-purple-800" />
+          <OrbitingCircles radius={70} reverse>
+            <SiHtml5 className="bg-background rounded-full p-2 border-2 size-10 border-orange-500 text-orange-500 dark:bg-orange-500 dark:text-white" />
+            <SiFramer className="bg-background rounded-full p-2 border-2 size-10 border-fuchsia-600 text-fuchsia-600 dark:bg-fuchsia-500 dark:text-white" />
+            <SiGithub className="bg-background rounded-full p-2 border-2 size-10 border-black text-black dark:bg-black dark:text-white" />
+            <SiTypescript className="bg-background rounded-full p-2 border-2 size-10 border-blue-500 text-blue-500 dark:bg-blue-500 dark:text-white" />
+            <SiRedux className="bg-background rounded-full p-2 border-2 size-10 border-purple-700 text-purple-700 dark:text-white dark:bg-purple-700" />
           </OrbitingCircles>
         </div>
       </div>

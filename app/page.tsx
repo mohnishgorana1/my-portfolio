@@ -1,3 +1,6 @@
+'use client';
+import { motion } from "framer-motion";
+
 import AboutSection from "@/components/AboutSection";
 import BentoGridSection from "@/components/BentoGrid";
 import ContactMe from "@/components/ContactMe";
@@ -13,7 +16,7 @@ export default function Home() {
         <HeroSection />
       </section>
       <section className="flex flex-col my-auto mx-auto h-auto border-b border-zinc-200 dark:border-zinc-800/50">
-       <ProjectsSection isHome={true} />
+        <ProjectsSection isHome={true} />
       </section>
       <section id="github" className="py-16">
         <GithubActivitySection />
@@ -25,11 +28,14 @@ export default function Home() {
         <ContactMe />
       </section>
       <section id="stats" className="py-16">
-         <BentoGridSection />
+        <BentoGridSection />
       </section>
       <section className="">
         <WhatICanOffer />
       </section>
+      {/* <WobblyGallery /> */}
     </main>
   );
 }
+
+
