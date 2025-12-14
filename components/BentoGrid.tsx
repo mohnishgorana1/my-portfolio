@@ -93,7 +93,7 @@ export default function BentoGridSection() {
         </>
       ),
       className:
-        "col-span-6 md:col-span-3 row-span-1 bg-gradient-to-br from-purple-500/10 to-transparent",
+        "col-span-6 md:col-span-3 row-span-1 bg-gradient-to-br from-purple-500/50 dark:from-purple-500/10 to-transparent",
     },
 
     {

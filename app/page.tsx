@@ -5,7 +5,6 @@ import GithubActivitySection from "@/components/GithubActivitySection";
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import WhatICanOffer from "@/components/WhatICanOffer";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -23,7 +22,7 @@ export default function Home() {
         <AboutSection />
       </section>
       <section id="contact" className="py-16">
-        <ContactMe />
+        <ContactMe isHomePage={true}/>
       </section>
       <section id="stats" className="py-16">
         <BentoGridSection />

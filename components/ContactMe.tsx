@@ -45,7 +45,7 @@ const ACCESS_KEY = String(
   process.env.NEXT_PUBLIC_WEB3FORM_PORTFOLIO_CONTACT_ME_ACCESS_KEY
 );
 
-const ContactMe = () => {
+const ContactMe = ({ isHomePage }: { isHomePage: boolean }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -134,9 +134,14 @@ const ContactMe = () => {
       <h2 className="text-3xl font-bold md:text-5xl text-center mb-4 text-zinc-900 dark:text-zinc-50">
         Get in Touch
       </h2>
-      <p className="text-center mb-12 text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto">
-        Have a project idea, a job offer, or just want to say hi? Send me a
-        message!
+      <p className="text-center mb-12 text-zinc-600 dark:text-zinc-400 mx-auto max-w-2xl text-lg md:text-xl leading-relaxed">
+        Ready to turn your vision into reality?{" "}
+        Whether it's a <strong>groundbreaking project idea</strong>a{" "}
+        <strong>job opportunity</strong>, or a{" "}
+        <strong>quick collaboration</strong>—let's connect. <br />
+        <span className="text-blue-500 dark:text-blue-400 font-bold">
+          Send me a message and let's start building!
+        </span>
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -154,7 +159,7 @@ const ContactMe = () => {
             content="Neemuch, MP, India"
           />
 
-          <div className="flex-1 p-6 rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800/50">
+          <div className="flex-1 p-6 rounded-xl border shadow-md shadow-blue-300/50 bg-zinc-50 dark:shadow-none dark:border-zinc-700 dark:bg-zinc-800/50">
             <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
               Connect
             </h3>
@@ -305,7 +310,7 @@ const ContactDetail = ({
   content: string;
   link?: string;
 }) => (
-  <div className="flex items-center space-x-4 p-4 rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800/50">
+  <div className="flex items-center space-x-4 p-4 rounded-xl border shadow-md shadow-blue-300/50 dark:shadow-none bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800/50">
     <div className="p-3 rounded-full bg-blue-500/10 dark:bg-blue-500/20">
       <Icon className="w-6 h-6 text-blue-500" />
     </div>

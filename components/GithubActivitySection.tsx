@@ -111,16 +111,16 @@ const GithubActivitySection = () => {
 
   // --- Rendering States (unchanged) ---
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="text-center py-8 min-h-[150px] mx-auto">
-  //       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-  //         My Latest GitHub Activity
-  //       </h2>
-  //       <p className="text-gray-500">Loading recent GitHub activity...</p>
-  //     </div>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <div className="text-center py-8 min-h-[150px] mx-auto">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          My Latest GitHub Activity
+        </h2>
+        <p className="text-gray-500">Loading recent GitHub activity...</p>
+      </div>
+    );
+  }
 
   if (error || activities.length === 0 || !currentActivity) {
     return (
