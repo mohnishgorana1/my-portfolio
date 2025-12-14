@@ -1,10 +1,9 @@
 import AboutSection from "@/components/AboutSection";
+import BentoGridSection from "@/components/BentoGrid";
 import ContactMe from "@/components/ContactMe";
 import GithubActivitySection from "@/components/GithubActivitySection";
 import HeroSection from "@/components/HeroSection";
-import Navbar from "@/components/Navbar";
 import ProjectsSection from "@/components/ProjectsSection";
-import SkillsMovingCarousel from "@/components/SkillsMovingCarousel";
 import WhatICanOffer from "@/components/WhatICanOffer";
 
 export default function Home() {
@@ -13,8 +12,8 @@ export default function Home() {
       <section className="">
         <HeroSection />
       </section>
-      <section className="flex flex-col my-auto mx-auto h-auto">
-        <ProjectsSection />
+      <section className="flex flex-col my-auto mx-auto h-auto border-b border-zinc-200 dark:border-zinc-800/50">
+       <ProjectsSection isHome={true} />
       </section>
       <section id="github" className="py-16">
         <GithubActivitySection />
@@ -24,6 +23,9 @@ export default function Home() {
       </section>
       <section id="contact" className="py-16">
         <ContactMe />
+      </section>
+      <section id="stats" className="py-16">
+         <BentoGridSection />
       </section>
       <section className="">
         <WhatICanOffer />

@@ -83,7 +83,7 @@ export const projects = [
       "Clerk",
       "Stream",
       "Liveblocks",
-      "FramerMotion",
+      // "FramerMotion",
     ],
   },
   {

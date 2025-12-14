@@ -49,7 +49,7 @@ const BlogDetailPage = async ({ params }: { params: { slug: string } }) => {
           alt={blog.altText}
           fill
           priority
-          className="object-cover opacity-30 dark:opacity-20"
+          className="object-cover opacity-10 dark:opacity-20"
         />
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent  dark:to-zinc-900 z-0" />
