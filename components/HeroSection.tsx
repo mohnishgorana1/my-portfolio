@@ -131,7 +131,7 @@ function HeroSection() {
             <SiNextdotjs className="bg-background rounded-full p-2 border-2 size-10 border-black text-black dark:bg-black dark:text-white" />
             <SiNodedotjs className="bg-background rounded-full p-2 border-2 size-10 text-green-700 border-green-700 dark:bg-green-700 dark:text-white" />
             <SiReact className="bg-background rounded-full p-2 border-2 size-10 border-cyan-700 text-cyan-700 dark:bg-cyan-700 dark:text-white" />
-            <SiExpress className="bg-background rounded-full p-2 border-2 size-10 border-black text-black dark:text-black dark:border-white dark:bg-white " />
+            <SiExpress strokeWidth="1" className="bg-background rounded-full p-2 border-2 size-10 border-black text-black dark:text-black dark:border-white dark:bg-white " />
             <SiTailwindcss className="bg-background rounded-full p-2 border-2 size-10 border-blue-700 text-blue-700 dark:bg-blue-700 dark:text-white" />
             <SiMongodb className="bg-background rounded-full p-2 border-2 size-10 border-green-500  text-green-700 dark:bg-green-500 dark:text-white" />
           </OrbitingCircles>

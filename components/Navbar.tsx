@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Code, Menu, NotebookText, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
+import Image from "next/image";
 
 const navItems = [
   { name: "Projects", href: "/projects", icon: Code },
@@ -56,12 +57,13 @@ const Navbar = () => {
     <nav className={navContainerClasses}>
       {/* Centered container with max width */}
       <div className="">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center pb-1 pt-3 ">
           <Link
             href="/"
             className="group relative text-2xl font-extrabold 
                         text-foreground transition-colors flex gap-x-1"
           >
+           
             <span className="group-hover:text-blue-400 transition-colors">
               Mohnish Gorana
             </span>
@@ -70,7 +72,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Links and Theme Toggle */}
-          <div className="hidden md:flex items-center space-x-1 lg:space-x-4">
+          <section className="hidden md:flex items-center space-x-1 lg:space-x-4">
             <div className="flex items-center">
               {navItems.map((item, idx) => (
                 <Link
@@ -142,7 +144,7 @@ const Navbar = () => {
               })}
             </div>
             <ThemeToggle />
-          </div>
+          </section>
 
           {/* Mobile Menu Button (Visible only on small screens) */}
           <div className="md:hidden flex items-center gap-2">
@@ -160,7 +162,7 @@ const Navbar = () => {
 
       {/* Mobile Menu (Sliding down from the top) */}
       {isOpen && (
-        <div
+        <aside
           className={`md:hidden absolute w-full left-0 z-40 transition-all duration-300 ease-in-out ${
             isOpen
               ? "max-h-screen opacity-100 top-[100%]"
@@ -205,7 +207,7 @@ const Navbar = () => {
               );
             })}
           </div>
-        </div>
+        </aside>
       )}
     </nav>
   );

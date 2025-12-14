@@ -1,6 +1,3 @@
-'use client';
-import { motion } from "framer-motion";
-
 import AboutSection from "@/components/AboutSection";
 import BentoGridSection from "@/components/BentoGrid";
 import ContactMe from "@/components/ContactMe";
@@ -8,6 +5,7 @@ import GithubActivitySection from "@/components/GithubActivitySection";
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import WhatICanOffer from "@/components/WhatICanOffer";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -33,9 +31,6 @@ export default function Home() {
       <section className="">
         <WhatICanOffer />
       </section>
-      {/* <WobblyGallery /> */}
     </main>
   );
 }
-
-
