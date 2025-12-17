@@ -28,7 +28,7 @@ export default function ProjectsSection({
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 0.4, scale: 1.2 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.5 }}
         className="absolute top-20 -left-1/3 md:left-1/3 w-80 h-80 rounded-full bg-purple-500/50 dark:bg-purple-600/10 blur-3xl pointer-events-none"
       />
 

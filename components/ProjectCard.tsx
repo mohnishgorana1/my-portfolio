@@ -158,7 +158,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             return (
               <div
                 key={idx}
-                className="group/tech flex items-center -mr-2 mb-2 bg-zinc-100/80 border border-zinc-300  hover:bg-zinc-200 dark:bg-zinc-700/80 dark:border-zinc-600  dark:hover:bg-zinc-700 rounded-full shadow-sm hover:shadow-md  transition-all duration-500 cursor-pointer overflow-hidden"
+                className="group/tech flex items-center -ml-4 mb-2  bg-zinc-100/80 border border-zinc-300  hover:bg-zinc-200 dark:bg-zinc-700/80 dark:border-zinc-600  dark:hover:bg-zinc-700 rounded-full shadow-sm hover:shadow-md  transition-all duration-500 cursor-pointer overflow-hidden"
               >
                 {/* Icon Container */}
                 <div className="w-7 h-7 md:w-9 md:h-9 lg:w-10 lg:h-10 flex items-center justify-center rounded-full bg-white dark:bg-zinc-900 shadow-sm">
@@ -166,7 +166,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 </div>
                 {/* Tech Name */}
                 <span // Tech Name Color (Fallback to dark text, or use light text in dark mode if no color property is used)
-                  className="max-w-0 opacity-0 ml-0 group-hover/tech:max-w-xs group-hover/tech:opacity-100 group-hover/tech:mx-3 text-zinc-900 dark:text-zinc-50 transition-all duration-500 text-xs font-semibold whitespace-nowrap"
+                  className="max-w-0 opacity-0 ml-0 group-hover/tech:max-w-xs group-hover/tech:opacity-100 group-hover/tech:mx-3 group-hover/tech:pr-4 text-zinc-900 dark:text-zinc-50 transition-all duration-500 text-xs font-semibold whitespace-nowrap"
                 >
                   {tech}
                 </span>

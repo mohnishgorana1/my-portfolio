@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 
 const geistSans = localFont({
@@ -18,10 +17,52 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Mohnish Gorana Portfolio",
-  description: "",
+  title: "Mohnish Gorana | Full Stack Developer",
+  description:
+    "Mohnish Gorana's personal portfolio. Check out my projects, skills, and experience here.",
+  keywords: ["Mohnish Gorana", "Portfolio", "Web Developer", "Next.js"],
+  authors: [
+    {
+      name: "Mohnish Gorana",
+      url: "https://mohnish-gorana-portfolio.vercel.app/",
+    },
+  ],
+  openGraph: {
+    title: "Mohnish Gorana | Full Stack Developer",
+    description:
+      "Personal portfolio showcasing my web development projects and skills.",
+    url: "https://mohnish-gorana-portfolio.vercel.app/", 
+    siteName: "Mohnish Gorana Portfolio",
+    images: [
+      {
+        url: "https://mohnish-gorana-portfolio.vercel.app/assets/favicons/og_image.png",
+        width: 1200,
+        height: 630,
+        alt: "Mohnish Gorana Portfolio Preview",
+      },
+    ],
+    type: "website",
+  },
+  icons: {
+    icon: [
+      { url: "/assets/favicons/favicon.ico" },
+      { url: "/assets/favicons/favicon.svg", type: "image/svg+xml" },
+      {
+        url: "/assets/favicons/favicon-96x96.png",
+        sizes: "96x96",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: "/assets/favicons/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
+  manifest: "/assets/favicons/site.webmanifest",
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
