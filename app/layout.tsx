@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Mohnish Gorana | Full Stack Developer",
     description:
       "Personal portfolio showcasing my web development projects and skills.",
-    url: "https://mohnish-gorana-portfolio.vercel.app/", 
+    url: "https://mohnish-gorana-portfolio.vercel.app/",
     siteName: "Mohnish Gorana Portfolio",
     images: [
       {
@@ -62,14 +62,49 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/assets/favicons/site.webmanifest",
+  twitter: {
+    card: "summary_large_image",
+    title: "Mohnish Gorana | Full Stack Developer",
+    description: "Check out my projects and web development skills.",
+    creator: "@mohnish_gorana_",
+    images: [
+      "https://mohnish-gorana-portfolio.vercel.app/assets/favicons/og_image.png",
+    ],
+  },
+  alternates: {
+    canonical: "https://mohnish-gorana-portfolio.vercel.app",
+  },
+
+  verification: {
+    google: "SNsALIflaOjOixcI4laSP1NJT1e0Qu5eEaJmtrpikkE",
+  },
 };
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Mohnish Gorana",
+    url: "https://mohnish-gorana-portfolio.vercel.app/",
+    jobTitle: "Full Stack Developer",
+    sameAs: [
+      "https://github.com/mohnishgorana1",
+      "https://www.linkedin.com/in/mohnish-gorana/",
+      "https://x.com/mohnish_gorana_",
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen max-w-5xl mx-auto px-2 sm:px-0`}
       >
