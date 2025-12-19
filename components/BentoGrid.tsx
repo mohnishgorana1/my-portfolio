@@ -79,7 +79,7 @@ export default function BentoGridSection() {
       content: (
         <>
           <div className="flex items-center space-x-3 mb-2">
-            <MapPin className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+            <MapPin className="h-6 w-6 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
               My Location
             </span>
@@ -93,7 +93,7 @@ export default function BentoGridSection() {
         </>
       ),
       className:
-        "col-span-6 md:col-span-3 row-span-1 bg-gradient-to-br from-purple-500/50 dark:from-purple-500/10 to-transparent",
+        "col-span-6 md:col-span-3 row-span-1 bg-gradient-to-br from-blue-500/50 dark:from-blue-500/10 to-transparent",
     },
 
     {
@@ -132,7 +132,7 @@ export default function BentoGridSection() {
         </>
       ),
       className:
-        "col-span-6 md:col-span-3 row-span-1 border-purple-300 dark:border-purple-700/50",
+        "col-span-6 md:col-span-3 row-span-1 border-blue-300 dark:border-blue-700/50",
     },
 
     {
@@ -185,7 +185,7 @@ export default function BentoGridSection() {
           <a
             href={latestBlog.link}
             // Internal link, so no target="_blank"
-            className="mt-2 group flex flex-col hover:text-purple-600 transition-colors"
+            className="mt-2 group flex flex-col hover:text-blue-600 transition-colors"
           >
             <h3 className="text-lg font-bold text-gray-900 dark:text-gray-50 leading-tight group-hover:underline">
               {latestBlog.title}
@@ -198,7 +198,7 @@ export default function BentoGridSection() {
           <div className="mt-4">
             <a
               href={latestBlog.link}
-              className="inline-flex items-center text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-800 transition-colors"
+              className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 transition-colors"
             >
               Read Article <ExternalLink className="h-4 w-4 ml-1" />
             </a>
@@ -212,9 +212,38 @@ export default function BentoGridSection() {
 
   return (
     <section className="py-20 max-w-7xl mx-auto px-4">
-      <h2 className="text-4xl font-extrabold text-center mb-16 text-gray-900 dark:text-gray-50">
-        The Dev Behind The Code
-      </h2>
+      {/* --- Enhanced Heading Section --- */}
+      <div className="relative mb-20 flex flex-col items-center justify-center overflow-hidden">
+        {/* Main Heading Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative z-10 text-center"
+        >
+          <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-zinc-900 dark:text-blue-100 uppercase leading-none">
+            The Dev Behind <br />
+            {/* <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-pink-500 to-blue-500">
+              The Code
+            </span> */}
+             <span className="text-blue-700">
+              The Code
+            </span>
+          </h2>
+
+          {/* Decorative Line Under Heading */}
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "100px" }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="h-2 bg-blue-700 mx-auto mt-4 rounded-full"
+          />
+
+          <p className="mt-6 text-zinc-500 dark:text-zinc-400 font-mono text-sm uppercase tracking-[0.3em]">
+            Based in Neemuch // Building Worldwide
+          </p>
+        </motion.div>
+      </div>
 
       <div className="grid grid-cols-6 grid-rows-3 gap-6 md:grid-rows-2">
         {cards.map((card, index) => (

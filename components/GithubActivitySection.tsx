@@ -1,47 +1,41 @@
-// src/components/GithubActivitySection.jsx
-
 "use client";
 import React, { useState, useEffect } from "react";
-// Import Framer Motion components
 import { motion, AnimatePresence } from "framer-motion";
-import { BsGithub } from "react-icons/bs";
+import { BsGithub, BsTerminal, BsGit } from "react-icons/bs";
+import { FiActivity } from "react-icons/fi";
 
 const GITHUB_USERNAME = "mohnishgorana1";
 const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=10`;
-const CYCLE_INTERVAL_MS = 6000; // 6 seconds
+const CYCLE_INTERVAL_MS = 6000;
 
-// --- REVISED Animation variants for the upward scrolling effect ---
 const activityVariants = {
-  // New activity enters from below the viewport
   enter: {
-    y: "100%", // Start completely below the container
+    y: 60,
     opacity: 0,
-    filter: "blur(4px)",
+    scale: 0.9,
+    filter: "blur(10px)",
   },
-  // The moment the new activity becomes visible
   center: {
     zIndex: 1,
-    y: 0, // Moves up to the center (visible position)
+    y: 0,
     opacity: 1,
+    scale: 1,
     filter: "blur(0px)",
     transition: {
       type: "spring",
-      stiffness: 150,
-      damping: 10,
-
-      //   duration: 0.7, // Smoother slide-up duration
-      //   ease: "easeOut",
+      stiffness: 200,
+      damping: 15,
     },
   },
-  // Old activity slides out through the top of the viewport
   exit: {
     zIndex: 0,
-    y: "-100%", // Slides completely out through the top
+    y: -60,
     opacity: 0,
-    filter: "blur(4px)",
+    scale: 0.9,
+    filter: "blur(10px)",
     transition: {
-      duration: 0.5, // Smoother slide-up duration
-      ease: "easeIn",
+      duration: 0.4,
+      ease: "circIn",
     },
   },
 };
@@ -52,180 +46,137 @@ const GithubActivitySection = () => {
   const [key, setKey] = useState(0);
   const [error, setError] = useState(null);
 
-  // --- Data Fetching Logic (unchanged) ---
   const fetchGithubActivity = async () => {
     setIsLoading(true);
-    setError(null);
-
     try {
       const response = await fetch(API_URL);
-      if (!response.ok) {
-        const message =
-          response.status === 403
-            ? "GitHub API rate limit exceeded. Try again later."
-            : `GitHub API returned status: ${response.status}`;
-        throw new Error(message);
-      }
-
+      if (!response.ok) throw new Error("API Limit Reached");
       const data = await response.json();
-
-      const filteredActivities = data
-        .filter(
-          (event) => event.type === "PushEvent" || event.type === "CreateEvent"
-        )
+      const filtered = data
+        .filter((event) => ["PushEvent", "CreateEvent"].includes(event.type))
         .slice(0, 5);
-
-      setActivities(filteredActivities);
-      if (filteredActivities.length > 0) {
-        setKey(0); // Initialize key
-      }
+      setActivities(filtered);
     } catch (err) {
-      console.error("Error fetching GitHub activity:", err);
-      setError(err.message || "Failed to load GitHub activity.");
+      setError(err.message);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // 1. Initial Data Fetch (unchanged)
   useEffect(() => {
     fetchGithubActivity();
   }, []);
 
-  // 2. Auto-Cycling Logic (uses setKey to trigger transition)
   useEffect(() => {
     if (activities.length === 0) return;
-
     const interval = setInterval(() => {
-      // Cycle the key to force the animation. The content index is derived from this key.
-      setKey((prevKey) => prevKey + 1);
+      setKey((prev) => prev + 1);
     }, CYCLE_INTERVAL_MS);
-
     return () => clearInterval(interval);
   }, [activities.length]);
 
-  // --- Helper to render the current card ---
-  // We use the key to get the index, ensuring it loops back to 0.
-  const currentActivityIndex = key % activities.length;
-  const currentActivity = activities[currentActivityIndex];
+  const currentActivity = activities[key % activities.length];
 
-  // --- Rendering States (unchanged) ---
-
-  if (isLoading) {
-    return (
-      <div className="text-center py-8 min-h-[150px] mx-auto">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          My Latest GitHub Activity
-        </h2>
-        <p className="text-gray-500">Loading recent GitHub activity...</p>
-      </div>
-    );
-  }
-
-  if (error || activities.length === 0 || !currentActivity) {
-    return (
-      <div className="text-center py-8 min-h-[150px] mx-auto">
-        {/* <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          My Latest GitHub Activity
-        </h2>
-        <p className="text-gray-500 dark:text-gray-400">
-           {error ? `Error: ${error}` : "No recent public activity found."} 
-        </p> */}
-      </div>
-    );
-  }
-
-  // Define details for the currently active card (unchanged)
-  const isPushEvent = currentActivity.type === "PushEvent";
-  const latestCommit = isPushEvent
-    ? currentActivity.payload?.commits?.[0]
-    : null;
-  const hasCommits = isPushEvent && latestCommit;
-
-  // --- Main Render (Single, Cycling Card with Animation) ---
+  if (isLoading || error || activities.length === 0) return null;
 
   return (
-    <div className="py-8 px-4 md:px-8 bg-background">
-      <div className="max-w-3xl mx-auto">
-        {/* Main Heading Restored and Styled */}
-        <h2 className="self-center text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white flex justify-center items-end gap-4">
-          <BsGithub className="size-6 mb-1 " />
-          My Latest GitHub Activity
-          <BsGithub className="size-6 mb-1 " />
-        </h2>
+    <section className="py-12 px-4 bg-background">
+      <div className="max-w-4xl mx-auto">
+        {/* --- Heading Section --- */}
+        <div className="flex flex-col items-center mb-10 space-y-2">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            <span className="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest">
+              Live Feed
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter flex items-center gap-3">
+            <BsGithub className="text-blue-600" /> GitHub Activity
+          </h2>
+        </div>
 
-        {/* --- Animated Ticker Container --- */}
-        <div
-          className="relative overflow-hidden mx-auto p-4 rounded-lg  backdrop-blur-md bg-white/10 dark:bg-gray-800/20 shadow-lg shadow-gray-200 dark:shadow-gray-900/50"
-          style={{
-            height: "100px", // Fixed height to create the viewport for scrolling
-          }}
-        >
-          <AnimatePresence initial={false} mode="wait">
-            <motion.div
-              key={currentActivity.id} // Use the activity ID as the key for stability, or key for cycling
-              variants={activityVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              className="absolute top-[18px] left-0 w-full"
-            >
-              <div className="flex justify-between items-end space-x-4 px-2 md:px-4">
-                {/* Event Type and Repo Name */}
-                <div>
-                  <span className="text-sm font-semibold uppercase text-blue-500 dark:text-blue-400">
-                    {isPushEvent
-                      ? "Code Push"
-                      : currentActivity.type.replace("Event", "")}
-                  </span>
-                  <h3 className="text-lg font-medium mt-0 text-gray-900 dark:text-white truncate">
-                    <a
-                      href={`https://github.com/${currentActivity.repo.name}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:underline"
-                    >
-                      {currentActivity.repo.name}
-                    </a>
-                  </h3>
-                </div>
+        {/* --- Terminal Style Container --- */}
+        <div className="relative group">
+          {/* Decorative Corner Accents */}
+          <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-zinc-300 dark:border-zinc-700" />
+          <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-zinc-300 dark:border-zinc-700" />
 
-                {/* Timestamp */}
-                <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap mb-1">
-                  {new Date(currentActivity.created_at).toLocaleDateString()}
-                </span>
+          <div className="relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/30 backdrop-blur-xl shadow-2xl shadow-blue-500/5">
+            {/* Terminal Header */}
+            <div className="flex items-center justify-between px-6 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-800/50">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/40" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/40" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/40" />
               </div>
+              <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-400">
+                <BsTerminal /> <span>bash — activity.log</span>
+              </div>
+            </div>
 
-              {/* Display commit messages or CreateEvent details */}
-              <div className="mt-1 pt-2 border-t border-gray-200 dark:border-gray-800 mx-2 md:mx-4">
-                {hasCommits && (
-                  <p className="text-sm italic text-gray-700 dark:text-gray-300 truncate">
-                    <span className="font-semibold mr-1">Commit:</span>
-                    {latestCommit.message}
-                    <a
-                      href={`https://github.com/${currentActivity.repo.name}/commit/${latestCommit.sha}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-blue-500 hover:text-blue-700 ml-2"
-                    >
-                      (view)
-                    </a>
-                  </p>
-                )}
+            {/* Content Viewport */}
+            <div className="h-[140px] md:h-[160px] relative px-6 py-8">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentActivity.id}
+                  variants={activityVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className="absolute inset-x-6 top-6"
+                >
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <BsGit className="text-blue-500" />
+                        <span className="text-xs font-mono font-bold text-blue-500 uppercase">
+                          {currentActivity.type === "PushEvent" ? "git_push" : "git_create"}
+                        </span>
+                      </div>
+                      <h3 className="text-lg md:text-xl font-bold text-zinc-900 dark:text-white truncate max-w-[300px] md:max-w-md">
+                        <a
+                          href={`https://github.com/${currentActivity.repo.name}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-blue-500 transition-colors"
+                        >
+                          {currentActivity.repo.name.split("/")[1]}
+                        </a>
+                      </h3>
+                    </div>
 
-                {currentActivity.type === "CreateEvent" &&
-                  currentActivity.payload?.ref_type === "repository" && (
-                    <p className="text-sm italic text-gray-600 dark:text-gray-400">
-                      <span className="font-semibold mr-1">Action:</span>{" "}
-                      Created a new repository.
+                    <div className="flex flex-col items-start md:items-end">
+                      <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
+                        <FiActivity /> UPDATED_{new Date(currentActivity.created_at).toLocaleDateString().replace(/\//g, "-")}
+                      </span>
+                      <a
+                        href={`https://github.com/${currentActivity.repo.name}`}
+                        target="_blank"
+                        className="text-[10px] font-bold text-blue-600 dark:text-blue-400 mt-1 uppercase hover:underline"
+                      >
+                        [ View Repo ]
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Sub-text Area */}
+                  <div className="mt-4 p-2 bg-zinc-200/30 dark:bg-white/5 rounded-lg border border-dashed border-zinc-300 dark:border-zinc-700">
+                    <p className="text-xs font-mono text-zinc-600 dark:text-zinc-400 truncate italic">
+                      {currentActivity.type === "PushEvent" 
+                        ? `> commit: "${currentActivity.payload?.commits?.[0]?.message || "No message"}"`
+                        : `> Initialized new repository on GitHub`}
                     </p>
-                  )}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -15,10 +15,10 @@ export default function Home() {
       <section className="flex flex-col my-auto mx-auto h-auto border-b border-zinc-200 dark:border-zinc-800/50">
         <ProjectsSection isHome={true} />
       </section>
-      <section id="github" className="py-16">
+      <section id="github" className="py-8">
         <GithubActivitySection />
       </section>
-      <section id="about" className="py-16">
+      <section id="about" className="">
         <AboutSection />
       </section>
       <section id="contact" className="py-16">

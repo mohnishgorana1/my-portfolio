@@ -1,130 +1,86 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { services } from "@/lib/constants";
 
 function WhatICanOffer() {
-  const leftServices = services.slice(0, 3);
-  const rightServices = services.slice(3, 6);
-
   return (
-    <section
-      className={`bg-background/50 dark:bg-background/30 border-t
-        py-10 overflow-hidden`}
-      id="services"
-    >
-      <h2 className={`text-3xl md:text-5xl text-blue-500 font-extrabold mx-auto mb-12 text-center`}>
-        What I Offer
-      </h2>
+    <section className="py-24 bg-background overflow-hidden" id="services">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Floating Heading Strategy */}
+        <div className="relative mb-20 text-center md:text-left">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-blue-600 font-mono text-xs font-bold uppercase tracking-[0.5em]"
+          >
+            Core Expertise
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-900 dark:text-white"
+          >
+            What I <span className="text-blue-600">Offer.</span>
+          </motion.h2>
+          <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-500/10 blur-[100px] rounded-full" />
+        </div>
 
-      <div className="mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-0 items-center">
-          <div className="flex flex-col gap-6 md:pr-12">
-            {leftServices.map((service, index) => (
-              <ServiceCard
-                key={index}
-                service={service}
-                index={index}
-                align="right"
-              />
-            ))}
-          </div>
-
-          {/* CENTER HUB (The Circle) */}
-          <div className="hidden md:flex flex-col items-center justify-center h-full relative">
-            {/* Vertical Line */}
-            <div
-              className={`absolute inset-y-0 w-[1px] bg-gradient-to-b from-transparent via-blue-500/50 to-transparent`}
+        {/* The Asymmetric Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 ">
+          {services.map((service, index) => (
+            <ServiceCard
+              key={index}
+              service={service}
+              index={index}
+              // Custom span for asymmetric look
             />
-
-            {/* The Circle Badge */}
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: false }}
-              transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className={`relative z-10 flex items-center justify-center w-32 h-32 rounded-full 
-                bg-white border-4 border-gray-300 shadow-xl 
-                dark:bg-neutral-900 dark:border-neutral-800 
-                dark:shadow-[0_0_30px_rgba(37,99,235,0.3)] 
-                `}
-            >
-              <div className="absolute inset-0 rounded-full border border-blue-500/30 animate-pulse" />
-              <div className="text-center">
-                <span className="block text-blue-500 text-lg font-bold tracking-wide uppercase">
-                  My
-                </span>
-                <span className="block text-gray-900 font-bold text-lg tracking-tight dark:text-white">
-                  SERVICES
-                </span>
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="flex flex-col gap-6 md:pl-12">
-            {rightServices.map((service, index) => (
-              <ServiceCard
-                key={index}
-                service={service}
-                index={index + 3}
-                align="left"
-              />
-            ))}
-          </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-const ServiceCard = ({
-  service,
-  index,
-  align,
-}: {
-  service: any;
-  index: number;
-  align: "left" | "right";
-}) => {
-  const isLeft = align === "right";
-
+const ServiceCard = ({ service, index }: { service: any; index: number }) => {
   const Icon = service.icon;
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`group relative overflow-hidden rounded-2xl border transition-colors ease-in duration-500 backdrop-blur-lg flex flex-col justify-between 
-        bg-white border-gray-200 shadow-lg hover:border-blue-400
-        dark:bg-neutral-900 dark:border-neutral-800 dark:hover:border-blue-500/50 dark:shadow-md dark:hover:shadow-blue-500/40`}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className={` group relative rounded-[2rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 p-8 
+        bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all duration-700`}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 dark:from-blue-500/30" />
+      {/* 1. The "Aura" Glow Effect */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-[2rem] blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-200" />
 
-      <div
-        className={`relative z-10 p-6 flex flex-col gap-3 flex-1 justify-center ${
-          isLeft ? "md:items-end md:text-right" : "md:items-start md:text-left"
-        } items-center text-center`}
-      >
-        <div
-          className={`mb-2 p-3 rounded-lg transition-all bg-gray-100 group-hover:bg-blue-100 dark:bg-neutral-800 dark:group-hover:bg-blue-500/20`}
-        >
-          <Icon
-            className={`w-8 h-8 text-blue-600 group-hover:text-blue-500 dark:text-blue-400 dark:group-hover:text-blue-300`}
-          />
+      <div className="relative h-full flex flex-col justify-between">
+        <div className="flex justify-between items-start">
+          {/* 2. Floating Icon Badge */}
+          <div className="p-4 rounded-2xl bg-white dark:bg-zinc-800 shadow-xl group-hover:-rotate-12 transition-transform duration-500">
+            <Icon className="w-8 h-8 text-blue-600" />
+          </div>
+
+          {/* 3. Dynamic Index Number */}
+          <span className="text-5xl font-black text-zinc-200 dark:text-zinc-800 group-hover:text-blue-500/20 transition-colors duration-500">
+            {index + 1}
+          </span>
         </div>
 
-        <h3
-          className={`text-xl font-bold mb-2 transition-colors text-gray-900 dark:text-white text-balance`}
-        >
-          {service.title}
-        </h3>
+        <div>
+          <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-2 tracking-tight">
+            {service.title}
+          </h3>
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-[280px] leading-relaxed">
+            {service.description}
+          </p>
+        </div>
 
-        <p
-          className={`text-sm leading-relaxed flex-grow text-gray-600 dark:text-neutral-400`}
-        >
-          {service.description}
-        </p>
+        {/* 4. Interactive Bottom Accent */}
+        <div className="absolute bottom-0 right-0 w-24 h-24 bg-blue-600/5 rounded-tl-[3rem] -mr-8 -mb-8 group-hover:scale-150 transition-transform duration-700" />
       </div>
     </motion.div>
   );

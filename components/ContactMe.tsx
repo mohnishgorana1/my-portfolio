@@ -1,335 +1,195 @@
 "use client";
 import React, { useState } from "react";
-import { Send, Mail, MapPin, Check, Loader2 } from "lucide-react"; // Import Check and Loader2
+import { Send, Mail, MapPin, Check, Loader2 } from "lucide-react";
 import { BsGithub, BsLinkedin, BsWhatsapp } from "react-icons/bs";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { scale } from "motion/react";
 
-// ... (Social Text Variants and Constants same as before) ...
 const socialTextVariants = {
-  collapsed: {
-    width: 0,
-    opacity: 0,
-    marginLeft: 0,
-    transition: { duration: 0.3, ease: "easeInOut" },
-  },
+  collapsed: { width: 0, opacity: 0, marginLeft: 0 },
   expanded: {
     width: "auto",
     opacity: 1,
     marginLeft: 12,
-    transition: { duration: 0.5, ease: "easeInOut", delay: 0.1 },
+    transition: { duration: 0.5, ease: "easeInOut" },
   },
 };
 
 const SOCIAL_LINKS = [
-  {
-    icon: BsWhatsapp,
-    href: "https://wa.me/+917999517181",
-    title: "WhatsApp",
-    color: "text-green-500",
-  },
-  {
-    icon: BsLinkedin,
-    href: "https://www.linkedin.com/in/mohnish-gorana-804374340/",
-    title: "LinkedIn",
-    color: "text-blue-600",
-  },
-  {
-    icon: BsGithub,
-    href: "https://github.com/mohnishgorana1",
-    title: "GitHub",
-    color: "text-zinc-900 dark:text-zinc-50",
-  },
+  { icon: BsWhatsapp, href: "https://wa.me/+917999517181", title: "WhatsApp", color: "text-green-500" },
+  { icon: BsLinkedin, href: "https://www.linkedin.com/in/mohnish-gorana-804374340/", title: "LinkedIn", color: "text-blue-600" },
+  { icon: BsGithub, href: "https://github.com/mohnishgorana1", title: "GitHub", color: "text-zinc-900 dark:text-zinc-50" },
 ];
 
-const ACCESS_KEY = String(
-  process.env.NEXT_PUBLIC_WEB3FORM_PORTFOLIO_CONTACT_ME_ACCESS_KEY
-);
+const ACCESS_KEY = String(process.env.NEXT_PUBLIC_WEB3FORM_PORTFOLIO_CONTACT_ME_ACCESS_KEY);
 
 const ContactMe = ({ isHomePage }: { isHomePage: boolean }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false); // New state for success animation
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleChange = (e: any) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.9},
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: "easeInOut",
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
     setStatus("");
-    setIsSuccess(false);
-
-    if (!formData.name || !formData.email || !formData.message) {
-      setStatus("Please fill out all fields.");
-      setLoading(false);
-      return;
-    }
-
     const data = new FormData();
     data.append("access_key", ACCESS_KEY!);
-    data.append("name", formData.name);
-    data.append("email", formData.email);
-    data.append("message", formData.message);
-    data.append("subject", `New Message from Portfolio by ${formData.name}`);
-
-    console.log("Submitting form data:", formData);
+    Object.entries(formData).forEach(([key, value]) => data.append(key, value));
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: data,
-      });
-
+      const response = await fetch("https://api.web3forms.com/submit", { method: "POST", body: data });
       const json = await response.json();
-
-      console.log("Response from Web3Forms:", json);
-
       if (json.success) {
         setIsSuccess(true);
-        setStatus("Thank you! Your message has been sent successfully.");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        setIsSuccess(false);
-        console.error(json.message);
-        setStatus(`Submission failed: ${json.message || "Please try again."}`);
+        setStatus("Submission failed. Please try again.");
       }
     } catch (error) {
-      console.error(error);
-      setStatus("There was a network error. Please try again later.");
+      setStatus("Network error. Please try again later.");
     } finally {
       setLoading(false);
     }
-
-    // // --- SIMULATION LOGIC ---
-    // try {
-    //   // Simulate network delay
-    //   await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    //   // Success Case
-    //   setIsSuccess(true);
-    //   setStatus("Thank you! Your message has been sent successfully.");
-    //   setFormData({ name: "", email: "", message: "" });
-
-    //   // Reset button after 3 seconds so user can send another if needed
-    //   setTimeout(() => {
-    //     setIsSuccess(false);
-    //     setStatus("");
-    //   }, 4000);
-    // } catch (error) {
-    //   setStatus("Something went wrong. Please try again.");
-    // } finally {
-    //   setLoading(false);
-    // }
-    // // ------------------------
   };
 
   return (
-    <section id="contact" className="">
-      <h2 className="text-3xl font-bold md:text-5xl text-center mb-4 text-zinc-900 dark:text-zinc-50">
-        Get in Touch
-      </h2>
-      <p className="text-center mb-12 text-zinc-600 dark:text-zinc-400 mx-auto max-w-2xl text-lg md:text-xl leading-relaxed">
-        Ready to turn your vision into reality?{" "}
-        Whether it's a <strong>groundbreaking project idea</strong>a{" "}
-        <strong>job opportunity</strong>, or a{" "}
-        <strong>quick collaboration</strong>—let's connect. <br />
-        <span className="text-blue-500 dark:text-blue-400 font-bold">
-          Send me a message and let's start building!
-        </span>
-      </p>
+    <section id="contact" className="py-20 px-1 sm:px-2 overflow-hidden">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        // viewport={{ once: true, amount: 0.2 }}
+        className="relative mx-auto bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 md:p-8 shadow-2xl transition-colors duration-500"
+      >
+        {/* --- Sharp Blue Corners --- */}
+        <div className="absolute -top-[5px] -left-[5px] w-12 h-12 border-t-4 border-l-4 border-blue-600 dark:border-blue-500" />
+        <div className="absolute -top-[5px] -right-[5px] w-12 h-12 border-t-4 border-r-4 border-blue-600 dark:border-blue-500" />
+        <div className="absolute -bottom-[5px] -left-[5px] w-12 h-12 border-b-4 border-l-4 border-blue-600 dark:border-blue-500" />
+        <div className="absolute -bottom-[5px] -right-[5px] w-12 h-12 border-b-4 border-r-4 border-blue-600 dark:border-blue-500" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Contact Info (Side Panel) - KEPT SAME */}
-        <div className="lg:col-span-1 gap-y-6 flex flex-col">
-          <ContactDetail
-            icon={Mail}
-            title="Email Me"
-            content="mohnishgorana1@gmail.com"
-            link="mailto:mohnishgorana1@gmail.com"
-          />
-          <ContactDetail
-            icon={MapPin}
-            title="Location"
-            content="Neemuch, MP, India"
-          />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Left Panel: Info */}
+          <div className="lg:col-span-5 space-y-8">
+            <motion.div variants={itemVariants}>
+              <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-zinc-900 dark:text-zinc-50 uppercase">
+                Let&apos;s Build <span className="text-blue-600 italic">Something</span>
+              </h2>
+              <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Ready to turn your vision into reality? Send me a message and let&apos;s start building!
+              </p>
+            </motion.div>
 
-          <div className="flex-1 p-6 rounded-xl border shadow-md shadow-blue-300/50 bg-zinc-50 dark:shadow-none dark:border-zinc-700 dark:bg-zinc-800/50">
-            <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
-              Connect
-            </h3>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
-              Find me on professional platforms.
-            </p>
-            <div className="flex items-start gap-2">
-              {SOCIAL_LINKS.map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover="expanded"
-                  initial="collapsed"
-                  className={`${social.color} group flex items-center p-3 transition-colors bg-zinc-100 dark:bg-zinc-700/50 shadow-md hover:shadow-lg rounded-full`}
-                >
-                  <social.icon className="w-6 h-6 flex-shrink-0" />
-                  <motion.span
-                    variants={socialTextVariants}
-                    className="whitespace-nowrap font-semibold text-base"
+            <motion.div variants={itemVariants} className="space-y-4">
+              <ContactDetail icon={Mail} title="Email" content="mohnishgorana1@gmail.com" link="mailto:mohnishgorana1@gmail.com" />
+              <ContactDetail icon={MapPin} title="Location" content="Neemuch, MP, India" />
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="pt-6">
+              <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-4">Socials</h3>
+              <div className="flex flex-wrap gap-3">
+                {SOCIAL_LINKS.map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    whileHover="expanded"
+                    initial="collapsed"
+                    className={`${social.color} flex items-center p-3 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-full`}
                   >
-                    {social.title}
-                  </motion.span>
-                </motion.a>
-              ))}
-            </div>
+                    <social.icon className="w-5 h-5" />
+                    <motion.span variants={socialTextVariants} className="whitespace-nowrap font-bold text-sm">
+                      {social.title}
+                    </motion.span>
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
           </div>
-        </div>
 
-        {/* Contact Form */}
-        <div className="lg:col-span-2">
-          <form
-            onSubmit={handleSubmit}
-            className="p-8 rounded-2xl shadow-xl border border-zinc-200 bg-white/70 dark:border-zinc-800 dark:bg-zinc-900/70 backdrop-blur-md"
-          >
-            <div className="space-y-6">
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your Name"
-                className="w-full p-3 border rounded-lg bg-white text-zinc-900 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-50 dark:border-zinc-700"
-                required
-                disabled={loading || isSuccess}
-              />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Your Email"
-                className="w-full p-3 border rounded-lg bg-white text-zinc-900 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-50 dark:border-zinc-700"
-                required
-                disabled={loading || isSuccess}
-              />
+          {/* Right Panel: Form */}
+          <motion.div variants={itemVariants} className="lg:col-span-7">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  className="w-full p-4 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 focus:border-blue-500 outline-none transition-all"
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="w-full p-4 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 focus:border-blue-500 outline-none transition-all"
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  required
+                />
+              </div>
               <textarea
-                name="message"
+                placeholder="How can I help you?"
+                rows={6}
+                className="w-full p-4 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 focus:border-blue-500 outline-none transition-all resize-none"
                 value={formData.message}
-                onChange={handleChange}
-                placeholder="Your Message"
-                rows={5}
-                maxLength={500}
-                className="w-full p-3 border rounded-lg bg-white text-zinc-900 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-50 dark:border-zinc-700"
+                onChange={(e) => setFormData({...formData, message: e.target.value})}
                 required
-                disabled={loading || isSuccess}
               />
-            </div>
-
-            {/* Error Message Only (Success logic moved to button) */}
-            {status && !isSuccess && (
-              <p className="mt-4 text-center text-red-500">{status}</p>
-            )}
-
-            {/* ANIMATED SUBMIT BUTTON */}
-            <button
-              type="submit"
-              disabled={loading || isSuccess}
-              className={`mt-6 w-full inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 overflow-hidden
-                ${
-                  isSuccess
-                    ? "bg-green-500 hover:bg-green-600 text-white" // Success Color
-                    : "bg-blue-600 hover:bg-blue-700 text-white" // Normal Color
-                }
-                ${loading ? "cursor-not-allowed opacity-80" : ""}
-              `}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                {isSuccess ? (
-                  // SUCCESS STATE
-                  <motion.div
-                    key="success"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex items-center gap-2"
-                  >
-                    <Check className="w-6 h-6" />
-                    <span>Message Sent!</span>
-                  </motion.div>
-                ) : loading ? (
-                  // LOADING STATE
-                  <motion.div
-                    key="loading"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex items-center gap-2"
-                  >
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Sending...</span>
-                  </motion.div>
-                ) : (
-                  // IDLE STATE
-                  <motion.div
-                    key="idle"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex items-center gap-2"
-                  >
-                    <span>Send Message</span>
-                    <Send className="w-5 h-5 ml-1" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </button>
-          </form>
+              
+              <button
+                type="submit"
+                disabled={loading || isSuccess}
+                className={`w-full py-4 font-bold uppercase tracking-widest transition-all shadow-lg
+                  ${isSuccess ? "bg-green-600 text-white" : "bg-blue-600 hover:bg-blue-700 text-white"}
+                `}
+              >
+                <AnimatePresence mode="wait">
+                  {isSuccess ? (
+                    <motion.div key="s" initial={{ opacity:0 }} animate={{ opacity:1 }} className="flex items-center justify-center gap-2">
+                      <Check /> Message Sent
+                    </motion.div>
+                  ) : (
+                    <motion.div key="i" initial={{ opacity:0 }} animate={{ opacity:1 }} className="flex items-center justify-center gap-2">
+                      {loading ? <Loader2 className="animate-spin" /> : <><Send size={18} /> Send Message</>}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
+              {status && <p className="text-red-500 text-sm font-bold">{status}</p>}
+            </form>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
 
-// Helper component ... (Same as before)
-const ContactDetail = ({
-  icon: Icon,
-  title,
-  content,
-  link,
-}: {
-  icon: any;
-  title: string;
-  content: string;
-  link?: string;
-}) => (
-  <div className="flex items-center space-x-4 p-4 rounded-xl border shadow-md shadow-blue-300/50 dark:shadow-none bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800/50">
-    <div className="p-3 rounded-full bg-blue-500/10 dark:bg-blue-500/20">
-      <Icon className="w-6 h-6 text-blue-500" />
-    </div>
+const ContactDetail = ({ icon: Icon, title, content, link }: any) => (
+  <div className="flex items-center gap-4 p-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800">
+    <div className="p-3 bg-blue-600/10 text-blue-600"><Icon size={20} /></div>
     <div>
-      <h3 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
-        {title}
-      </h3>
-      {link ? (
-        <a
-          href={link}
-          className="text-base font-semibold text-zinc-900 dark:text-zinc-50 hover:text-blue-500 transition-colors"
-        >
-          {content}
-        </a>
-      ) : (
-        <p className="text-base font-semibold text-zinc-900 dark:text-zinc-50">
-          {content}
-        </p>
-      )}
+      <p className="text-[10px] uppercase font-bold text-zinc-400 tracking-widest">{title}</p>
+      {link ? <a href={link} className="font-bold text-zinc-900 dark:text-zinc-50 hover:text-blue-500 transition-colors">{content}</a> : <p className="font-bold text-zinc-900 dark:text-zinc-50">{content}</p>}
     </div>
   </div>
 );

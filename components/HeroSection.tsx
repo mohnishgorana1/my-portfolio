@@ -62,7 +62,18 @@ function HeroSection() {
         </TextLoop>
         {/* TAGLINE + DESCRIPTION */}
         <div className="space-y-5 max-w-2xl">
-          <p
+          <motion.p
+            initial={{
+              opacity: 0.7,
+              filter: "blur(3px)"
+            }}
+            animate={{
+              opacity: 1,
+              filter: "blur(0px)"
+            }}
+            transition={{
+              duration: 0.2
+            }}
             className="text-lg md:text-xl 
                        text-gray-700 dark:text-gray-400 // ⬅️ Updated text color
                        leading-normal"
@@ -70,7 +81,7 @@ function HeroSection() {
             I specialize in MERN and Next.js, crafting scalable, efficient, and
             high-performance web applications with clean architecture and a
             focus on developer experience.
-          </p>
+          </motion.p>
         </div>
 
         {/* BUTTONS */}
@@ -131,7 +142,10 @@ function HeroSection() {
             <SiNextdotjs className="bg-background rounded-full p-2 border-2 size-10 border-black text-black dark:bg-black dark:text-white" />
             <SiNodedotjs className="bg-background rounded-full p-2 border-2 size-10 text-green-700 border-green-700 dark:bg-green-700 dark:text-white" />
             <SiReact className="bg-background rounded-full p-2 border-2 size-10 border-cyan-700 text-cyan-700 dark:bg-cyan-700 dark:text-white" />
-            <SiExpress strokeWidth="1" className="bg-background rounded-full p-2 border-2 size-10 border-black text-black dark:text-black dark:border-white dark:bg-white " />
+            <SiExpress
+              strokeWidth="1"
+              className="bg-background rounded-full p-2 border-2 size-10 border-black text-black dark:text-black dark:border-white dark:bg-white "
+            />
             <SiTailwindcss className="bg-background rounded-full p-2 border-2 size-10 border-blue-700 text-blue-700 dark:bg-blue-700 dark:text-white" />
             <SiMongodb className="bg-background rounded-full p-2 border-2 size-10 border-green-500  text-green-700 dark:bg-green-500 dark:text-white" />
           </OrbitingCircles>
