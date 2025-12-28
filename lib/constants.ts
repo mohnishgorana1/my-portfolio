@@ -143,6 +143,38 @@ export const projects = [
   },
   {
     id: "4",
+    title: "Realtime Chat App",
+    slug: "realtime-chatapp",
+    link: "https://realtime-chat-application-mg.vercel.app",
+    isFeatured: false,
+
+    // thumbnail: "/assets/projects/chat-app.png",
+    images: [
+      "/assets/projects/realtime-chat-app.png",
+      "/assets/projects/realtime-chat-app-2.png",
+    ],
+    shortVideo: "",
+    description:
+      "This Chat App enables seamless communication between users. With features like instant messaging.",
+    shortDescription:
+      "A real-time messaging app supporting instant communication.",
+    detailedDescription:
+      "Chat App is a fast, real-time messaging platform that facilitates seamless communication between users. It supports a wide range of features such as instant messaging. The app is optimized for speed and reliability, ensuring that messages are delivered instantly, even in low-bandwidth conditions. Its user-friendly interface makes it easy to stay connected across multiple devices, and its secure messaging system ensures privacy and data protection. Whether for personal communication or business collaboration, Chat App offers a smooth and efficient user experience.",
+    githubRepositoryUrl:
+      "https://github.com/mohnishgorana1/realtime-chat-application",
+    techStacks: [
+      "NextJS",
+      "Typescript",
+      "MongoDB",
+      "ExpressJS",
+      "NodeJS",
+      "TailwindCSS",
+      "Pusher",
+      "FramerMotion",
+    ],
+  },
+  {
+    id: "5",
     title: "Career Hub",
     slug: "careerhub",
     isFeatured: false,
@@ -168,7 +200,7 @@ export const projects = [
     ],
   },
   {
-    id: "5",
+    id: "6",
     title: "Carewell",
     slug: "carewell",
     link: "https://carewell-eight.vercel.app/",
@@ -185,33 +217,6 @@ export const projects = [
       "Carewell is an intuitive platform designed to make healthcare appointment booking easier for patients and healthcare providers. It allows patients to schedule appointments seamlessly, with features like appointment reminders and status updates. On the administrative side, Carewell gives administrators full control over managing patient bookings, tracking appointment statuses, and ensuring that healthcare professionals are efficiently scheduled. With its focus on reducing administrative tasks, Carewell enhances patient care by freeing up time for healthcare providers to focus on treatment. Its clean, easy-to-navigate interface ensures that both patients and admins have a smooth experience.",
     githubRepositoryUrl: "https://github.com/mohnishgorana1/carewell",
     techStacks: ["NextJS", "Typescript", "TailwindCSS"],
-  },
-  {
-    id: "6",
-    title: "Chat App",
-    slug: "chatapp",
-    link: "https://chat-app-two-flame.vercel.app/",
-    isFeatured: false,
-
-    // thumbnail: "/assets/projects/chat-app.png",
-    images: ["/assets/projects/chat-app.png"],
-    shortVideo: "",
-    description:
-      "This Chat App enables seamless communication between users. With features like instant messaging.",
-    shortDescription:
-      "A real-time messaging app supporting instant communication.",
-    detailedDescription:
-      "Chat App is a fast, real-time messaging platform that facilitates seamless communication between users. It supports a wide range of features such as instant messaging. The app is optimized for speed and reliability, ensuring that messages are delivered instantly, even in low-bandwidth conditions. Its user-friendly interface makes it easy to stay connected across multiple devices, and its secure messaging system ensures privacy and data protection. Whether for personal communication or business collaboration, Chat App offers a smooth and efficient user experience.",
-    githubRepositoryUrl: "https://github.com/mohnishgorana1/chat-app",
-    techStacks: [
-      "NextJS",
-      "Typescript",
-      "MongoDB",
-      "ExpressJS",
-      "NodeJS",
-      "TailwindCSS",
-      "Pusher",
-    ],
   },
   {
     id: "7",
